@@ -14,6 +14,7 @@ export const AppProvider = ({ children }) => {
   // User role state - 4 roles: student, teacher, parent, school
   const [userRole, setUserRole] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Login as different roles (mock)
   const loginAs = useCallback((role) => {
@@ -69,10 +70,12 @@ export const AppProvider = ({ children }) => {
     // State
     userRole,
     currentUser,
+    sidebarOpen,
     
     // Actions
     loginAs,
     logout,
+    setSidebarOpen,
   };
 
   return (
