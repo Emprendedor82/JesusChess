@@ -5,12 +5,20 @@ import { AppProvider, useApp } from "./context/AppContext";
 import { Toaster } from "./components/ui/sonner";
 
 // Layout
+import Layout from "./components/layout/Layout";
 import MobileLayout from "./components/layout/MobileLayout";
 
-// Pages
-import SimpleRoleSelector from "./components/pages/SimpleRoleSelector";
+// Pages - Role Selector
+import RoleSelector from "./components/pages/RoleSelector";
+
+// Pages - Dashboards (4 roles)
+import StudentDashboard from "./components/pages/StudentDashboard";
+import TeacherPanel from "./components/pages/TeacherPanel";
+import ParentDashboard from "./components/pages/ParentDashboard";
+import SchoolDashboard from "./components/pages/SchoolDashboard";
+
+// Pages - Student Features
 import StudentHome from "./components/pages/StudentHome";
-import CoachHome from "./components/pages/CoachHome";
 import ChallengesPage from "./components/pages/ChallengesPage";
 import { 
   TrainingHub, 
@@ -42,8 +50,10 @@ const AppRoutes = () => {
   // Determine the home route based on role
   const getHomeRoute = () => {
     switch (userRole) {
-      case 'student': return '/inicio';
-      case 'coach': return '/coach';
+      case 'student': return '/dashboard';
+      case 'teacher': return '/teacher';
+      case 'parent': return '/parent';
+      case 'school': return '/school';
       default: return '/';
     }
   };
@@ -51,35 +61,55 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <SimpleRoleSelector />} />
+      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
       
-      {/* Protected Routes - wrapped in MobileLayout */}
-      <Route element={<MobileLayout />}>
-        {/* Student Routes */}
+      {/* Protected Routes - wrapped in Layout */}
+      <Route element={<Layout />}>
+        {/* Student Dashboard */}
         <Route 
-          path="/inicio" 
+          path="/dashboard" 
           element={
             <ProtectedRoute allowedRoles={['student']}>
-              <StudentHome />
+              <StudentDashboard />
             </ProtectedRoute>
           } 
         />
         
-        {/* Coach Routes */}
+        {/* Teacher Panel */}
         <Route 
-          path="/coach" 
+          path="/teacher" 
           element={
-            <ProtectedRoute allowedRoles={['coach']}>
-              <CoachHome />
+            <ProtectedRoute allowedRoles={['teacher']}>
+              <TeacherPanel />
             </ProtectedRoute>
           } 
         />
         
-        {/* Training Routes - Both roles */}
+        {/* Parent Dashboard */}
+        <Route 
+          path="/parent" 
+          element={
+            <ProtectedRoute allowedRoles={['parent']}>
+              <ParentDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* School Dashboard */}
+        <Route 
+          path="/school" 
+          element={
+            <ProtectedRoute allowedRoles={['school']}>
+              <SchoolDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Training Routes - Student only */}
         <Route 
           path="/entrenamiento" 
           element={
-            <ProtectedRoute allowedRoles={['student', 'coach']}>
+            <ProtectedRoute allowedRoles={['student']}>
               <TrainingHub />
             </ProtectedRoute>
           } 
@@ -87,7 +117,7 @@ const AppRoutes = () => {
         <Route 
           path="/entrenamiento/aprende" 
           element={
-            <ProtectedRoute allowedRoles={['student', 'coach']}>
+            <ProtectedRoute allowedRoles={['student']}>
               <LearnPage />
             </ProtectedRoute>
           } 
@@ -95,7 +125,7 @@ const AppRoutes = () => {
         <Route 
           path="/entrenamiento/aprende/:levelId" 
           element={
-            <ProtectedRoute allowedRoles={['student', 'coach']}>
+            <ProtectedRoute allowedRoles={['student']}>
               <LevelDetailPage />
             </ProtectedRoute>
           } 
@@ -103,7 +133,7 @@ const AppRoutes = () => {
         <Route 
           path="/entrenamiento/practica" 
           element={
-            <ProtectedRoute allowedRoles={['student', 'coach']}>
+            <ProtectedRoute allowedRoles={['student']}>
               <PracticePage />
             </ProtectedRoute>
           } 
@@ -111,17 +141,17 @@ const AppRoutes = () => {
         <Route 
           path="/entrenamiento/tareas" 
           element={
-            <ProtectedRoute allowedRoles={['student', 'coach']}>
+            <ProtectedRoute allowedRoles={['student']}>
               <TasksPage />
             </ProtectedRoute>
           } 
         />
         
-        {/* Challenges/Retos - Both roles */}
+        {/* Challenges/Retos - Student only */}
         <Route 
           path="/retos" 
           element={
-            <ProtectedRoute allowedRoles={['student', 'coach']}>
+            <ProtectedRoute allowedRoles={['student']}>
               <ChallengesPage />
             </ProtectedRoute>
           } 

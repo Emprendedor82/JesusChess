@@ -11,8 +11,8 @@ export const useApp = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  // User role state - simplified to student/coach
-  const [userRole, setUserRole] = useState(null); // 'student', 'coach'
+  // User role state - 4 roles: student, teacher, parent, school
+  const [userRole, setUserRole] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
 
   // Login as different roles (mock)
@@ -29,11 +29,25 @@ export const AppProvider = ({ children }) => {
           streak: 5
         });
         break;
-      case 'coach':
+      case 'teacher':
         setCurrentUser({
-          id: 'coach-1',
+          id: 'teacher-1',
           name: 'Prof. Carlos García',
           avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos',
+        });
+        break;
+      case 'parent':
+        setCurrentUser({
+          id: 'parent-1',
+          name: 'María López',
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria',
+        });
+        break;
+      case 'school':
+        setCurrentUser({
+          id: 'school-1',
+          name: 'Colegio San Ignacio',
+          logo: 'https://api.dicebear.com/7.x/initials/svg?seed=CSI',
         });
         break;
       default:
