@@ -27,9 +27,9 @@ const Sidebar = () => {
       case 'student':
         return [
           { to: '/dashboard', icon: Home, label: 'Inicio' },
-          { to: '/training', icon: BookOpen, label: 'Entrenamiento' },
-          { to: '/challenges', icon: Target, label: 'Mis Retos' },
-          { to: '/tasks', icon: ClipboardList, label: 'Mis Tareas' },
+          { to: '/entrenamiento', icon: BookOpen, label: 'Entrenamiento' },
+          { to: '/retos', icon: Target, label: 'Mis Retos' },
+          { to: '/entrenamiento/tareas', icon: ClipboardList, label: 'Mis Tareas' },
           { to: '/achievements', icon: Trophy, label: 'Logros' },
         ];
       case 'teacher':
