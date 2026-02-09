@@ -38,10 +38,21 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 const AppRoutes = () => {
   const { userRole } = useApp();
 
+  // Determine the home route based on role
+  const getHomeRoute = () => {
+    switch (userRole) {
+      case 'student': return '/dashboard';
+      case 'teacher': return '/teacher';
+      case 'parent': return '/parent';
+      case 'school': return '/school';
+      default: return '/';
+    }
+  };
+
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={userRole ? <Navigate to="/dashboard" replace /> : <RoleSelector />} />
+      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
       <Route path="/onboarding" element={<Onboarding />} />
       
       {/* Protected Routes - wrapped in Layout */}
