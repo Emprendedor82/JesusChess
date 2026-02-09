@@ -26,7 +26,11 @@ export const AppProvider = ({ children }) => {
           avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia',
           level: 2,
           xp: 450,
-          streak: 5
+          xpToNextLevel: 1000,
+          streak: 5,
+          completedLessons: 8,
+          totalLessons: 24,
+          medals: ['gold', 'silver', 'bronze']
         });
         break;
       case 'teacher':
