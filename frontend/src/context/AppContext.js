@@ -1,11 +1,4 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
-import { 
-  STUDENT_PROFILE, 
-  SCHOOLS, 
-  TEACHER_STUDENTS, 
-  PARENT_VIEW_DATA,
-  SCHOOL_DASHBOARD 
-} from '../data/mockData';
 
 const AppContext = createContext(null);
 
@@ -18,16 +11,9 @@ export const useApp = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  // User role state
-  const [userRole, setUserRole] = useState(null); // 'student', 'teacher', 'parent', 'school'
+  // User role state - simplified to student/coach
+  const [userRole, setUserRole] = useState(null); // 'student', 'coach'
   const [currentUser, setCurrentUser] = useState(null);
-  
-  // Onboarding state
-  const [studentType, setStudentType] = useState(null); // 'school' or 'private'
-  const [selectedSchool, setSelectedSchool] = useState(null);
-  
-  // UI state
-  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Login as different roles (mock)
   const loginAs = useCallback((role) => {
@@ -35,76 +21,40 @@ export const AppProvider = ({ children }) => {
     switch (role) {
       case 'student':
         setCurrentUser({
-          ...STUDENT_PROFILE,
-          schoolData: selectedSchool ? SCHOOLS.find(s => s.id === selectedSchool) : null
+          id: 'student-1',
+          name: 'Sofía Martínez',
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia',
+          level: 2,
+          xp: 450,
+          streak: 5
         });
         break;
-      case 'teacher':
+      case 'coach':
         setCurrentUser({
-          id: 'teacher-1',
+          id: 'coach-1',
           name: 'Prof. Carlos García',
           avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos',
-          students: TEACHER_STUDENTS
-        });
-        break;
-      case 'parent':
-        setCurrentUser({
-          id: 'parent-1',
-          name: 'María Martínez',
-          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria',
-          ...PARENT_VIEW_DATA
-        });
-        break;
-      case 'school':
-        const school = selectedSchool 
-          ? SCHOOLS.find(s => s.id === selectedSchool)
-          : SCHOOLS[0];
-        setCurrentUser({
-          ...school,
-          dashboard: SCHOOL_DASHBOARD
         });
         break;
       default:
         setCurrentUser(null);
     }
-  }, [selectedSchool]);
+  }, []);
 
   // Logout
   const logout = useCallback(() => {
     setUserRole(null);
     setCurrentUser(null);
-    setStudentType(null);
-    setSelectedSchool(null);
-  }, []);
-
-  // Select school during onboarding
-  const selectSchool = useCallback((schoolId) => {
-    setSelectedSchool(schoolId);
-    setStudentType('school');
-  }, []);
-
-  // Select private student
-  const selectPrivate = useCallback(() => {
-    setStudentType('private');
-    setSelectedSchool(null);
   }, []);
 
   const value = {
     // State
     userRole,
     currentUser,
-    studentType,
-    selectedSchool,
-    sidebarOpen,
-    schools: SCHOOLS,
     
     // Actions
     loginAs,
     logout,
-    selectSchool,
-    selectPrivate,
-    setStudentType,
-    setSidebarOpen,
   };
 
   return (

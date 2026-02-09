@@ -5,19 +5,20 @@ import { AppProvider, useApp } from "./context/AppContext";
 import { Toaster } from "./components/ui/sonner";
 
 // Layout
-import Layout from "./components/layout/Layout";
+import MobileLayout from "./components/layout/MobileLayout";
 
 // Pages
-import RoleSelector from "./components/pages/RoleSelector";
-import Onboarding from "./components/pages/Onboarding";
-import StudentDashboard from "./components/pages/StudentDashboard";
-import TeacherPanel from "./components/pages/TeacherPanel";
-import ParentDashboard from "./components/pages/ParentDashboard";
-import SchoolDashboard from "./components/pages/SchoolDashboard";
-import Training from "./components/pages/Training";
-import Challenges from "./components/pages/Challenges";
-import Tasks from "./components/pages/Tasks";
-import Achievements from "./components/pages/Achievements";
+import SimpleRoleSelector from "./components/pages/SimpleRoleSelector";
+import StudentHome from "./components/pages/StudentHome";
+import CoachHome from "./components/pages/CoachHome";
+import ChallengesPage from "./components/pages/ChallengesPage";
+import { 
+  TrainingHub, 
+  LearnPage, 
+  LevelDetailPage, 
+  PracticePage, 
+  TasksPage 
+} from "./components/pages/TrainingPages";
 
 // Protected Route Component
 const ProtectedRoute = ({ children, allowedRoles }) => {
@@ -41,10 +42,8 @@ const AppRoutes = () => {
   // Determine the home route based on role
   const getHomeRoute = () => {
     switch (userRole) {
-      case 'student': return '/dashboard';
-      case 'teacher': return '/teacher';
-      case 'parent': return '/parent';
-      case 'school': return '/school';
+      case 'student': return '/inicio';
+      case 'coach': return '/coach';
       default: return '/';
     }
   };
@@ -52,135 +51,78 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
-      <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <SimpleRoleSelector />} />
       
-      {/* Protected Routes - wrapped in Layout */}
-      <Route element={<Layout />}>
+      {/* Protected Routes - wrapped in MobileLayout */}
+      <Route element={<MobileLayout />}>
         {/* Student Routes */}
         <Route 
-          path="/dashboard" 
+          path="/inicio" 
           element={
             <ProtectedRoute allowedRoles={['student']}>
-              <StudentDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/training" 
-          element={
-            <ProtectedRoute allowedRoles={['student']}>
-              <Training />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/challenges" 
-          element={
-            <ProtectedRoute allowedRoles={['student']}>
-              <Challenges />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/tasks" 
-          element={
-            <ProtectedRoute allowedRoles={['student']}>
-              <Tasks />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/achievements" 
-          element={
-            <ProtectedRoute allowedRoles={['student']}>
-              <Achievements />
+              <StudentHome />
             </ProtectedRoute>
           } 
         />
         
-        {/* Teacher Routes */}
+        {/* Coach Routes */}
         <Route 
-          path="/teacher" 
+          path="/coach" 
           element={
-            <ProtectedRoute allowedRoles={['teacher']}>
-              <TeacherPanel />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/teacher/students" 
-          element={
-            <ProtectedRoute allowedRoles={['teacher']}>
-              <TeacherPanel />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/teacher/tasks" 
-          element={
-            <ProtectedRoute allowedRoles={['teacher']}>
-              <TeacherPanel />
+            <ProtectedRoute allowedRoles={['coach']}>
+              <CoachHome />
             </ProtectedRoute>
           } 
         />
         
-        {/* Parent Routes */}
+        {/* Training Routes - Both roles */}
         <Route 
-          path="/parent" 
+          path="/entrenamiento" 
           element={
-            <ProtectedRoute allowedRoles={['parent']}>
-              <ParentDashboard />
+            <ProtectedRoute allowedRoles={['student', 'coach']}>
+              <TrainingHub />
             </ProtectedRoute>
           } 
         />
         <Route 
-          path="/parent/progress" 
+          path="/entrenamiento/aprende" 
           element={
-            <ProtectedRoute allowedRoles={['parent']}>
-              <ParentDashboard />
+            <ProtectedRoute allowedRoles={['student', 'coach']}>
+              <LearnPage />
             </ProtectedRoute>
           } 
         />
         <Route 
-          path="/parent/feedback" 
+          path="/entrenamiento/aprende/:levelId" 
           element={
-            <ProtectedRoute allowedRoles={['parent']}>
-              <ParentDashboard />
+            <ProtectedRoute allowedRoles={['student', 'coach']}>
+              <LevelDetailPage />
             </ProtectedRoute>
           } 
         />
         <Route 
-          path="/parent/tasks" 
+          path="/entrenamiento/practica" 
           element={
-            <ProtectedRoute allowedRoles={['parent']}>
-              <ParentDashboard />
+            <ProtectedRoute allowedRoles={['student', 'coach']}>
+              <PracticePage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/entrenamiento/tareas" 
+          element={
+            <ProtectedRoute allowedRoles={['student', 'coach']}>
+              <TasksPage />
             </ProtectedRoute>
           } 
         />
         
-        {/* School Routes */}
+        {/* Challenges/Retos - Both roles */}
         <Route 
-          path="/school" 
+          path="/retos" 
           element={
-            <ProtectedRoute allowedRoles={['school']}>
-              <SchoolDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/school/students" 
-          element={
-            <ProtectedRoute allowedRoles={['school']}>
-              <SchoolDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/school/analytics" 
-          element={
-            <ProtectedRoute allowedRoles={['school']}>
-              <SchoolDashboard />
+            <ProtectedRoute allowedRoles={['student', 'coach']}>
+              <ChallengesPage />
             </ProtectedRoute>
           } 
         />
