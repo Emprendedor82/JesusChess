@@ -8,6 +8,7 @@ A Duolingo-style gamified chess learning application for **Jugadas Estratégicas
 ## Latest Update (December 2025)
 - **Restored 4-role system:** Alumno, Profesor, Apoderado, Colegio
 - Each role has its own dedicated dashboard with mock data
+- **Interactive Chessboard implemented:** Full piece movement validation, exercises by levels, hints system
 
 ## Brand Identity
 - **Company:** Jugadas Estratégicas - Academia de Ajedrez
