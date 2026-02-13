@@ -9,6 +9,7 @@ A Duolingo-style gamified chess learning application for **Jugadas Estratégicas
 - **Restored 4-role system:** Alumno, Profesor, Apoderado, Colegio
 - Each role has its own dedicated dashboard with mock data
 - **Interactive Chessboard implemented:** Full piece movement validation, exercises by levels, hints system
+- **Course Module (MVP):** 12-video paid course with locked progression, mandatory comments (50+ chars), timer-based video completion
 
 ## Brand Identity
 - **Company:** Jugadas Estratégicas - Academia de Ajedrez
@@ -25,6 +26,7 @@ A Duolingo-style gamified chess learning application for **Jugadas Estratégicas
 - Lesson progress tracking
 - Achievement/medal collection
 - Task management (assigned by teacher)
+- **Paid Course Access** (12-module video course with locked progression)
 
 ### 2. Profesor (Teacher)
 - Student list with progress overview
