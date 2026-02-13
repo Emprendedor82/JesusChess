@@ -133,6 +133,51 @@ const StudentDashboard = () => {
         </Card>
       </div>
 
+      {/* Course Card - Featured */}
+      <Card 
+        className="cursor-pointer border-2 border-accent/30 bg-gradient-to-r from-accent/5 to-primary/5 hover:border-accent/50 transition-all"
+        onClick={() => navigate('/curso')}
+      >
+        <CardContent className="p-5">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10">
+              <GraduationCap className="w-7 h-7 text-accent" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <Badge className="bg-accent text-accent-foreground text-xs">Curso</Badge>
+                {coursePurchased && (
+                  <Badge variant="outline" className="text-xs">
+                    {courseProgress}/12 módulos
+                  </Badge>
+                )}
+              </div>
+              <h3 className="font-heading text-lg font-bold text-foreground">
+                {COURSE_INFO.title}
+              </h3>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                {coursePurchased 
+                  ? "Continúa tu aprendizaje con videos y ejercicios" 
+                  : COURSE_INFO.promise}
+              </p>
+            </div>
+            <Button className="btn-accent">
+              {coursePurchased ? (
+                <>
+                  <Play className="w-4 h-4 mr-2" />
+                  Continuar
+                </>
+              ) : (
+                <>
+                  Ver curso
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </>
+              )}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Main Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Button className="h-auto py-6 btn-gradient flex flex-col items-center gap-2 text-center">
