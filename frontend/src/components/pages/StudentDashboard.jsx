@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
@@ -13,16 +14,22 @@ import {
   ChevronRight,
   Trophy,
   Zap,
-  Clock
+  Clock,
+  Play,
+  GraduationCap
 } from 'lucide-react';
 import { DAILY_CHALLENGES, LESSONS, STUDENT_TASKS, WEEKLY_CHALLENGES } from '../../data/mockData';
+import { courseStorage, COURSE_INFO } from '../../data/courseData';
 
 const StudentDashboard = () => {
   const { currentUser } = useApp();
+  const navigate = useNavigate();
   
   if (!currentUser) return null;
 
   const xpProgress = (currentUser.xp / currentUser.xpToNextLevel) * 100;
+  const coursePurchased = courseStorage.isPurchased();
+  const courseProgress = courseStorage.getCompletedCount();
 
   return (
     <div className="space-y-6 animate-fade-in">
