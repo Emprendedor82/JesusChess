@@ -7,8 +7,6 @@ import { Textarea } from '../ui/textarea';
 import { 
   ChevronLeft, 
   ChevronRight,
-  Play, 
-  Clock, 
   CheckCircle, 
   Lock,
   MessageSquare,
@@ -25,9 +23,6 @@ const CourseModule = () => {
   const [progress, setProgress] = useState(courseStorage.getModuleProgress(id));
   const [comments, setComments] = useState(courseStorage.getComments(id));
   const [commentText, setCommentText] = useState('');
-  const [timeRemaining, setTimeRemaining] = useState(module?.durationSeconds || 0);
-  const [timerStarted, setTimerStarted] = useState(false);
-  const [canMarkWatched, setCanMarkWatched] = useState(false);
 
   // Check access
   useEffect(() => {
@@ -40,20 +35,6 @@ const CourseModule = () => {
       return;
     }
   }, [id, navigate]);
-
-  // Timer for video watch
-  useEffect(() => {
-    if (!timerStarted || progress.watched) return;
-    
-    if (timeRemaining > 0) {
-      const timer = setTimeout(() => {
-        setTimeRemaining(prev => prev - 1);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      setCanMarkWatched(true);
-    }
-  }, [timerStarted, timeRemaining, progress.watched]);
 
   if (!module) {
     return <div className="p-4">Módulo no encontrado</div>;
