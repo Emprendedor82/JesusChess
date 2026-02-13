@@ -100,7 +100,7 @@ export const COURSE_MODULES = [
     id: 11,
     title: "Análisis de partidas propias",
     description: "Método para aprender de tus errores y victorias.",
-    youtubeEmbedUrl: "https://www.youtube.com/embed/fKxG8KjH1Qg",
+    youtubeEmbedUrl: "https://www.youtube.com/embed/ksJFhqZ1vb0",
     durationSeconds: 300,
     durationText: "5 min"
   },
@@ -108,8 +108,8 @@ export const COURSE_MODULES = [
     id: 12,
     title: "Planificación y toma de decisiones",
     description: "Piensa como un maestro: planes, evaluación y ejecución.",
-    youtubeEmbedUrl: "https://www.youtube.com/embed/fKxG8KjH1Qg",
-    durationSeconds: 420, // 7 min
+    youtubeEmbedUrl: "https://www.youtube.com/embed/8yjKIfJ_VLs",
+    durationSeconds: 420,
     durationText: "7 min"
   }
 ];
