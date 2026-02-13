@@ -11,14 +11,14 @@ import MobileLayout from "./components/layout/MobileLayout";
 // Pages - Role Selector
 import RoleSelector from "./components/pages/RoleSelector";
 
-// Pages - Dashboards (4 roles)
-import StudentDashboard from "./components/pages/StudentDashboard";
+// Pages - Dashboards (other roles)
 import TeacherPanel from "./components/pages/TeacherPanel";
 import ParentDashboard from "./components/pages/ParentDashboard";
 import SchoolDashboard from "./components/pages/SchoolDashboard";
 
-// Pages - Student Features
-import StudentHome from "./components/pages/StudentHome";
+// Pages - Student (Mobile Native)
+import StudentHomePage from "./components/pages/StudentHomePage";
+import ProfilePage from "./components/pages/ProfilePage";
 import ChallengesPage from "./components/pages/ChallengesPage";
 import { 
   TrainingHub, 
@@ -55,7 +55,7 @@ const AppRoutes = () => {
   // Determine the home route based on role
   const getHomeRoute = () => {
     switch (userRole) {
-      case 'student': return '/dashboard';
+      case 'student': return '/inicio';
       case 'teacher': return '/teacher';
       case 'parent': return '/parent';
       case 'school': return '/school';
@@ -68,49 +68,19 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
       
-      {/* Protected Routes - wrapped in Layout */}
-      <Route element={<Layout />}>
-        {/* Student Dashboard */}
+      {/* Course Landing - Public (sales page) */}
+      <Route path="/curso" element={<CourseLanding />} />
+      
+      {/* Student Routes - Mobile Layout with Bottom Nav */}
+      <Route element={<MobileLayout />}>
         <Route 
-          path="/dashboard" 
+          path="/inicio" 
           element={
             <ProtectedRoute allowedRoles={['student']}>
-              <StudentDashboard />
+              <StudentHomePage />
             </ProtectedRoute>
           } 
         />
-        
-        {/* Teacher Panel */}
-        <Route 
-          path="/teacher" 
-          element={
-            <ProtectedRoute allowedRoles={['teacher']}>
-              <TeacherPanel />
-            </ProtectedRoute>
-          } 
-        />
-        
-        {/* Parent Dashboard */}
-        <Route 
-          path="/parent" 
-          element={
-            <ProtectedRoute allowedRoles={['parent']}>
-              <ParentDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        
-        {/* School Dashboard */}
-        <Route 
-          path="/school" 
-          element={
-            <ProtectedRoute allowedRoles={['school']}>
-              <SchoolDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        
-        {/* Training Routes - Student only */}
         <Route 
           path="/entrenamiento" 
           element={
@@ -151,8 +121,6 @@ const AppRoutes = () => {
             </ProtectedRoute>
           } 
         />
-        
-        {/* Challenges/Retos - Student only */}
         <Route 
           path="/retos" 
           element={
@@ -161,28 +129,59 @@ const AppRoutes = () => {
             </ProtectedRoute>
           } 
         />
+        <Route 
+          path="/curso/contenido" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <CourseContent />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/curso/modulo/:moduleId" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <CourseModule />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/perfil" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <ProfilePage />
+            </ProtectedRoute>
+          } 
+        />
       </Route>
       
-      {/* Course Landing - Public (sales page) */}
-      <Route path="/curso" element={<CourseLanding />} />
-      
-      {/* Course Content - Student only */}
-      <Route 
-        path="/curso/contenido" 
-        element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <CourseContent />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/curso/modulo/:moduleId" 
-        element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <CourseModule />
-          </ProtectedRoute>
-        } 
-      />
+      {/* Other Roles - Desktop Layout */}
+      <Route element={<Layout />}>
+        <Route 
+          path="/teacher" 
+          element={
+            <ProtectedRoute allowedRoles={['teacher']}>
+              <TeacherPanel />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/parent" 
+          element={
+            <ProtectedRoute allowedRoles={['parent']}>
+              <ParentDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/school" 
+          element={
+            <ProtectedRoute allowedRoles={['school']}>
+              <SchoolDashboard />
+            </ProtectedRoute>
+          } 
+        />
+      </Route>
       
       {/* Catch all - redirect to home */}
       <Route path="*" element={<Navigate to="/" replace />} />
