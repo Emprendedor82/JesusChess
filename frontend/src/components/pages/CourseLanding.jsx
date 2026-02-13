@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../../context/AppContext';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
@@ -17,19 +18,29 @@ import { COURSE_INFO, COURSE_MODULES, courseStorage } from '../../data/courseDat
 
 const CourseLanding = () => {
   const navigate = useNavigate();
+  const { userRole, loginAs } = useApp();
   const isPurchased = courseStorage.isPurchased();
 
-  // If already purchased, redirect to course content
+  // If already purchased and logged in as student, redirect to course content
   React.useEffect(() => {
-    if (isPurchased) {
+    if (isPurchased && userRole === 'student') {
       navigate('/curso/contenido');
     }
-  }, [isPurchased, navigate]);
+  }, [isPurchased, userRole, navigate]);
 
   const handlePurchase = () => {
-    // Mock purchase - just set as purchased
+    // Mock purchase - set as purchased and login as student
     courseStorage.setPurchased();
+    loginAs('student');
     navigate('/curso/contenido');
+  };
+
+  const handleBack = () => {
+    if (userRole) {
+      navigate('/dashboard');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -40,7 +51,7 @@ const CourseLanding = () => {
           <Button 
             variant="ghost" 
             size="sm" 
-            onClick={() => navigate('/dashboard')}
+            onClick={handleBack}
             className="text-primary-foreground/80 hover:text-primary-foreground mb-4"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
