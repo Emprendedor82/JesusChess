@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { GraduationCap, User, Users, Building2, ChevronRight, Sparkles } from 'lucide-react';
+import { Badge } from '../ui/badge';
+import { GraduationCap, User, Users, Building2, ChevronRight, Sparkles, Play } from 'lucide-react';
+import { COURSE_INFO } from '../../data/courseData';
 
 const RoleSelector = () => {
   const { loginAs, studentType, selectSchool, selectPrivate, schools, selectedSchool } = useApp();
