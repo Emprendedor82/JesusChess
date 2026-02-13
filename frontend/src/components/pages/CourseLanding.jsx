@@ -164,22 +164,36 @@ const CourseLanding = () => {
             <Button 
               size="lg" 
               className="w-full btn-accent text-lg py-6"
-              onClick={handlePurchase}
+              onClick={() => window.open(COURSE_INFO.paymentUrl, '_blank')}
             >
               Comprar acceso ahora
             </Button>
             <p className="text-xs text-muted-foreground mt-3">
-              Pago único · Acceso de por vida · Garantía de satisfacción
+              Pago único · Acceso de por vida · Pago seguro con Flow
             </p>
           </CardContent>
         </Card>
 
-        {/* Demo notice */}
-        <div className="text-center">
-          <Badge variant="outline" className="text-muted-foreground">
-            Demo: El botón simula la compra sin cobro real
-          </Badge>
-        </div>
+        {/* Already paid - Activation */}
+        <Card className="border border-success/30 bg-success/5">
+          <CardContent className="p-6 text-center">
+            <p className="text-sm text-foreground font-medium mb-3">
+              ¿Ya realizaste el pago?
+            </p>
+            <Button 
+              variant="outline"
+              size="lg" 
+              className="w-full border-success text-success hover:bg-success hover:text-success-foreground"
+              onClick={handleActivateCourse}
+            >
+              <CheckCircle className="w-5 h-5 mr-2" />
+              Activar mi curso
+            </Button>
+            <p className="text-xs text-muted-foreground mt-3">
+              Haz clic aquí después de completar tu pago en Flow
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
