@@ -99,6 +99,18 @@ A Duolingo-style gamified chess learning application for **Jugadas Estratégicas
 8. Teacher Panel with Evaluation Dialog
 9. Parent Dashboard
 10. School/Institution Dashboard
+11. **Course Landing Page** (pre-purchase)
+12. **Course Content Page** (post-purchase with locked modules)
+13. **Course Module Page** (video + mandatory comments)
+
+## Course Module Details
+- **12 modules** with YouTube embedded videos
+- **Progress tracking** via localStorage
+- **Unlock rules:**
+  - Module 1 unlocked by default
+  - Next module requires: video watched + comment (min 50 chars)
+- **Timer-based video completion** (must wait full duration)
+- **Mock purchase** (no real payment gateway)
 
 ## NOT Implemented (Out of Scope)
 - Real authentication/login
