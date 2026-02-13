@@ -163,15 +163,10 @@ const AppRoutes = () => {
         />
       </Route>
       
-      {/* Course Routes - Student only, outside Layout for full-screen experience */}
-      <Route 
-        path="/curso" 
-        element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <CourseLanding />
-          </ProtectedRoute>
-        } 
-      />
+      {/* Course Landing - Public (sales page) */}
+      <Route path="/curso" element={<CourseLanding />} />
+      
+      {/* Course Content - Student only */}
       <Route 
         path="/curso/contenido" 
         element={
