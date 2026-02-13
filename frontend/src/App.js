@@ -28,6 +28,11 @@ import {
   TasksPage 
 } from "./components/pages/TrainingPages";
 
+// Pages - Course
+import CourseLanding from "./components/pages/CourseLanding";
+import CourseContent from "./components/pages/CourseContent";
+import CourseModule from "./components/pages/CourseModule";
+
 // Protected Route Component
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { userRole } = useApp();
@@ -157,6 +162,32 @@ const AppRoutes = () => {
           } 
         />
       </Route>
+      
+      {/* Course Routes - Student only, outside Layout for full-screen experience */}
+      <Route 
+        path="/curso" 
+        element={
+          <ProtectedRoute allowedRoles={['student']}>
+            <CourseLanding />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/curso/contenido" 
+        element={
+          <ProtectedRoute allowedRoles={['student']}>
+            <CourseContent />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/curso/modulo/:moduleId" 
+        element={
+          <ProtectedRoute allowedRoles={['student']}>
+            <CourseModule />
+          </ProtectedRoute>
+        } 
+      />
       
       {/* Catch all - redirect to home */}
       <Route path="*" element={<Navigate to="/" replace />} />
