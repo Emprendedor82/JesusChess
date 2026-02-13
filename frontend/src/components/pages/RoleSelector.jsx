@@ -106,29 +106,26 @@ const RoleSelector = () => {
           {/* Course Banner */}
           <Card 
             className="mb-8 cursor-pointer border-2 border-accent/40 bg-gradient-to-r from-accent/10 via-primary/5 to-accent/10 hover:border-accent/60 transition-all group"
-            onClick={() => {
-              loginAs('student');
-              navigate('/curso');
-            }}
+            onClick={() => navigate('/curso')}
           >
-            <CardContent className="p-5">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/20">
-                  <GraduationCap className="w-8 h-8 text-accent" />
+            <CardContent className="p-4 md:p-5">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-accent/20 flex-shrink-0">
+                  <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
                     <Badge className="bg-accent text-accent-foreground text-xs">Curso Premium</Badge>
                     <Badge variant="outline" className="text-xs">12 módulos</Badge>
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-foreground group-hover:text-accent transition-colors">
+                  <h3 className="font-heading text-base sm:text-lg font-bold text-foreground group-hover:text-accent transition-colors">
                     {COURSE_INFO.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 line-clamp-2">
                     {COURSE_INFO.promise}
                   </p>
                 </div>
-                <Button className="btn-accent">
+                <Button className="btn-accent w-full sm:w-auto mt-2 sm:mt-0">
                   <Play className="w-4 h-4 mr-2" />
                   Ver curso
                 </Button>
