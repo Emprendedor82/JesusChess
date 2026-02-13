@@ -28,15 +28,8 @@ const CourseLanding = () => {
     }
   }, [isPurchased, userRole, navigate]);
 
-  const handlePurchase = () => {
-    // Mock purchase - set as purchased and login as student
-    courseStorage.setPurchased();
-    loginAs('student');
-    navigate('/curso/contenido');
-  };
-
   const handleActivateCourse = () => {
-    // Activate course access
+    // Activate course access after payment
     courseStorage.setPurchased();
     loginAs('student');
     navigate('/curso/contenido');
