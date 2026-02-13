@@ -40,16 +40,6 @@ const CourseModule = () => {
     return <div className="p-4">Módulo no encontrado</div>;
   }
 
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const handleStartVideo = () => {
-    setTimerStarted(true);
-  };
-
   const handleMarkWatched = () => {
     courseStorage.markWatched(id);
     setProgress(courseStorage.getModuleProgress(id));
