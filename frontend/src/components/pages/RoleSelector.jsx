@@ -102,6 +102,40 @@ const RoleSelector = () => {
       {/* Role Selection */}
       <div className="flex-1 py-12 px-4">
         <div className="max-w-4xl mx-auto">
+          
+          {/* Course Banner */}
+          <Card 
+            className="mb-8 cursor-pointer border-2 border-accent/40 bg-gradient-to-r from-accent/10 via-primary/5 to-accent/10 hover:border-accent/60 transition-all group"
+            onClick={() => {
+              loginAs('student');
+              navigate('/curso');
+            }}
+          >
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/20">
+                  <GraduationCap className="w-8 h-8 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Badge className="bg-accent text-accent-foreground text-xs">Curso Premium</Badge>
+                    <Badge variant="outline" className="text-xs">12 módulos</Badge>
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-foreground group-hover:text-accent transition-colors">
+                    {COURSE_INFO.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-0.5">
+                    {COURSE_INFO.promise}
+                  </p>
+                </div>
+                <Button className="btn-accent">
+                  <Play className="w-4 h-4 mr-2" />
+                  Ver curso
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="text-center mb-10">
             <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3">
               ¿Cómo deseas ingresar?
