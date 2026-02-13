@@ -116,19 +116,6 @@ const CourseModule = () => {
                   <CheckCircle className="w-5 h-5" />
                   <span className="font-medium">Video completado</span>
                 </div>
-              ) : !timerStarted ? (
-                <Button onClick={handleStartVideo} className="btn-accent">
-                  <Play className="w-4 h-4 mr-2" />
-                  Iniciar video ({module.durationText})
-                </Button>
-              ) : timeRemaining > 0 ? (
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Clock className="w-4 h-4" />
-                    <span>Tiempo restante: {formatTime(timeRemaining)}</span>
-                  </div>
-                  <Badge variant="secondary">Viendo...</Badge>
-                </div>
               ) : (
                 <Button onClick={handleMarkWatched} className="btn-accent">
                   <CheckCircle className="w-4 h-4 mr-2" />
