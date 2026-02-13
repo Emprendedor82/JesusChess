@@ -28,7 +28,7 @@ export const COURSE_MODULES = [
     id: 2,
     title: "Objetivo del juego y jaque mate",
     description: "Entiende el objetivo final y aprende los patrones de mate más comunes.",
-    youtubeEmbedUrl: "https://www.youtube.com/embed/BC76_pTX7uc",
+    youtubeEmbedUrl: "https://www.youtube.com/embed/RGjlqoN8FMI",
     durationSeconds: 240,
     durationText: "4 min"
   },
