@@ -1,0 +1,174 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card, CardContent } from '../ui/card';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Progress } from '../ui/progress';
+import { 
+  ChevronLeft, 
+  ChevronRight,
+  Play, 
+  Clock, 
+  CheckCircle, 
+  Lock,
+  BookOpen
+} from 'lucide-react';
+import { COURSE_INFO, COURSE_MODULES, courseStorage } from '../../data/courseData';
+
+const CourseContent = () => {
+  const navigate = useNavigate();
+  const [, forceUpdate] = React.useReducer(x => x + 1, 0);
+  
+  // Check if purchased
+  const isPurchased = courseStorage.isPurchased();
+  
+  React.useEffect(() => {
+    if (!isPurchased) {
+      navigate('/curso');
+    }
+  }, [isPurchased, navigate]);
+
+  const completedCount = courseStorage.getCompletedCount();
+  const progressPercent = (completedCount / COURSE_MODULES.length) * 100;
+
+  const getModuleStatus = (moduleId) => {
+    const progress = courseStorage.getModuleProgress(moduleId);
+    if (progress.completed) return 'completed';
+    if (courseStorage.isModuleUnlocked(moduleId)) return 'available';
+    return 'locked';
+  };
+
+  const handleModuleClick = (module) => {
+    const status = getModuleStatus(module.id);
+    if (status === 'locked') return;
+    navigate(`/curso/modulo/${module.id}`);
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="bg-primary text-primary-foreground py-6 px-4">
+        <div className="max-w-3xl mx-auto">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => navigate('/dashboard')}
+            className="text-primary-foreground/80 hover:text-primary-foreground mb-3"
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Volver al inicio
+          </Button>
+          
+          <h1 className="font-heading text-xl md:text-2xl font-bold mb-2">
+            {COURSE_INFO.title}
+          </h1>
+          
+          {/* Progress */}
+          <div className="mt-4">
+            <div className="flex items-center justify-between text-sm mb-2">
+              <span className="text-primary-foreground/80">Tu progreso</span>
+              <span className="font-bold">{completedCount} / {COURSE_MODULES.length} módulos</span>
+            </div>
+            <Progress value={progressPercent} className="h-2 bg-primary-foreground/20" />
+          </div>
+        </div>
+      </div>
+
+      {/* Modules List */}
+      <div className="max-w-3xl mx-auto px-4 py-6">
+        <h2 className="font-heading text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+          <BookOpen className="w-5 h-5 text-accent" />
+          Módulos del curso
+        </h2>
+        
+        <div className="space-y-3">
+          {COURSE_MODULES.map((module, idx) => {
+            const status = getModuleStatus(module.id);
+            
+            return (
+              <Card 
+                key={module.id}
+                className={`transition-all ${
+                  status === 'locked' 
+                    ? 'opacity-60 cursor-not-allowed' 
+                    : 'cursor-pointer hover:border-accent/50'
+                } ${status === 'completed' ? 'border-success/30 bg-success/5' : ''}`}
+                onClick={() => handleModuleClick(module)}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-4">
+                    {/* Status Icon */}
+                    <div className={`
+                      flex items-center justify-center w-12 h-12 rounded-xl
+                      ${status === 'completed' ? 'bg-success/10' : ''}
+                      ${status === 'available' ? 'bg-accent/10' : ''}
+                      ${status === 'locked' ? 'bg-muted' : ''}
+                    `}>
+                      {status === 'completed' && (
+                        <CheckCircle className="w-6 h-6 text-success" />
+                      )}
+                      {status === 'available' && (
+                        <Play className="w-6 h-6 text-accent" />
+                      )}
+                      {status === 'locked' && (
+                        <Lock className="w-5 h-5 text-muted-foreground" />
+                      )}
+                    </div>
+                    
+                    {/* Module Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="text-xs">
+                          Módulo {module.id}
+                        </Badge>
+                        {status === 'completed' && (
+                          <Badge className="bg-success/10 text-success border-0 text-xs">
+                            Completado
+                          </Badge>
+                        )}
+                      </div>
+                      <h3 className="font-heading font-bold text-foreground mt-1">
+                        {module.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-1">
+                        {module.description}
+                      </p>
+                    </div>
+                    
+                    {/* Duration & Arrow */}
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {module.durationText}
+                      </span>
+                      {status !== 'locked' && (
+                        <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+        
+        {/* Completion message */}
+        {completedCount === COURSE_MODULES.length && (
+          <Card className="mt-6 bg-gradient-to-r from-xp/10 to-success/10 border-xp/30">
+            <CardContent className="p-6 text-center">
+              <span className="text-4xl mb-3 block">🏆</span>
+              <h3 className="font-heading text-xl font-bold text-foreground">
+                ¡Felicitaciones!
+              </h3>
+              <p className="text-muted-foreground mt-2">
+                Has completado todo el curso. Ahora tienes las herramientas para seguir mejorando.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CourseContent;
