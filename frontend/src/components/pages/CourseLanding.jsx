@@ -35,6 +35,13 @@ const CourseLanding = () => {
     navigate('/curso/contenido');
   };
 
+  const handleActivateCourse = () => {
+    // Activate course access
+    courseStorage.setPurchased();
+    loginAs('student');
+    navigate('/curso/contenido');
+  };
+
   const handleBack = () => {
     if (userRole) {
       navigate('/dashboard');
