@@ -19,24 +19,21 @@ export const COURSE_INFO = {
 export const COURSE_MODULES = [
   {
     id: 1,
-    title: "Fundamentos: tablero y piezas",
-    description: "Conoce a fondo cada pieza, su valor y cómo dominar el tablero desde el inicio.",
+    title: "Todos al Ataque + Esquema de Color",
     youtubeEmbedUrl: "https://www.youtube.com/embed/BC76_pTX7uc",
     durationSeconds: 180,
     durationText: "3 min"
   },
   {
     id: 2,
-    title: "Objetivo del juego y jaque mate",
-    description: "Entiende el objetivo final y aprende los patrones de mate más comunes.",
+    title: "Esquema de Color + El Punto Débil",
     youtubeEmbedUrl: "https://www.youtube.com/embed/RGjlqoN8FMI",
     durationSeconds: 240,
     durationText: "4 min"
   },
   {
     id: 3,
-    title: "Principios de la apertura",
-    description: "Las reglas de oro para empezar bien cada partida.",
+    title: "Todos al Ataque (La apertura de líneas)",
     youtubeEmbedUrl: "https://www.youtube.com/embed/Xv63lBdzyIc",
     durationSeconds: 300,
     durationText: "5 min"
@@ -44,7 +41,6 @@ export const COURSE_MODULES = [
   {
     id: 4,
     title: "Control del centro",
-    description: "Por qué el centro es clave y cómo dominarlo.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/GQgStNPZJHU",
     durationSeconds: 240,
     durationText: "4 min"
@@ -52,7 +48,6 @@ export const COURSE_MODULES = [
   {
     id: 5,
     title: "Desarrollo de piezas",
-    description: "Activa tus piezas rápidamente y con propósito.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/zknplyKGQ0Q",
     durationSeconds: 270,
     durationText: "4:30 min"
@@ -60,7 +55,6 @@ export const COURSE_MODULES = [
   {
     id: 6,
     title: "Tácticas básicas: clavada y horquilla",
-    description: "Domina las tácticas que ganan material.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/dSyVLgFQor4",
     durationSeconds: 360,
     durationText: "6 min"
@@ -68,7 +62,6 @@ export const COURSE_MODULES = [
   {
     id: 7,
     title: "Tácticas avanzadas: ataque doble y rayos X",
-    description: "Técnicas para crear amenazas múltiples.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/6kDPsIYcoHk",
     durationSeconds: 330,
     durationText: "5:30 min"
@@ -76,7 +69,6 @@ export const COURSE_MODULES = [
   {
     id: 8,
     title: "Estructura de peones",
-    description: "Los peones definen tu estrategia. Aprende a usarlos.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/3jyeIQU77H0",
     durationSeconds: 300,
     durationText: "5 min"
@@ -84,7 +76,6 @@ export const COURSE_MODULES = [
   {
     id: 9,
     title: "Finales de peones",
-    description: "Gana los finales que antes empatabas o perdías.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/s_ARUvdLghk",
     durationSeconds: 360,
     durationText: "6 min"
@@ -92,7 +83,6 @@ export const COURSE_MODULES = [
   {
     id: 10,
     title: "Finales de torres",
-    description: "El final más común. Domínalo y ganarás más partidas.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/RlEBPD3mLKs",
     durationSeconds: 390,
     durationText: "6:30 min"
@@ -100,7 +90,6 @@ export const COURSE_MODULES = [
   {
     id: 11,
     title: "Análisis de partidas propias",
-    description: "Método para aprender de tus errores y victorias.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/ksJFhqZ1vb0",
     durationSeconds: 300,
     durationText: "5 min"
@@ -108,7 +97,6 @@ export const COURSE_MODULES = [
   {
     id: 12,
     title: "Planificación y toma de decisiones",
-    description: "Piensa como un maestro: planes, evaluación y ejecución.",
     youtubeEmbedUrl: "https://www.youtube.com/embed/8yjKIfJ_VLs",
     durationSeconds: 420,
     durationText: "7 min"
