@@ -87,11 +87,10 @@ const CourseModule = () => {
       <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
         {/* Module Title */}
         <div>
-          <Badge variant="outline" className="mb-2">Módulo {module.id} de 12</Badge>
-          <h1 className="font-heading text-2xl font-bold text-foreground">
+          <span className="text-sm text-muted-foreground">Lección {module.id} de 12</span>
+          <h1 className="font-heading text-xl font-bold text-foreground mt-1">
             {module.title}
           </h1>
-          <p className="text-muted-foreground mt-1">{module.description}</p>
         </div>
 
         {/* Video Section */}
