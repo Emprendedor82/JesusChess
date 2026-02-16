@@ -117,22 +117,19 @@ const CourseContent = () => {
                     
                     {/* Module Info */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="text-xs">
-                          Módulo {module.id}
-                        </Badge>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-medium text-muted-foreground">
+                          {module.id}.
+                        </span>
                         {status === 'completed' && (
                           <Badge className="bg-success/10 text-success border-0 text-xs">
                             Completado
                           </Badge>
                         )}
                       </div>
-                      <h3 className="font-heading font-bold text-foreground mt-1">
+                      <h3 className="font-heading font-bold text-foreground leading-tight">
                         {module.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-1">
-                        {module.description}
-                      </p>
                     </div>
                     
                     {/* Duration & Arrow */}
