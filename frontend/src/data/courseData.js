@@ -19,84 +19,84 @@ export const COURSE_INFO = {
 export const COURSE_MODULES = [
   {
     id: 1,
-    title: "Todos al Ataque + Esquema de Color",
+    title: "Lección 1: Todos al Ataque + Esquema de Color",
     youtubeEmbedUrl: "https://www.youtube.com/embed/BC76_pTX7uc",
     durationSeconds: 180,
     durationText: "3 min"
   },
   {
     id: 2,
-    title: "Esquema de Color + El Punto Débil",
+    title: "Lección 2: Esquema de Color + El Punto Débil",
     youtubeEmbedUrl: "https://www.youtube.com/embed/RGjlqoN8FMI",
     durationSeconds: 240,
     durationText: "4 min"
   },
   {
     id: 3,
-    title: "Todos al Ataque (La apertura de líneas)",
+    title: "Lección 3: Todos al Ataque (La apertura de líneas)",
     youtubeEmbedUrl: "https://www.youtube.com/embed/Xv63lBdzyIc",
     durationSeconds: 300,
     durationText: "5 min"
   },
   {
     id: 4,
-    title: "Control del centro",
+    title: "Lección 4: Ataque con un Centro HiperCerrado",
     youtubeEmbedUrl: "https://www.youtube.com/embed/GQgStNPZJHU",
     durationSeconds: 240,
     durationText: "4 min"
   },
   {
     id: 5,
-    title: "Desarrollo de piezas",
+    title: "Lección 5: Todos al Ataque (El Pase de Torre)",
     youtubeEmbedUrl: "https://www.youtube.com/embed/zknplyKGQ0Q",
     durationSeconds: 270,
     durationText: "4:30 min"
   },
   {
     id: 6,
-    title: "Tácticas básicas: clavada y horquilla",
+    title: "Lección 6: Esquema de Color + Mantener el Impulso",
     youtubeEmbedUrl: "https://www.youtube.com/embed/dSyVLgFQor4",
     durationSeconds: 360,
     durationText: "6 min"
   },
   {
     id: 7,
-    title: "Tácticas avanzadas: ataque doble y rayos X",
+    title: "Lección 7: Números sobre Tamaño (I)",
     youtubeEmbedUrl: "https://www.youtube.com/embed/6kDPsIYcoHk",
     durationSeconds: 330,
     durationText: "5:30 min"
   },
   {
     id: 8,
-    title: "Estructura de peones",
+    title: "Lección 8: Números sobre Tamaño (II)",
     youtubeEmbedUrl: "https://www.youtube.com/embed/3jyeIQU77H0",
     durationSeconds: 300,
     durationText: "5 min"
   },
   {
     id: 9,
-    title: "Finales de peones",
+    title: "Lección 9: Los Pilares del Buen Ataque (Principios, Patrones y Cálculo)",
     youtubeEmbedUrl: "https://www.youtube.com/embed/s_ARUvdLghk",
     durationSeconds: 360,
     durationText: "6 min"
   },
   {
     id: 10,
-    title: "Finales de torres",
+    title: "Lección 10: Flexibilidad en el Ataque",
     youtubeEmbedUrl: "https://www.youtube.com/embed/RlEBPD3mLKs",
     durationSeconds: 390,
     durationText: "6:30 min"
   },
   {
     id: 11,
-    title: "Análisis de partidas propias",
+    title: "Lección 11: Mantener el Impulso + Números sobre Tamaño",
     youtubeEmbedUrl: "https://www.youtube.com/embed/ksJFhqZ1vb0",
     durationSeconds: 300,
     durationText: "5 min"
   },
   {
     id: 12,
-    title: "Planificación y toma de decisiones",
+    title: "Lección 12: El Cálculo en el Ataque",
     youtubeEmbedUrl: "https://www.youtube.com/embed/8yjKIfJ_VLs",
     durationSeconds: 420,
     durationText: "7 min"
