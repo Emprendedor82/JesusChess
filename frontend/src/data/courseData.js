@@ -1,11 +1,11 @@
 // Mock data for the 12-module chess course
 export const COURSE_INFO = {
-  title: "Domina el Ajedrez: De Principiante a Competidor",
-  subtitle: "El programa completo para transformar tu juego en 12 semanas",
+  title: "Ataque y Remate",
+  subtitle: "Aprende los principios para ganar atacando",
   price: 8000, // CLP
   priceFormatted: "$8.000 CLP",
   paymentUrl: "https://www.flow.cl/uri/xz9n1ygVS",
-  promise: "Aprende las estrategias que usan los maestros y compite con confianza",
+  promise: "Aprende los principios para ganar atacando",
   transformation: "En 12 módulos pasarás de mover piezas sin rumbo a planificar partidas completas, anticipar jugadas del rival y ganar con estrategia. Tendrás la mentalidad y técnica de un verdadero ajedrecista.",
   benefits: [
     "Dominarás los principios fundamentales que rigen cada partida",
