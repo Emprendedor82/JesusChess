@@ -8,7 +8,6 @@ import {
   ChevronLeft, 
   ChevronRight,
   Play, 
-  Clock, 
   CheckCircle, 
   Lock,
   BookOpen
