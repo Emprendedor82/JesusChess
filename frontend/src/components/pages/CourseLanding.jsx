@@ -186,8 +186,8 @@ const CourseLanding = () => {
 
         {/* Promise */}
         <Card className="border-accent/30 bg-accent/5">
-          <CardContent className="p-6">
-            <p className="text-lg font-medium text-foreground text-center">
+          <CardContent className="p-4">
+            <p className="text-sm font-medium text-foreground text-center leading-relaxed">
               "{COURSE_INFO.promise}"
             </p>
           </CardContent>
@@ -195,8 +195,8 @@ const CourseLanding = () => {
 
         {/* Course Index */}
         <div>
-          <h2 className="font-heading text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-primary" />
+          <h2 className="font-heading text-base font-bold text-foreground mb-3 flex items-center gap-2">
+            <BookOpen className="w-4 h-4 text-primary" />
             Contenido del curso
           </h2>
           
@@ -204,24 +204,24 @@ const CourseLanding = () => {
             {COURSE_MODULES.map((module, idx) => (
               <div 
                 key={module.id}
-                className={`flex items-center gap-3 p-3 rounded-lg border ${
+                className={`flex items-center gap-3 p-3 rounded-xl border ${
                   idx === 0 
                     ? 'bg-success/5 border-success/30' 
                     : 'bg-card border-border'
                 }`}
               >
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${
+                <div className={`flex items-center justify-center w-7 h-7 rounded-full font-bold text-xs ${
                   idx === 0 
                     ? 'bg-success/20 text-success' 
                     : 'bg-primary/10 text-primary'
                 }`}>
-                  {idx === 0 ? <Eye className="w-4 h-4" /> : idx + 1}
+                  {idx === 0 ? <Eye className="w-3.5 h-3.5" /> : idx + 1}
                 </div>
-                <div className="flex-1">
-                  <p className="font-medium text-foreground text-sm">{module.title}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-foreground text-xs leading-tight truncate">{module.title}</p>
                 </div>
                 {idx === 0 && (
-                  <Badge variant="outline" className="text-success border-success/30 text-xs">
+                  <Badge variant="outline" className="text-success border-success/30 text-[10px] flex-shrink-0">
                     Gratis
                   </Badge>
                 )}
@@ -232,16 +232,16 @@ const CourseLanding = () => {
 
         {/* Benefits */}
         <div>
-          <h2 className="font-heading text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-success" />
+          <h2 className="font-heading text-base font-bold text-foreground mb-3 flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-success" />
             Lo que te vas a llevar
           </h2>
           
-          <ul className="space-y-3">
+          <ul className="space-y-2">
             {COURSE_INFO.benefits.map((benefit, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                <span className="text-foreground">{benefit}</span>
+              <li key={idx} className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-foreground text-sm">{benefit}</span>
               </li>
             ))}
           </ul>
@@ -249,12 +249,12 @@ const CourseLanding = () => {
 
         {/* Transformation */}
         <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-          <CardContent className="p-6">
-            <h2 className="font-heading text-xl font-bold text-foreground mb-3 flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-xp" />
+          <CardContent className="p-4">
+            <h2 className="font-heading text-base font-bold text-foreground mb-2 flex items-center gap-2">
+              <Trophy className="w-4 h-4 text-xp" />
               La transformación que vivirás
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               {COURSE_INFO.transformation}
             </p>
           </CardContent>
@@ -262,19 +262,19 @@ const CourseLanding = () => {
 
         {/* Purchase CTA */}
         <Card className="border-2 border-accent">
-          <CardContent className="p-6 text-center">
-            <p className="text-sm text-muted-foreground mb-2">Acceso completo al curso</p>
-            <p className="font-heading text-3xl font-bold text-foreground mb-4">
+          <CardContent className="p-5 text-center">
+            <p className="text-xs text-muted-foreground mb-1">Acceso completo al curso</p>
+            <p className="font-heading text-2xl font-bold text-foreground mb-4">
               {COURSE_INFO.priceFormatted}
             </p>
             <Button 
               size="lg" 
-              className="w-full btn-accent text-lg py-6"
+              className="w-full btn-accent text-base font-bold py-4"
               onClick={handleActivateCourse}
             >
               Comprar acceso ahora
             </Button>
-            <p className="text-xs text-muted-foreground mt-3">
+            <p className="text-[10px] text-muted-foreground mt-3">
               Pago único · Acceso de por vida
             </p>
           </CardContent>
