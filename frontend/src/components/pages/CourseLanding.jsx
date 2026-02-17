@@ -118,7 +118,6 @@ const CourseLanding = () => {
                 <div className="flex-1">
                   <p className="font-medium text-foreground text-sm">{module.title}</p>
                 </div>
-                <span className="text-xs text-muted-foreground">{module.durationText}</span>
               </div>
             ))}
           </div>
