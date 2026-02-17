@@ -6,10 +6,7 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { 
   ChevronLeft, 
-  Play, 
-  Clock, 
   CheckCircle, 
-  Lock,
   Star,
   BookOpen,
   Trophy
