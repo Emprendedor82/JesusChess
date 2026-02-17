@@ -88,7 +88,7 @@ const CourseLanding = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
         
         {/* FREE PREVIEW - Module 1 */}
         <Card className="border-2 border-success/50 bg-success/5 overflow-hidden">
