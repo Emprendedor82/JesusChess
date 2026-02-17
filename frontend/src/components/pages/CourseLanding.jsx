@@ -76,10 +76,6 @@ const CourseLanding = () => {
               12 módulos
             </span>
             <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              ~60 min total
-            </span>
-            <span className="flex items-center gap-1">
               <Star className="w-4 h-4 fill-current" />
               Acceso de por vida
             </span>
