@@ -94,32 +94,31 @@ const CourseLanding = () => {
         <Card className="border-2 border-success/50 bg-success/5 overflow-hidden">
           <CardContent className="p-0">
             {!showPreview ? (
-              <div className="p-6">
+              <div className="p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Badge className="bg-success text-success-foreground">GRATIS</Badge>
-                  <span className="text-sm text-muted-foreground">Prueba antes de comprar</span>
+                  <span className="text-xs text-muted-foreground">Prueba antes de comprar</span>
                 </div>
                 
-                <h2 className="font-heading text-xl font-bold text-foreground mb-2">
+                <h2 className="font-heading text-lg font-bold text-foreground mb-2">
                   Mira el Módulo 1 por dentro
                 </h2>
                 
-                <p className="text-muted-foreground mb-4">
-                  Descubre cómo es el curso con una lección completa. 
-                  Aprende los fundamentos del ataque en ajedrez sin compromiso.
+                <p className="text-sm text-muted-foreground mb-4">
+                  Descubre cómo es el curso con una lección completa sin compromiso.
                 </p>
                 
-                <div className="bg-card rounded-lg p-4 mb-4 border border-border">
-                  <p className="text-sm text-muted-foreground mb-1">Módulo 1</p>
-                  <p className="font-heading font-bold text-foreground">{module1.title}</p>
+                <div className="bg-card rounded-lg p-3 mb-4 border border-border">
+                  <p className="text-xs text-muted-foreground mb-1">Módulo 1</p>
+                  <p className="font-heading font-bold text-foreground text-sm leading-tight">{module1.title}</p>
                 </div>
                 
                 <Button 
                   size="lg" 
-                  className="w-full bg-success hover:bg-success/90 text-success-foreground text-lg py-6"
+                  className="w-full bg-success hover:bg-success/90 text-success-foreground font-bold py-4 text-base"
                   onClick={() => setShowPreview(true)}
                 >
-                  <Play className="w-5 h-5 mr-2" />
+                  <Play className="w-5 h-5 mr-2 flex-shrink-0" />
                   Ver Módulo 1 Gratis
                 </Button>
               </div>
@@ -138,42 +137,43 @@ const CourseLanding = () => {
                 </div>
                 
                 {/* Preview Info */}
-                <div className="p-6 bg-gradient-to-b from-success/10 to-transparent">
+                <div className="p-4 bg-gradient-to-b from-success/10 to-transparent">
                   <div className="flex items-center gap-2 mb-2">
-                    <Badge className="bg-success text-success-foreground">VISTA PREVIA</Badge>
+                    <Badge className="bg-success text-success-foreground text-xs">VISTA PREVIA</Badge>
                   </div>
-                  <h3 className="font-heading font-bold text-foreground mb-3">
+                  <h3 className="font-heading font-bold text-foreground text-sm mb-4 leading-tight">
                     {module1.title}
                   </h3>
                   
                   {/* CTA after preview */}
                   <Card className="border-accent/50 bg-accent/5">
                     <CardContent className="p-4">
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-center gap-3 mb-3">
                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 flex-shrink-0">
                           <Lock className="w-5 h-5 text-accent" />
                         </div>
                         <div className="flex-1">
-                          <p className="font-medium text-foreground mb-1">
-                            ¿Te gustó? Hay 11 módulos más esperándote
+                          <p className="font-medium text-foreground text-sm">
+                            ¿Te gustó? Hay 11 módulos más
                           </p>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            Activa tu acceso completo y domina el arte del ataque en ajedrez.
+                          <p className="text-xs text-muted-foreground">
+                            Activa tu acceso completo
                           </p>
-                          <Button 
-                            className="btn-accent"
-                            onClick={handleActivateCourse}
-                          >
-                            Desbloquear curso completo · {COURSE_INFO.priceFormatted}
-                          </Button>
                         </div>
                       </div>
+                      <Button 
+                        className="w-full btn-accent py-3 text-sm font-bold"
+                        onClick={handleActivateCourse}
+                      >
+                        Desbloquear · {COURSE_INFO.priceFormatted}
+                      </Button>
                     </CardContent>
                   </Card>
                   
                   <Button 
                     variant="ghost" 
-                    className="w-full mt-3 text-muted-foreground"
+                    size="sm"
+                    className="w-full mt-3 text-muted-foreground text-xs"
                     onClick={() => setShowPreview(false)}
                   >
                     Cerrar vista previa
