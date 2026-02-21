@@ -19,84 +19,84 @@ export const COURSE_INFO = {
 export const COURSE_MODULES = [
   {
     id: 1,
-    title: "Lección 1: Todos al Ataque + Esquema de Color",
+    title: "Lección 1: Los Principios del Ajedrez de Ataque - La partida de Morphy",
     youtubeEmbedUrl: "https://www.youtube.com/embed/BC76_pTX7uc",
     durationSeconds: 180,
     durationText: "3 min"
   },
   {
     id: 2,
-    title: "Lección 2: Esquema de Color + El Punto Débil",
+    title: "Lección 2: Esquemas de Color – La partida de Nehzmetdinov",
     youtubeEmbedUrl: "https://www.youtube.com/embed/RGjlqoN8FMI",
     durationSeconds: 240,
     durationText: "4 min"
   },
   {
     id: 3,
-    title: "Lección 3: Todos al Ataque (La apertura de líneas)",
+    title: "Lección 3: Ataque con un Centro Abierto – Mi partida On-Line",
     youtubeEmbedUrl: "https://www.youtube.com/embed/Xv63lBdzyIc",
     durationSeconds: 300,
     durationText: "5 min"
   },
   {
     id: 4,
-    title: "Lección 4: Ataque con un Centro HiperCerrado",
+    title: "Lección 4: Ataque con un Centro Cerrado – MF Carlos Silva vs MI René Letelier",
     youtubeEmbedUrl: "https://www.youtube.com/embed/GQgStNPZJHU",
     durationSeconds: 240,
     durationText: "4 min"
   },
   {
     id: 5,
-    title: "Lección 5: Todos al Ataque (El Pase de Torre)",
+    title: "Lección 5: El Pase de Torre – Mi partida en el Torneo de Conce",
     youtubeEmbedUrl: "https://www.youtube.com/embed/zknplyKGQ0Q",
     durationSeconds: 270,
     durationText: "4:30 min"
   },
   {
     id: 6,
-    title: "Lección 6: Esquema de Color + Mantener el Impulso",
+    title: "Lección 6: Sacrificios contra el refugio del Rey – La partida de Bronstein",
     youtubeEmbedUrl: "https://www.youtube.com/embed/dSyVLgFQor4",
     durationSeconds: 360,
     durationText: "6 min"
   },
   {
     id: 7,
-    title: "Lección 7: Números sobre Tamaño (I)",
+    title: "Lección 7: Números sobre Tamaño – El mate de Legal + la partida de Chigorín",
     youtubeEmbedUrl: "https://www.youtube.com/embed/6kDPsIYcoHk",
     durationSeconds: 330,
     durationText: "5:30 min"
   },
   {
     id: 8,
-    title: "Lección 8: Números sobre Tamaño (II)",
+    title: "Lección 8: Números sobre Tamaño – La partida de Keres",
     youtubeEmbedUrl: "https://www.youtube.com/embed/3jyeIQU77H0",
     durationSeconds: 300,
     durationText: "5 min"
   },
   {
     id: 9,
-    title: "Lección 9: Los Pilares del Buen Ataque (Principios, Patrones y Cálculo)",
+    title: "Lección 9: Repaso de Principios + El Presente Griego en la Francesa",
     youtubeEmbedUrl: "https://www.youtube.com/embed/s_ARUvdLghk",
     durationSeconds: 360,
     durationText: "6 min"
   },
   {
     id: 10,
-    title: "Lección 10: Flexibilidad en el Ataque",
+    title: "Lección 10: Flexibilidad en el Ataque – La \"Siempre Viva\" de Anderssen",
     youtubeEmbedUrl: "https://www.youtube.com/embed/RlEBPD3mLKs",
     durationSeconds: 390,
     durationText: "6:30 min"
   },
   {
     id: 11,
-    title: "Lección 11: Mantener el Impulso + Números sobre Tamaño",
+    title: "Lección 11: Mantener el Impulso – La Inmortal de Anderssen",
     youtubeEmbedUrl: "https://www.youtube.com/embed/ksJFhqZ1vb0",
     durationSeconds: 300,
     durationText: "5 min"
   },
   {
     id: 12,
-    title: "Lección 12: El Cálculo en el Ataque",
+    title: "Lección 12: El Cálculo en el Ataque – La Inmortal de Pablo Salinas",
     youtubeEmbedUrl: "https://www.youtube.com/embed/8yjKIfJ_VLs",
     durationSeconds: 420,
     durationText: "7 min"
