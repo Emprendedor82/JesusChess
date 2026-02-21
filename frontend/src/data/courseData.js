@@ -8,11 +8,11 @@ export const COURSE_INFO = {
   promise: "Aprende los principios para ganar atacando",
   transformation: "En 12 módulos pasarás de mover piezas sin rumbo a planificar partidas completas, anticipar jugadas del rival y ganar con estrategia. Tendrás la mentalidad y técnica de un verdadero ajedrecista.",
   benefits: [
-    "Dominarás los principios fundamentales que rigen cada partida",
-    "Aprenderás tácticas ganadoras: clavadas, horquillas, ataques dobles",
-    "Desarrollarás visión de tablero para anticipar 3-5 jugadas",
-    "Sabrás cómo ganar finales que antes perdías",
-    "Tendrás un método de análisis para mejorar constantemente"
+    "Dominarás los principios del ajedrez de ataque",
+    "Aprenderás patrones comunes para rematar la partida",
+    "Entenderás cómo atacar con distintos tipos de centro",
+    "Conocerás cómo y cuando calcular de forma ordenada",
+    "Disfrutarás de Partidas Históricas y también de Joyas del Ajedrez Chileno"
   ]
 };
 
