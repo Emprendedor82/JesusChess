@@ -31,33 +31,34 @@ const StudentHomePage = () => {
   return (
     <div className="min-h-screen bg-background safe-area-top">
       {/* Header */}
-      <div className="bg-primary text-primary-foreground px-4 pt-4 pb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <Avatar className="w-12 h-12 border-2 border-primary-foreground/20">
-              <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-              <AvatarFallback className="bg-accent text-accent-foreground">
-                {currentUser.name?.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="text-sm text-primary-foreground/70">¡Hola!</p>
-              <h1 className="font-heading text-lg font-bold">
-                {currentUser.name?.split(' ')[0]}
-              </h1>
+      <div className="bg-primary text-primary-foreground px-4 pt-4 pb-5 md:pb-6">
+        <div className="app-container mx-auto">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <Avatar className="w-10 h-10 md:w-12 md:h-12 border-2 border-primary-foreground/20">
+                <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                <AvatarFallback className="bg-accent text-accent-foreground">
+                  {currentUser.name?.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="text-xs md:text-sm text-primary-foreground/70">¡Hola!</p>
+                <h1 className="font-heading text-base md:text-lg font-bold">
+                  {currentUser.name?.split(' ')[0]}
+                </h1>
+              </div>
+            </div>
+            
+            {/* Streak */}
+            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-primary-foreground/10">
+              <Flame className="w-4 h-4 md:w-5 md:h-5 text-streak" />
+              <span className="font-bold text-sm md:text-base text-streak">{currentUser.streak}</span>
             </div>
           </div>
-          
-          {/* Streak */}
-          <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-primary-foreground/10">
-            <Flame className="w-5 h-5 text-streak" />
-            <span className="font-bold text-streak">{currentUser.streak}</span>
-          </div>
-        </div>
 
-        {/* Level Progress */}
-        <Card className="bg-primary-foreground/10 border-0">
-          <CardContent className="p-3">
+          {/* Level Progress */}
+          <Card className="bg-primary-foreground/10 border-0">
+            <CardContent className="p-3">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Star className="w-4 h-4 text-xp" />
