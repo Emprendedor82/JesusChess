@@ -45,19 +45,20 @@ const ProfilePage = () => {
     <div className="min-h-screen bg-background safe-area-top">
       {/* Header */}
       <div className="bg-primary text-primary-foreground px-4 pt-4 pb-8">
-        <h1 className="text-lg font-bold text-center mb-6">Mi Perfil</h1>
-        
-        {/* Profile Card */}
-        <div className="flex flex-col items-center">
-          <Avatar className="w-20 h-20 border-4 border-primary-foreground/20 mb-3">
-            <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-            <AvatarFallback className="text-2xl bg-accent text-accent-foreground">
-              {currentUser.name?.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-          <h2 className="font-heading text-xl font-bold">{currentUser.name}</h2>
-          <Badge className="mt-2 bg-accent text-accent-foreground">
-            Nivel {currentUser.level}
+        <div className="app-container mx-auto">
+          <h1 className="text-base md:text-lg font-bold text-center mb-5">Mi Perfil</h1>
+          
+          {/* Profile Card */}
+          <div className="flex flex-col items-center">
+            <Avatar className="w-16 h-16 md:w-20 md:h-20 border-4 border-primary-foreground/20 mb-3">
+              <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+              <AvatarFallback className="text-xl md:text-2xl bg-accent text-accent-foreground">
+                {currentUser.name?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <h2 className="font-heading text-lg md:text-xl font-bold">{currentUser.name}</h2>
+            <Badge className="mt-2 bg-accent text-accent-foreground text-xs">
+              Nivel {currentUser.level}
           </Badge>
         </div>
       </div>
