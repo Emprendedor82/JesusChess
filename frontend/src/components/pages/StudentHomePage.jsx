@@ -69,10 +69,11 @@ const StudentHomePage = () => {
             <Progress value={xpProgress} className="h-2 bg-primary-foreground/20" />
           </CardContent>
         </Card>
+        </div>
       </div>
 
       {/* Content */}
-      <div className="px-4 py-4 space-y-4">
+      <div className="app-container mx-auto px-4 py-4 space-y-4">
         
         {/* Course Card - Featured */}
         <Card 
