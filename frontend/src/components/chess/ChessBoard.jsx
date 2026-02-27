@@ -270,6 +270,14 @@ const getValidMoves = (piece, row, col, board) => {
   return moves;
 };
 
+// Level names for the indicator
+const LEVEL_NAMES = {
+  1: 'Rey y Torre',
+  2: 'Alfil y Caballo',
+  3: 'Capturas y Jaque',
+  4: 'Mini Desafíos',
+};
+
 const ChessBoard = ({ exercise, onComplete, level }) => {
   const [board, setBoard] = useState(exercise?.board || INITIAL_BOARD);
   const [selectedSquare, setSelectedSquare] = useState(null);
@@ -279,7 +287,7 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
   const [showHint, setShowHint] = useState(false);
 
   const resetBoard = useCallback(() => {
-    setBoard(exercise?.board || INITIAL_BOARD);
+    setBoard(exercise?.board?.map(r => [...r]) || INITIAL_BOARD.map(r => [...r]));
     setSelectedSquare(null);
     setValidMoves([]);
     setMessage(null);
@@ -287,24 +295,26 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
     setShowHint(false);
   }, [exercise]);
 
+  // Bug fix #2: Reset board automatically when exercise or level changes
+  useEffect(() => {
+    resetBoard();
+  }, [exercise, level, resetBoard]);
+
   const handleSquareClick = (row, col) => {
     const piece = board[row][col];
     
-    // If we have a selected piece and clicked on a valid move
     if (selectedSquare && validMoves.some(m => m.row === row && m.col === col)) {
       const newBoard = board.map(r => [...r]);
       const movingPiece = newBoard[selectedSquare.row][selectedSquare.col];
       
-      // Check for pawn promotion
       let finalPiece = movingPiece;
       if (movingPiece === 'P' && row === 0) {
-        finalPiece = 'Q'; // Auto-promote to queen
+        finalPiece = 'Q';
         setMessage({ type: 'success', text: '¡Promoción! Tu peón es ahora una Reina ♕' });
       } else if (movingPiece === 'p' && row === 7) {
         finalPiece = 'q';
       }
       
-      // Check if capturing
       const captured = newBoard[row][col];
       
       newBoard[row][col] = finalPiece;
@@ -318,13 +328,12 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
       if (captured) {
         setMessage({ type: 'success', text: `¡Captura! Has tomado ${PIECE_NAMES[captured]} ${PIECE_SYMBOLS[captured]}` });
       } else if (!message || message.type !== 'success') {
-        setMessage({ type: 'success', text: '✅ ¡Movimiento válido!' });
+        setMessage({ type: 'success', text: '¡Movimiento válido!' });
       }
       
-      // Check if exercise is complete (simplified check)
       if (exercise?.targetCapture && row === exercise.targetCapture.row && col === exercise.targetCapture.col) {
         setTimeout(() => {
-          setMessage({ type: 'complete', text: '🎉 ¡Excelente! Has completado el ejercicio' });
+          setMessage({ type: 'complete', text: '¡Excelente! Has completado el ejercicio' });
           if (onComplete) onComplete();
         }, 500);
       }
@@ -332,14 +341,12 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
       return;
     }
     
-    // Select a white piece (uppercase)
     if (piece && piece === piece.toUpperCase()) {
       setSelectedSquare({ row, col });
       setValidMoves(getValidMoves(piece, row, col, board));
       setMessage(null);
     } else if (selectedSquare) {
-      // Tried invalid move
-      setMessage({ type: 'error', text: '❌ Movimiento no permitido' });
+      setMessage({ type: 'error', text: 'Movimiento no permitido' });
       setSelectedSquare(null);
       setValidMoves([]);
     }
@@ -348,20 +355,32 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
   const isLightSquare = (row, col) => (row + col) % 2 === 0;
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4" data-testid="chessboard-container">
+      {/* Level indicator */}
+      {level && (
+        <div className="w-full max-w-md" data-testid="level-indicator">
+          <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/20">
+            <span className="text-sm font-bold text-primary">Nivel {level}</span>
+            <span className="text-sm text-muted-foreground">–</span>
+            <span className="text-sm font-medium text-foreground">{LEVEL_NAMES[level] || ''}</span>
+          </div>
+        </div>
+      )}
+
       {/* Exercise info */}
       {exercise && (
-        <div className="w-full max-w-md text-center mb-2">
+        <div className="w-full max-w-md text-center" data-testid="exercise-info">
           <h3 className="font-heading text-lg font-bold text-foreground">{exercise.title}</h3>
           <p className="text-sm text-muted-foreground">{exercise.description}</p>
         </div>
       )}
 
-      {/* Chess board */}
-      <div className="relative">
+      {/* Chess board - Bug fix #1: rigid grid with absolute-positioned pieces */}
+      <div className="relative ml-6 mb-5">
         <div 
-          className="grid grid-cols-8 border-4 border-primary rounded-lg overflow-hidden shadow-lg"
-          style={{ width: 'min(90vw, 400px)', height: 'min(90vw, 400px)' }}
+          className="grid grid-cols-8 grid-rows-8 border-4 border-primary rounded-lg overflow-hidden shadow-lg"
+          style={{ width: 'min(85vw, 380px)', height: 'min(85vw, 380px)' }}
+          data-testid="chessboard-grid"
         >
           {board.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
@@ -373,32 +392,43 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
                 <div
                   key={`${rowIndex}-${colIndex}`}
                   className={`
-                    relative flex items-center justify-center cursor-pointer
-                    transition-all duration-150
+                    relative cursor-pointer overflow-hidden
                     ${isLight ? 'bg-amber-100' : 'bg-amber-700'}
                     ${isSelected ? 'ring-4 ring-accent ring-inset' : ''}
-                    ${isValidTarget ? 'after:absolute after:w-3 after:h-3 after:rounded-full after:bg-accent/50' : ''}
                   `}
+                  style={{ aspectRatio: '1 / 1' }}
                   onClick={() => handleSquareClick(rowIndex, colIndex)}
+                  data-testid={`square-${rowIndex}-${colIndex}`}
                 >
+                  {/* Piece - absolutely positioned to not affect square size */}
                   {piece && (
                     <span 
                       className={`
-                        text-3xl sm:text-4xl select-none transition-transform
-                        ${piece === piece.toUpperCase() ? 'text-slate-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]' : 'text-slate-900'}
+                        absolute inset-0 flex items-center justify-center
+                        select-none transition-transform leading-none
+                        ${piece === piece.toUpperCase() ? 'text-slate-100' : 'text-slate-900'}
                         ${isSelected ? 'scale-110' : 'hover:scale-105'}
                       `}
                       style={{ 
+                        fontSize: 'min(5vw, 2rem)',
                         textShadow: piece === piece.toUpperCase() 
                           ? '1px 1px 2px #000, -1px -1px 2px #000' 
                           : 'none' 
                       }}
+                      data-testid={`piece-${rowIndex}-${colIndex}`}
                     >
                       {PIECE_SYMBOLS[piece]}
                     </span>
                   )}
+                  {/* Valid move dot */}
+                  {isValidTarget && !piece && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-accent/50" />
+                    </div>
+                  )}
+                  {/* Capture highlight */}
                   {isValidTarget && piece && (
-                    <div className="absolute inset-0 bg-red-500/30 rounded-sm" />
+                    <div className="absolute inset-0 bg-red-500/30" />
                   )}
                 </div>
               );
@@ -422,14 +452,14 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
           ${message.type === 'success' ? 'bg-success/10 text-success' : ''}
           ${message.type === 'error' ? 'bg-destructive/10 text-destructive' : ''}
           ${message.type === 'complete' ? 'bg-xp/10 text-xp' : ''}
-        `}>
+        `} data-testid="chess-message">
           {message.text}
         </div>
       )}
 
       {/* Controls */}
       <div className="flex items-center gap-3 mt-2">
-        <Button variant="outline" size="sm" onClick={resetBoard}>
+        <Button variant="outline" size="sm" onClick={resetBoard} data-testid="reset-board-btn">
           <RotateCcw className="w-4 h-4 mr-2" />
           Reiniciar
         </Button>
@@ -439,20 +469,21 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
             size="sm" 
             onClick={() => setShowHint(!showHint)}
             className="text-muted-foreground"
+            data-testid="hint-btn"
           >
             <HelpCircle className="w-4 h-4 mr-2" />
             Pista
           </Button>
         )}
-        <Badge variant="secondary">
+        <Badge variant="secondary" data-testid="move-counter">
           Movimientos: {moveCount}
         </Badge>
       </div>
 
       {/* Hint */}
       {showHint && exercise?.hint && (
-        <div className="px-4 py-2 bg-accent/10 rounded-lg text-sm text-accent animate-fade-in">
-          💡 {exercise.hint}
+        <div className="px-4 py-2 bg-accent/10 rounded-lg text-sm text-accent animate-fade-in" data-testid="hint-text">
+          {exercise.hint}
         </div>
       )}
     </div>
