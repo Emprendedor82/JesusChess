@@ -10,6 +10,7 @@ import MobileLayout from "./components/layout/MobileLayout";
 
 // Pages - Role Selector
 import RoleSelector from "./components/pages/RoleSelector";
+import WelcomeScreen from "./components/pages/WelcomeScreen";
 
 // Pages - Dashboards (other roles)
 import TeacherPanel from "./components/pages/TeacherPanel";
