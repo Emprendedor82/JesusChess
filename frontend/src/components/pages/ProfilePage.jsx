@@ -135,13 +135,13 @@ const ProfilePage = () => {
       </div>
 
       {/* Logout */}
-      <div className="px-4 mt-6 mb-8">
+      <div className="app-container mx-auto px-4 mt-6 mb-8">
         <Button 
           variant="outline" 
-          className="w-full h-12 text-destructive border-destructive/30 hover:bg-destructive/10"
+          className="w-full h-11 md:h-12 text-sm text-destructive border-destructive/30 hover:bg-destructive/10"
           onClick={handleLogout}
         >
-          <LogOut className="w-5 h-5 mr-2" />
+          <LogOut className="w-4 h-4 md:w-5 md:h-5 mr-2" />
           Cerrar sesión
         </Button>
       </div>
