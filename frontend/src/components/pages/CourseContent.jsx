@@ -74,13 +74,13 @@ const CourseContent = () => {
       </div>
 
       {/* Modules List */}
-      <div className="max-w-3xl mx-auto px-4 py-6">
-        <h2 className="font-heading text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-accent" />
+      <div className="app-container mx-auto px-4 py-5 md:py-6">
+        <h2 className="font-heading text-base md:text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+          <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-accent" />
           Módulos del curso
         </h2>
         
-        <div className="space-y-3">
+        <div className="space-y-2 md:space-y-3">
           {COURSE_MODULES.map((module, idx) => {
             const status = getModuleStatus(module.id);
             
