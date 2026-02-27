@@ -66,8 +66,11 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
+      {/* Welcome Screen - Entry point */}
+      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <WelcomeScreen />} />
+      
+      {/* Role Selector */}
+      <Route path="/roles" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
       
       {/* Course Landing - Public (sales page) */}
       <Route path="/curso" element={<CourseLanding />} />
