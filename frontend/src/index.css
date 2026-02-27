@@ -326,3 +326,235 @@
         border-bottom-color: inherit;
     }
 }
+
+/* ========================================
+   RESPONSIVE LAYOUT SYSTEM
+   Mobile: <768px | Tablet: 768-1024px | Desktop: >1024px
+   ======================================== */
+
+/* Safe area for mobile devices */
+.safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Main app container - centers content on larger screens */
+.app-container {
+    @apply w-full mx-auto;
+    max-width: 100%;
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 680px;
+    }
+    
+    /* Slightly larger touch targets on tablet */
+    .btn-touch {
+        @apply min-h-[48px];
+    }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 480px;
+    }
+    
+    /* Desktop wrapper for app simulation */
+    .desktop-wrapper {
+        @apply flex justify-center items-start min-h-screen bg-muted/30 py-8;
+    }
+    
+    .desktop-app-frame {
+        @apply bg-background rounded-3xl shadow-2xl overflow-hidden;
+        width: 430px;
+        min-height: 800px;
+        max-height: 90vh;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1280px) {
+    .app-container {
+        max-width: 480px;
+    }
+}
+
+/* Bottom nav responsive adjustments */
+.bottom-nav-container {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+}
+
+@media (min-width: 768px) {
+    .bottom-nav-container {
+        @apply left-1/2 -translate-x-1/2;
+        max-width: 680px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bottom-nav-container {
+        max-width: 480px;
+        @apply rounded-t-2xl;
+    }
+}
+
+/* Content padding for bottom nav */
+.content-with-nav {
+    @apply pb-20;
+}
+
+@media (min-width: 1024px) {
+    .content-with-nav {
+        @apply pb-24;
+    }
+}
+
+/* Card responsive sizing */
+@media (min-width: 768px) {
+    .card-responsive {
+        @apply p-5;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-responsive {
+        @apply p-4;
+    }
+}
+
+/* Typography responsive adjustments */
+@media (min-width: 768px) {
+    .text-responsive-sm {
+        @apply text-base;
+    }
+    .text-responsive-base {
+        @apply text-lg;
+    }
+    .text-responsive-lg {
+        @apply text-xl;
+    }
+    .text-responsive-xl {
+        @apply text-2xl;
+    }
+}
+
+@media (min-width: 1024px) {
+    .text-responsive-sm {
+        @apply text-sm;
+    }
+    .text-responsive-base {
+        @apply text-base;
+    }
+    .text-responsive-lg {
+        @apply text-lg;
+    }
+    .text-responsive-xl {
+        @apply text-xl;
+    }
+}
+
+/* Chess board responsive */
+.chess-board-container {
+    @apply w-full max-w-[400px] mx-auto aspect-square;
+}
+
+@media (min-width: 768px) {
+    .chess-board-container {
+        max-width: 450px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chess-board-container {
+        max-width: 380px;
+    }
+}
+
+/* Video container responsive */
+.video-container {
+    @apply aspect-video w-full;
+}
+
+/* Button responsive sizing */
+.btn-responsive {
+    @apply h-11 px-4 text-sm;
+}
+
+@media (min-width: 768px) {
+    .btn-responsive {
+        @apply h-12 px-5 text-base;
+    }
+}
+
+@media (min-width: 1024px) {
+    .btn-responsive {
+        @apply h-11 px-4 text-sm;
+    }
+}
+
+/* Grid responsive */
+.grid-responsive-2 {
+    @apply grid grid-cols-2 gap-3;
+}
+
+@media (min-width: 768px) {
+    .grid-responsive-2 {
+        @apply gap-4;
+    }
+}
+
+/* Spacing responsive */
+.space-responsive {
+    @apply space-y-4;
+}
+
+@media (min-width: 768px) {
+    .space-responsive {
+        @apply space-y-5;
+    }
+}
+
+@media (min-width: 1024px) {
+    .space-responsive {
+        @apply space-y-4;
+    }
+}
+
+/* Padding responsive */
+.px-responsive {
+    @apply px-4;
+}
+
+@media (min-width: 768px) {
+    .px-responsive {
+        @apply px-6;
+    }
+}
+
+@media (min-width: 1024px) {
+    .px-responsive {
+        @apply px-4;
+    }
+}
+
+.py-responsive {
+    @apply py-4;
+}
+
+@media (min-width: 768px) {
+    .py-responsive {
+        @apply py-6;
+    }
+}
+
+@media (min-width: 1024px) {
+    .py-responsive {
+        @apply py-4;
+    }
+}
