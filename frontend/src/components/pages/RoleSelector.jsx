@@ -184,7 +184,7 @@ const RoleSelector = () => {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <span>♜</span>
-            <span>© 2024 Jugadas Estratégicas</span>
+            <span>© 2026 Jugadas Estratégicas</span>
           </div>
           <a 
             href="https://jugadasestrategicas.com/" 
