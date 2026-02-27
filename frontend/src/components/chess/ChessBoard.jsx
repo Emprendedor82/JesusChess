@@ -490,5 +490,5 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
   );
 };
 
-export { ChessBoard, PRACTICE_EXERCISES, PIECE_SYMBOLS, PIECE_NAMES };
+export { ChessBoard, PRACTICE_EXERCISES, PIECE_SYMBOLS, PIECE_NAMES, LEVEL_NAMES };
 export default ChessBoard;
