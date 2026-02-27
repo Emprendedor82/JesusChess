@@ -10,22 +10,22 @@ const MobileLayout = () => {
   const showBottomNav = userRole === 'student';
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Desktop wrapper - shows phone-like frame on large screens */}
-      <div className="lg:desktop-wrapper">
-        <div className="lg:desktop-app-frame lg:relative">
-          {/* Main content container */}
-          <main className={`app-container mx-auto ${showBottomNav ? 'content-with-nav' : ''}`}>
-            <Outlet />
-          </main>
-          
-          {/* Bottom Navigation - only for students */}
-          {showBottomNav && (
-            <div className="bottom-nav-container lg:absolute lg:bottom-0 lg:left-0 lg:right-0">
+    <div className="min-h-screen bg-muted/30 lg:bg-muted/50">
+      {/* Centered app container */}
+      <div className="max-w-[480px] mx-auto bg-background min-h-screen relative shadow-none lg:shadow-2xl lg:my-0">
+        {/* Main content container */}
+        <main className={`${showBottomNav ? 'pb-20' : ''}`}>
+          <Outlet />
+        </main>
+        
+        {/* Bottom Navigation - only for students */}
+        {showBottomNav && (
+          <div className="fixed bottom-0 left-0 right-0 z-50 lg:absolute">
+            <div className="max-w-[480px] mx-auto">
               <BottomNav />
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
