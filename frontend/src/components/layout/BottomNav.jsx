@@ -24,7 +24,7 @@ const BottomNav = () => {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border safe-area-bottom">
+    <nav className="bg-card border-t border-border safe-area-bottom">
       <div className="flex items-center justify-around h-16 max-w-lg mx-auto px-2">
         {tabs.map((tab) => {
           const active = isActive(tab.to);
@@ -32,14 +32,14 @@ const BottomNav = () => {
             <NavLink
               key={tab.to}
               to={tab.to}
-              className={`flex flex-col items-center justify-center flex-1 h-full py-1 transition-colors ${
+              className={`flex flex-col items-center justify-center flex-1 h-full py-1 transition-colors relative ${
                 active 
                   ? 'text-accent' 
                   : 'text-muted-foreground'
               }`}
             >
-              <tab.icon className={`w-6 h-6 ${active ? 'stroke-[2.5px]' : 'stroke-[1.5px]'}`} />
-              <span className={`text-[10px] mt-1 ${active ? 'font-semibold' : 'font-normal'}`}>
+              <tab.icon className={`w-5 h-5 md:w-6 md:h-6 ${active ? 'stroke-[2.5px]' : 'stroke-[1.5px]'}`} />
+              <span className={`text-[10px] md:text-xs mt-1 ${active ? 'font-semibold' : 'font-normal'}`}>
                 {tab.label}
               </span>
               {active && (
