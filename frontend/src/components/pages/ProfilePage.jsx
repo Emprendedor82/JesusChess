@@ -60,34 +60,35 @@ const ProfilePage = () => {
             <Badge className="mt-2 bg-accent text-accent-foreground text-xs">
               Nivel {currentUser.level}
           </Badge>
+          </div>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="px-4 -mt-4">
+      <div className="app-container mx-auto px-4 -mt-4">
         <Card className="shadow-lg">
           <CardContent className="p-4">
-            <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-3 md:gap-4 text-center">
               <div>
-                <div className="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-xp/10 mb-2">
-                  <Star className="w-5 h-5 text-xp" />
+                <div className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 mx-auto rounded-full bg-xp/10 mb-2">
+                  <Star className="w-4 h-4 md:w-5 md:h-5 text-xp" />
                 </div>
-                <p className="font-heading text-lg font-bold text-foreground">{currentUser.xp}</p>
-                <p className="text-xs text-muted-foreground">XP Total</p>
+                <p className="font-heading text-base md:text-lg font-bold text-foreground">{currentUser.xp}</p>
+                <p className="text-[10px] md:text-xs text-muted-foreground">XP Total</p>
               </div>
               <div>
-                <div className="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-streak/10 mb-2">
-                  <Target className="w-5 h-5 text-streak" />
+                <div className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 mx-auto rounded-full bg-streak/10 mb-2">
+                  <Target className="w-4 h-4 md:w-5 md:h-5 text-streak" />
                 </div>
-                <p className="font-heading text-lg font-bold text-foreground">{currentUser.streak}</p>
-                <p className="text-xs text-muted-foreground">Días racha</p>
+                <p className="font-heading text-base md:text-lg font-bold text-foreground">{currentUser.streak}</p>
+                <p className="text-[10px] md:text-xs text-muted-foreground">Días racha</p>
               </div>
               <div>
-                <div className="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-success/10 mb-2">
-                  <BookOpen className="w-5 h-5 text-success" />
+                <div className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 mx-auto rounded-full bg-success/10 mb-2">
+                  <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-success" />
                 </div>
-                <p className="font-heading text-lg font-bold text-foreground">{currentUser.completedLessons}</p>
-                <p className="text-xs text-muted-foreground">Lecciones</p>
+                <p className="font-heading text-base md:text-lg font-bold text-foreground">{currentUser.completedLessons}</p>
+                <p className="text-[10px] md:text-xs text-muted-foreground">Lecciones</p>
               </div>
             </div>
           </CardContent>
