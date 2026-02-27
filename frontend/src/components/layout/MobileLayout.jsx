@@ -11,13 +11,22 @@ const MobileLayout = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Main content with bottom padding for nav */}
-      <main className={`${showBottomNav ? 'pb-20' : ''}`}>
-        <Outlet />
-      </main>
-      
-      {/* Bottom Navigation - only for students */}
-      {showBottomNav && <BottomNav />}
+      {/* Desktop wrapper - shows phone-like frame on large screens */}
+      <div className="lg:desktop-wrapper">
+        <div className="lg:desktop-app-frame lg:relative">
+          {/* Main content container */}
+          <main className={`app-container mx-auto ${showBottomNav ? 'content-with-nav' : ''}`}>
+            <Outlet />
+          </main>
+          
+          {/* Bottom Navigation - only for students */}
+          {showBottomNav && (
+            <div className="bottom-nav-container lg:absolute lg:bottom-0 lg:left-0 lg:right-0">
+              <BottomNav />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
