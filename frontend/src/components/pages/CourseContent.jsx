@@ -44,10 +44,10 @@ const CourseContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background safe-area-top">
       {/* Header */}
-      <div className="bg-primary text-primary-foreground py-6 px-4">
-        <div className="max-w-3xl mx-auto">
+      <div className="bg-primary text-primary-foreground py-5 md:py-6 px-4">
+        <div className="app-container mx-auto">
           <Button 
             variant="ghost" 
             size="sm" 
