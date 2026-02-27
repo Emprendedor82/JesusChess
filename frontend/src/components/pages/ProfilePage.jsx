@@ -97,12 +97,12 @@ const ProfilePage = () => {
 
       {/* Course Progress */}
       {coursePurchased && (
-        <div className="px-4 mt-4">
+        <div className="app-container mx-auto px-4 mt-4">
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-medium text-foreground">Progreso del Curso</span>
-                <span className="text-sm text-muted-foreground">{courseProgress}/12</span>
+                <span className="font-medium text-sm text-foreground">Progreso del Curso</span>
+                <span className="text-xs text-muted-foreground">{courseProgress}/12</span>
               </div>
               <Progress value={(courseProgress / 12) * 100} className="h-2" />
             </CardContent>
@@ -111,23 +111,23 @@ const ProfilePage = () => {
       )}
 
       {/* Menu Items */}
-      <div className="px-4 mt-4 space-y-2">
+      <div className="app-container mx-auto px-4 mt-4 space-y-2">
         {menuItems.map((item, idx) => (
           <Card 
             key={idx} 
             className="cursor-pointer active:scale-[0.98] transition-transform"
             onClick={item.onClick}
           >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-secondary">
-                  <item.icon className="w-5 h-5 text-foreground" />
+            <CardContent className="p-3 md:p-4">
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-xl bg-secondary">
+                  <item.icon className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
                 </div>
-                <span className="flex-1 font-medium text-foreground">{item.label}</span>
+                <span className="flex-1 font-medium text-sm text-foreground">{item.label}</span>
                 {item.badge && (
-                  <Badge variant="secondary" className="mr-2">{item.badge}</Badge>
+                  <Badge variant="secondary" className="mr-2 text-xs">{item.badge}</Badge>
                 )}
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
               </div>
             </CardContent>
           </Card>
