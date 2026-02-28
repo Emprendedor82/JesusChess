@@ -110,13 +110,16 @@ const TrainingHub = () => {
 
   return (
     <div className="p-4 space-y-5 animate-fade-in">
-      <div>
-        <h1 className="font-heading text-2xl font-bold text-foreground">
-          Entrenamiento
-        </h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          {userRole === 'student' ? 'Aprende y practica ajedrez' : 'Revisa el progreso de tus alumnos'}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="font-heading text-2xl font-bold text-foreground">
+            Entrenamiento
+          </h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            {userRole === 'student' ? 'Aprende y practica ajedrez' : 'Revisa el progreso de tus alumnos'}
+          </p>
+        </div>
+        <HamburgerMenu variant="light" />
       </div>
 
       <div className="space-y-3">
