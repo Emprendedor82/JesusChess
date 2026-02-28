@@ -21,6 +21,7 @@ const HamburgerMenu = ({ variant = 'dark' }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const unreadCount = notificationStore.getUnreadCount();
 
   const handleNav = (path) => {
     setOpen(false);
@@ -30,7 +31,27 @@ const HamburgerMenu = ({ variant = 'dark' }) => {
   const isDark = variant === 'dark';
 
   return (
-    <>
+    <div className="flex items-center gap-1.5">
+      {/* Bell icon */}
+      <button
+        onClick={() => navigate('/notificaciones')}
+        className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
+          isDark
+            ? 'bg-primary-foreground/10 hover:bg-primary-foreground/20'
+            : 'bg-muted hover:bg-muted/80'
+        }`}
+        data-testid="notifications-bell-btn"
+        aria-label="Notificaciones"
+      >
+        <Bell className={`w-5 h-5 ${isDark ? 'text-primary-foreground' : 'text-foreground'}`} />
+        {unreadCount > 0 && (
+          <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold rounded-full bg-destructive text-destructive-foreground" data-testid="notification-badge">
+            {unreadCount > 9 ? '9+' : unreadCount}
+          </span>
+        )}
+      </button>
+
+      {/* Hamburger */}
       <button
         onClick={() => setOpen(!open)}
         className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
