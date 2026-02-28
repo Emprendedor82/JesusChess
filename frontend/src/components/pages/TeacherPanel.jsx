@@ -60,15 +60,6 @@ const TeacherPanel = () => {
   const [assignDueDate, setAssignDueDate] = useState('');
   const [assignMessage, setAssignMessage] = useState('');
 
-const TeacherPanel = () => {
-  const { currentUser } = useApp();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStudent, setSelectedStudent] = useState(null);
-  const [showTaskDialog, setShowTaskDialog] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [evaluation, setEvaluation] = useState({});
-  const [feedback, setFeedback] = useState('');
-
   // Normalize text: remove accents, lowercase
   const normalizeText = (text) =>
     text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
