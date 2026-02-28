@@ -48,10 +48,15 @@ const TeacherPanel = () => {
   const [evaluation, setEvaluation] = useState({});
   const [feedback, setFeedback] = useState('');
 
-  const filteredStudents = TEACHER_STUDENTS.filter(student =>
-    student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    student.school.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Normalize text: remove accents, lowercase
+  const normalizeText = (text) =>
+    text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  const filteredStudents = TEACHER_STUDENTS.filter(student => {
+    const search = normalizeText(searchTerm);
+    return normalizeText(student.name).includes(search) ||
+      normalizeText(student.school).includes(search);
+  });
 
   const evaluationCriteria = [
     { key: 'tactica', label: 'Táctica', icon: Target, description: 'Capacidad de ver combinaciones' },
