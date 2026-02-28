@@ -93,31 +93,44 @@ const StudentHomePage = () => {
       {/* Content */}
       <div className="app-container mx-auto px-4 py-4 space-y-4">
         
-        {/* Course Card - Featured */}
-        <Card 
-          className="cursor-pointer border-2 border-accent/30 bg-gradient-to-r from-accent/5 to-primary/5 active:scale-[0.98] transition-transform"
-          onClick={() => navigate(coursePurchased ? '/curso/contenido' : '/curso')}
-        >
-          <CardContent className="p-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-accent/10">
-                <GraduationCap className="w-7 h-7 text-accent" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge className="bg-accent text-accent-foreground text-[10px]">CURSO</Badge>
-                  {coursePurchased && (
-                    <span className="text-xs text-muted-foreground">{courseProgress}/12</span>
-                  )}
+        {/* Course Card - "Ataque y Remate" Featured NEW */}
+        <div className="relative" data-testid="featured-course-banner">
+          <p className="text-xs font-bold text-destructive mb-1.5 flex items-center gap-1.5 tracking-wide">
+            <Flame className="w-3.5 h-3.5" />
+            Nuevo curso disponible para ti
+          </p>
+          <Card 
+            className="cursor-pointer border-2 border-accent overflow-hidden shadow-[0_0_20px_rgba(0,200,200,0.15)] active:scale-[0.98] transition-transform"
+            onClick={() => navigate(coursePurchased ? '/curso/contenido' : '/curso')}
+          >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-primary to-accent animate-shimmer" />
+            <CardContent className="p-4">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-accent/10 ring-2 ring-accent/30 animate-pulse-slow">
+                  <GraduationCap className="w-7 h-7 text-accent" />
                 </div>
-                <h3 className="font-heading font-bold text-foreground text-sm leading-tight">
-                  {coursePurchased ? 'Continuar curso' : COURSE_INFO.title}
-                </h3>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Badge className="bg-destructive text-destructive-foreground text-[10px] font-bold animate-pulse-slow">
+                      NUEVO
+                    </Badge>
+                    <Badge variant="outline" className="text-[10px] border-accent/40 text-accent">CURSO</Badge>
+                    {coursePurchased && (
+                      <span className="text-xs text-muted-foreground">{courseProgress}/12</span>
+                    )}
+                  </div>
+                  <h3 className="font-heading font-bold text-foreground text-sm leading-tight">
+                    {COURSE_INFO.title}
+                  </h3>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">
+                    {coursePurchased ? 'Continuar aprendiendo' : '12 modulos de alto impacto'}
+                  </p>
+                </div>
+                <ChevronRight className="w-5 h-5 text-accent" />
               </div>
-              <ChevronRight className="w-5 h-5 text-accent" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-3">
