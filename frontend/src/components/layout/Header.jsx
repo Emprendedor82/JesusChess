@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Button } from '../ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -9,12 +10,11 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from '../ui/dropdown-menu';
-import { LogOut, Settings, User, Menu } from 'lucide-react';
+import { LogOut, User, Menu } from 'lucide-react';
 
 const Header = () => {
-  const { currentUser, userRole, logout, sidebarOpen, setSidebarOpen, selectedSchool, schools } = useApp();
-  
-  const schoolData = selectedSchool ? schools.find(s => s.id === selectedSchool) : null;
+  const { currentUser, userRole, logout, sidebarOpen, setSidebarOpen } = useApp();
+  const navigate = useNavigate();
 
   const getRoleLabel = () => {
     switch (userRole) {
@@ -22,8 +22,14 @@ const Header = () => {
       case 'teacher': return 'Profesor';
       case 'parent': return 'Apoderado';
       case 'school': return 'Colegio';
+      case 'admin': return 'Administrador';
       default: return '';
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -36,44 +42,30 @@ const Header = () => {
             size="icon"
             className="md:hidden"
             onClick={() => setSidebarOpen(!sidebarOpen)}
+            data-testid="header-menu-btn"
           >
             <Menu className="h-5 w-5" />
           </Button>
           
-          {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground">
               <span className="text-xl font-bold">♜</span>
             </div>
             <div className="hidden sm:block">
               <h1 className="font-heading text-lg font-bold text-foreground leading-tight">
-                Jugadas Estratégicas
+                Jugadas Estrategicas
               </h1>
               <p className="text-xs text-muted-foreground">Academia de Ajedrez</p>
             </div>
           </div>
         </div>
 
-        {/* Center - School logo (if applicable) */}
-        {schoolData && userRole === 'student' && (
-          <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-lg">
-            <img 
-              src={schoolData.logo} 
-              alt={schoolData.name}
-              className="w-8 h-8 rounded-lg object-cover"
-            />
-            <span className="text-sm font-medium text-muted-foreground">{schoolData.name}</span>
-          </div>
-        )}
-
         {/* Right side - User info + Dropdown */}
         <div className="flex items-center gap-4">
-          {/* Role badge */}
           <span className="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">
             {getRoleLabel()}
           </span>
 
-          {/* User dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
@@ -101,14 +93,10 @@ const Header = () => {
                 <User className="mr-2 h-4 w-4" />
                 <span>Mi Perfil</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Configuración</span>
-              </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer text-destructive" onClick={logout}>
+              <DropdownMenuItem className="cursor-pointer text-destructive" onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
-                <span>Cerrar sesión</span>
+                <span>Volver al inicio</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
