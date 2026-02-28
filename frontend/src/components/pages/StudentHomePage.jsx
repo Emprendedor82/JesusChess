@@ -165,6 +165,8 @@ const StudentHomePage = () => {
           </Card>
         </div>
 
+        {/* Today's Goal + Recent Activity - side by side on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         {/* Today's Goal */}
         <Card>
           <CardContent className="p-4">
