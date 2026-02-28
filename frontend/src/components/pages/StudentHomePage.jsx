@@ -210,7 +210,7 @@ const StudentHomePage = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">Subiste a Nivel {currentUser.level}</p>
-                  <p className="text-xs text-muted-foreground">Hace 2 días</p>
+                  <p className="text-xs text-muted-foreground">Hace 2 dias</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-2 rounded-lg bg-secondary/50">
@@ -218,13 +218,14 @@ const StudentHomePage = () => {
                   <Flame className="w-4 h-4 text-streak" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-foreground">Racha de {currentUser.streak} días</p>
-                  <p className="text-xs text-muted-foreground">¡Sigue así!</p>
+                  <p className="text-sm font-medium text-foreground">Racha de {currentUser.streak} dias</p>
+                  <p className="text-xs text-muted-foreground">Sigue asi!</p>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
+        </div>
 
       </div>
     </div>
