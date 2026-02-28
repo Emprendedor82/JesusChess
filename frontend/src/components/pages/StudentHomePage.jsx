@@ -103,7 +103,7 @@ const StudentHomePage = () => {
             className="cursor-pointer border-2 border-accent overflow-hidden shadow-[0_0_20px_rgba(0,200,200,0.15)] active:scale-[0.98] transition-transform"
             onClick={() => navigate(coursePurchased ? '/curso/contenido' : '/curso')}
           >
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-primary to-accent animate-shimmer" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-primary to-accent" style={{ backgroundSize: '200% 100%', animation: 'shimmer 3s linear infinite' }} />
             <CardContent className="p-4">
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-accent/10 ring-2 ring-accent/30 animate-pulse-slow">
