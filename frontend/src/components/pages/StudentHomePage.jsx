@@ -14,10 +14,11 @@ import {
   BookOpen,
   Trophy,
   GraduationCap,
-  Play
+  Play,
+  Bell
 } from 'lucide-react';
 import { courseStorage, COURSE_INFO } from '../../data/courseData';
-import HamburgerMenu from '../layout/HamburgerMenu';
+import { notificationStore } from '../../data/notificationStore';
 
 const StudentHomePage = () => {
   const navigate = useNavigate();
