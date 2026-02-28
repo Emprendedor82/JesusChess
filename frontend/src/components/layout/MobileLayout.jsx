@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import BottomNav from './BottomNav';
+import DrawerMenu from './HamburgerMenu';
 import { useApp } from '../../context/AppContext';
 
 const MobileLayout = () => {
@@ -14,6 +15,9 @@ const MobileLayout = () => {
       <div className={`mx-auto bg-background min-h-screen relative shadow-none lg:shadow-2xl lg:my-0 ${
         isWideLayout ? 'max-w-5xl' : 'max-w-[480px]'
       }`}>
+        {/* Global Drawer Menu - available on ALL pages */}
+        <DrawerMenu />
+
         <main className={`${showBottomNav ? 'pb-20' : ''} ${isWideLayout ? 'p-4 md:p-6' : ''}`}>
           <Outlet />
         </main>
