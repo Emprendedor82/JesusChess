@@ -214,10 +214,12 @@ const TeacherPanel = () => {
                     <DialogTitle className="font-heading text-xl">
                       {selectedStudent.name}
                     </DialogTitle>
-                    <DialogDescription className="flex items-center gap-2">
-                      <span>{selectedStudent.school}</span>
-                      <span>•</span>
-                      <Badge variant="outline">Nivel {selectedStudent.level}</Badge>
+                    <DialogDescription asChild>
+                      <div className="flex items-center gap-2">
+                        <span>{selectedStudent.school}</span>
+                        <span>•</span>
+                        <Badge variant="outline">Nivel {selectedStudent.level}</Badge>
+                      </div>
                     </DialogDescription>
                   </div>
                 </div>
