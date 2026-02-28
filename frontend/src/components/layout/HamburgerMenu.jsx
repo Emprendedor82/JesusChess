@@ -54,7 +54,6 @@ const DrawerMenu = () => {
   const { userRole, currentUser, logout } = useApp();
   const unreadCount = notificationStore.getUnreadCount();
 
-  // Close drawer on route change
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
@@ -76,56 +75,63 @@ const DrawerMenu = () => {
 
   return (
     <>
-      {/* Floating hamburger button - top left, above all headers */}
+      {/* Mobile-only floating hamburger button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-3 left-3 z-[60] flex items-center justify-center w-10 h-10 rounded-full bg-card/90 backdrop-blur-md shadow-lg border border-border/50 transition-all hover:bg-card hover:shadow-xl active:scale-95"
+        className="fixed top-3 left-3 z-[60] flex items-center justify-center w-10 h-10 rounded-full bg-card/90 backdrop-blur-md shadow-lg border border-border/50 transition-all hover:bg-card hover:shadow-xl active:scale-95 lg:hidden"
         data-testid="drawer-menu-btn"
         aria-label="Abrir menu"
       >
         <Menu className="w-5 h-5 text-foreground" />
       </button>
 
-      {/* Overlay */}
+      {/* Mobile overlay */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/40 z-[70] transition-opacity"
+          className="fixed inset-0 bg-black/40 z-[70] lg:hidden"
           onClick={() => setOpen(false)}
           data-testid="drawer-overlay"
         />
       )}
 
-      {/* Drawer from left */}
-      <div
-        className={`fixed top-0 left-0 bottom-0 z-[70] w-72 bg-card shadow-2xl border-r border-border transition-transform duration-300 ease-out ${
-          open ? 'translate-x-0' : '-translate-x-full'
-        }`}
+      {/* Sidebar: persistent on desktop, drawer on mobile */}
+      <aside
+        className={`fixed top-0 left-0 bottom-0 z-[70] w-64 bg-card border-r border-border flex flex-col transition-transform duration-300 ease-out
+          lg:translate-x-0 lg:z-30 lg:shadow-none
+          ${open ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+        `}
         data-testid="drawer-panel"
       >
-        {/* Drawer Header */}
-        <div className="flex items-center justify-between p-4 border-b border-border bg-primary/5">
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-accent text-accent-foreground text-lg font-bold">
               ♜
             </div>
             <div>
-              <p className="text-sm font-bold text-foreground truncate max-w-[160px]">
-                {currentUser?.name || 'Usuario'}
-              </p>
-              <p className="text-[10px] text-muted-foreground capitalize">{userRole}</p>
+              <p className="text-sm font-bold text-foreground leading-tight">Jugadas</p>
+              <p className="text-[10px] text-muted-foreground">Estrategicas</p>
             </div>
           </div>
           <button
             onClick={() => setOpen(false)}
-            className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-colors"
+            className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-colors lg:hidden"
             data-testid="drawer-close-btn"
           >
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
         </div>
 
-        {/* Menu Items */}
-        <nav className="flex-1 py-2" data-testid="drawer-nav">
+        {/* User info */}
+        <div className="px-4 py-3 border-b border-border bg-muted/30">
+          <p className="text-sm font-semibold text-foreground truncate">
+            {currentUser?.name || 'Usuario'}
+          </p>
+          <p className="text-[11px] text-muted-foreground capitalize">{userRole}</p>
+        </div>
+
+        {/* Nav Items */}
+        <nav className="flex-1 py-2 overflow-y-auto" data-testid="drawer-nav">
           {menuItems.map((item) => {
             const active = isPathActive(item.to, location.pathname);
             const showBadge = item.badge && unreadCount > 0;
@@ -134,7 +140,7 @@ const DrawerMenu = () => {
               <button
                 key={item.to}
                 onClick={() => handleNav(item.to)}
-                className={`flex items-center gap-3 w-full px-5 py-3 transition-colors text-left ${
+                className={`flex items-center gap-3 w-full px-4 py-2.5 transition-colors text-left ${
                   active
                     ? 'bg-accent/10 text-accent border-r-2 border-accent'
                     : 'text-foreground hover:bg-muted/50'
@@ -158,21 +164,18 @@ const DrawerMenu = () => {
           })}
         </nav>
 
-        {/* Footer - Logout */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border">
+        {/* Footer */}
+        <div className="p-3 border-t border-border">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+            className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
             data-testid="drawer-logout-btn"
           >
-            <LogOut className="w-5 h-5" />
-            <span className="text-sm font-medium">Volver al inicio</span>
+            <LogOut className="w-4 h-4" />
+            <span className="text-sm font-medium">Salir</span>
           </button>
-          <p className="text-[9px] text-muted-foreground/50 text-center mt-2">
-            Modo demo - Sin autenticacion real
-          </p>
         </div>
-      </div>
+      </aside>
     </>
   );
 };
