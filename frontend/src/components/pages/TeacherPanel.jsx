@@ -104,10 +104,30 @@ const TeacherPanel = () => {
   };
 
   const handleAssignTask = () => {
-    // Mock task assignment
-    console.log('Assigning task:', { studentId: selectedStudent.id, taskId: selectedTask });
+    if (!assignCategory || !assignLevel || !assignExercise) return;
+
+    notificationStore.createAssignment({
+      studentId: selectedStudent.id,
+      studentName: selectedStudent.name,
+      teacherId: currentUser?.id || 'teacher-1',
+      category: assignCategory,
+      level: parseInt(assignLevel),
+      exercise: parseInt(assignExercise),
+      message: assignMessage,
+      dueDate: assignDueDate || null,
+    });
+
+    toast.success(`Tarea asignada a ${selectedStudent.name}`, {
+      description: `${assignCategory} – Nivel ${assignLevel} – Ejercicio ${assignExercise}`,
+    });
+
+    // Reset form
     setShowTaskDialog(false);
-    setSelectedTask(null);
+    setAssignCategory('');
+    setAssignLevel('');
+    setAssignExercise('');
+    setAssignDueDate('');
+    setAssignMessage('');
   };
 
   return (
