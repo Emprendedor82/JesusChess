@@ -158,6 +158,14 @@ const AppRoutes = () => {
             </ProtectedRoute>
           } 
         />
+        <Route 
+          path="/notificaciones" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <NotificationsPage />
+            </ProtectedRoute>
+          } 
+        />
       </Route>
       
       {/* Other Roles - Desktop Layout */}
