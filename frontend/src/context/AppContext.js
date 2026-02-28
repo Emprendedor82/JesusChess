@@ -11,7 +11,7 @@ export const useApp = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  // User role state - 4 roles: student, teacher, parent, school
+  // User role state - 5 roles: student, teacher, parent, school, admin
   const [userRole, setUserRole] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -55,6 +55,13 @@ export const AppProvider = ({ children }) => {
           logo: 'https://api.dicebear.com/7.x/initials/svg?seed=CSI',
         });
         break;
+      case 'admin':
+        setCurrentUser({
+          id: 'admin-1',
+          name: 'Admin Principal',
+          avatar: 'https://api.dicebear.com/7.x/initials/svg?seed=AP',
+        });
+        break;
       default:
         setCurrentUser(null);
     }
@@ -67,12 +74,9 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   const value = {
-    // State
     userRole,
     currentUser,
     sidebarOpen,
-    
-    // Actions
     loginAs,
     logout,
     setSidebarOpen,
