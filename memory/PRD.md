@@ -22,6 +22,7 @@ Frontend prototype of a gamified chess learning app for four roles: Student (Alu
 - **[Feb 2026] Bug fixes:** Chessboard squares now have uniform size (absolute-positioned pieces). Level changes auto-reset the board. Added visual level indicator.
 - **[Feb 2026] Hamburger menu:** Reusable HamburgerMenu component (HamburgerMenu.jsx) used in StudentHomePage and TrainingHub. Dark/light variants for different backgrounds.
 - **[Feb 2026] Search normalization:** TeacherPanel search now normalizes accents and case (NFD + regex). "Sofia" finds "Sofía", etc.
+- **[Feb 2026] Task assignment system:** Functional "Asignar tarea" flow with category/level/exercise/message/date. Creates localStorage-backed assignments + in-app notifications. Student sees bell icon with unread badge, notifications page, and deep-link to assigned practice. Push notifications documented as Fase 2 (no infrastructure yet - pushStatus: not_sent).
 
 ## Backlog
 - Refactor ChessBoard.jsx (460+ lines) into smaller components/hooks
