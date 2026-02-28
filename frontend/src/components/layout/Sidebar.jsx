@@ -52,6 +52,10 @@ const Sidebar = () => {
           { to: '/school/students', icon: GraduationCap, label: 'Alumnos' },
           { to: '/school/analytics', icon: BarChart3, label: 'Estadísticas' },
         ];
+      case 'admin':
+        return [
+          { to: '/admin', icon: ShieldCheck, label: 'Dashboard Admin' },
+        ];
       default:
         return [];
     }
