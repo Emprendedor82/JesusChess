@@ -6,43 +6,44 @@ Frontend prototype of a gamified chess learning app for five roles: Student (Alu
 ## Architecture
 - **Frontend-only** React prototype (Create React App + CRACO)
 - **Styling:** Tailwind CSS
-- **State:** React Context API + localStorage for course/notifications persistence
+- **State:** React Context API + localStorage for course/notifications
 - **Routing:** react-router-dom
 - **Deployment:** Configured for Vercel (vercel.json)
 
 ## Completed Features
-- 5-role system (Alumno, Profesor, Apoderado, Colegio, Administrador)
-- Unified demo login screen with radio-style role selector + "Ingresar" button
-- Branded welcome screen with company branding
-- Mobile-first responsive design (centered on tablet/desktop, wide for admin)
-- Student section with bottom nav (Inicio, Entrenamiento, Retos, Curso, Perfil)
-- Interactive chessboard with 4 levels, instruction blocks, piece movement validation
+- 5-role system with unified demo login screen
+- Left-side drawer menu (global, role-aware) on ALL student pages via MobileLayout
+- Old Layout (Header + Sidebar) for teacher/parent/school/admin roles
+- Student section with bottom nav + drawer navigation
+- Interactive chessboard with 4 levels, instruction blocks, exercises
 - Course module MVP: 12 YouTube video lessons, mock payment, progress tracking
-- Free preview for first course module
-- Hamburger menu (reusable component) in Student Home and Training Hub
-- Bell icon with notifications badge in student header
-- Task assignment system: Teacher assigns tasks → student gets in-app notifications with deep links
-- Teacher panel with accent-insensitive student search
-- School dashboard with prominent search bar (accent/case insensitive, debounced)
-- **Admin Dashboard** with: global stats, 3 tabs (Dashboard/Colegios/Usuarios), school search, user list with role filters, impersonation ("Entrar como")
-- Vercel deployment configuration
+- Task assignment system with in-app notifications and deep links
+- Accent-insensitive search in Teacher Panel and School Dashboard
+- Admin Dashboard with global stats, tabs (Dashboard/Colegios/Usuarios), impersonation
+- Bell icon with notification badge in student header
+- Responsive design (mobile-first, centered on desktop, wide for admin)
+
+## Navigation Architecture
+- **Student pages:** MobileLayout → DrawerMenu (floating button, top-left) + BottomNav
+- **Teacher/Parent/School/Admin:** Layout → Header (with mobile hamburger) + Sidebar
+- **Public pages:** CourseLanding at /curso (no auth required, no menu)
 
 ## Key Files
-- `/app/frontend/src/components/pages/WelcomeScreen.jsx` - Demo login with 5-role selector
+- `/app/frontend/src/components/layout/HamburgerMenu.jsx` - DrawerMenu (global left drawer)
+- `/app/frontend/src/components/layout/MobileLayout.jsx` - Student layout + DrawerMenu
+- `/app/frontend/src/components/layout/Layout.jsx` - Old layout (Header+Sidebar)
+- `/app/frontend/src/components/layout/Header.jsx` - Header for non-student roles
+- `/app/frontend/src/components/layout/Sidebar.jsx` - Sidebar for non-student roles
 - `/app/frontend/src/components/pages/AdminDashboard.jsx` - Admin panel
+- `/app/frontend/src/components/pages/WelcomeScreen.jsx` - Demo login
 - `/app/frontend/src/components/chess/ChessBoard.jsx` - Interactive chessboard
-- `/app/frontend/src/components/pages/TrainingPages.jsx` - Training section
-- `/app/frontend/src/components/pages/TeacherPanel.jsx` - Teacher panel
-- `/app/frontend/src/components/pages/SchoolDashboard.jsx` - School dashboard
-- `/app/frontend/src/components/pages/NotificationsPage.jsx` - Student notifications
-- `/app/frontend/src/components/layout/HamburgerMenu.jsx` - Reusable menu component
-- `/app/frontend/src/data/notificationStore.js` - localStorage notification/assignment store
+- `/app/frontend/src/data/notificationStore.js` - Notification/assignment store
 - `/app/frontend/src/context/AppContext.js` - Global state (5 roles)
 - `/app/frontend/src/App.js` - Main router
 
 ## Backlog
-- Push notifications (Fase 2 - requires Firebase/OneSignal infrastructure)
-- Refactor ChessBoard.jsx (500+ lines) into smaller components/hooks
+- Push notifications (Fase 2 - Firebase/OneSignal)
+- Refactor ChessBoard.jsx into smaller components
 - Admin CRUD operations (currently read-only)
-- Real authentication system (email+password)
+- Real authentication (email+password)
 - Backend API integration
