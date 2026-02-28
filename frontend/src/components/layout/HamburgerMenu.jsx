@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Target, Trophy, GraduationCap, User } from 'lucide-react';
-import { Badge } from '../ui/badge';
+import { Menu, X, Home, Target, Trophy, GraduationCap, User, Bell } from 'lucide-react';
+import { notificationStore } from '../../data/notificationStore';
 
 const MENU_ITEMS = [
   { to: '/inicio', icon: Home, label: 'Inicio' },
