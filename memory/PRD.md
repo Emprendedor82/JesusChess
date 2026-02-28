@@ -47,3 +47,6 @@ Frontend prototype of a gamified chess learning app for five roles: Student (Alu
 - Admin CRUD operations (currently read-only)
 - Real authentication (email+password)
 - Backend API integration
+
+## Changelog
+- [Feb 2026] Course module: Added 3-step instruction block with visual state indicators. "Marcar como completado" button disabled until video watched + comment submitted. Green success block on completion.
