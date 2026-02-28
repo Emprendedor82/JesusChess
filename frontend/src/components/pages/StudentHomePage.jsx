@@ -80,11 +80,16 @@ const StudentHomePage = () => {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Star className="w-4 h-4 text-xp" />
-                <span className="text-sm font-medium">Nivel {currentUser.level}</span>
+                <span className="text-sm font-semibold text-primary-foreground">Nivel {currentUser.level}</span>
               </div>
-              <span className="text-sm">{currentUser.xp}/{currentUser.xpToNextLevel} XP</span>
+              <span className="text-sm font-bold text-primary-foreground">{currentUser.xp}<span className="font-normal text-primary-foreground/60">/{currentUser.xpToNextLevel} XP</span></span>
             </div>
-            <Progress value={xpProgress} className="h-2 bg-primary-foreground/20" />
+            <div className="w-full h-3 rounded-full bg-primary-foreground/30 overflow-hidden">
+              <div 
+                className="h-full rounded-full bg-accent transition-all duration-700 ease-out"
+                style={{ width: `${xpProgress}%` }}
+              />
+            </div>
           </CardContent>
         </Card>
         </div>
