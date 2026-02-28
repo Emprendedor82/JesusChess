@@ -85,6 +85,76 @@ const SchoolDashboard = () => {
         </div>
       </div>
 
+      {/* Search Bar */}
+      <div ref={searchRef} className="relative" data-testid="school-search-container">
+        <Card>
+          <CardContent className="p-4 space-y-1.5">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Input
+                placeholder="Buscar alumno por nombre o apellido..."
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setShowResults(true);
+                }}
+                onFocus={() => setShowResults(true)}
+                className="pl-12 h-12 text-base"
+                data-testid="school-search-input"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground pl-1">
+              Escribe el nombre del alumno que deseas consultar
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Search Results Dropdown */}
+        {showResults && debouncedTerm.length > 0 && (
+          <div className="absolute left-0 right-0 z-30 mt-1" data-testid="school-search-results">
+            <Card className="shadow-xl border-border">
+              <CardContent className="p-2">
+                {filteredStudents.length === 0 ? (
+                  <div className="flex flex-col items-center py-6 text-muted-foreground" data-testid="no-results">
+                    <UserRound className="w-8 h-8 mb-2 opacity-40" />
+                    <p className="text-sm">No se encontraron alumnos con ese nombre</p>
+                  </div>
+                ) : (
+                  <div className="space-y-1">
+                    {filteredStudents.map((student) => (
+                      <button
+                        key={student.id}
+                        onClick={() => {
+                          setShowResults(false);
+                          setSearchTerm('');
+                        }}
+                        className="flex items-center gap-3 w-full p-3 rounded-xl text-left transition-colors hover:bg-muted/60"
+                        data-testid={`search-result-${student.id}`}
+                      >
+                        <Avatar className="w-10 h-10 border border-border">
+                          <AvatarImage src={student.avatar} alt={student.name} />
+                          <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-foreground truncate">{student.name}</p>
+                          <div className="flex items-center gap-3 mt-0.5">
+                            <Badge variant="outline" className="text-[10px] h-4 py-0">Nivel {student.level}</Badge>
+                            <span className="text-xs text-muted-foreground">{student.progress}%</span>
+                          </div>
+                        </div>
+                        <div className="w-16">
+                          <Progress value={student.progress} className="h-1.5" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
+
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <Card>
