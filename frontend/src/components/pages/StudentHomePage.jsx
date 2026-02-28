@@ -77,52 +77,6 @@ const StudentHomePage = () => {
         </div>
       </div>
 
-      {/* Hamburger Menu Overlay */}
-      {menuOpen && (
-        <>
-          <div 
-            className="fixed inset-0 bg-black/40 z-20 animate-fade-in"
-            onClick={() => setMenuOpen(false)}
-            data-testid="menu-overlay"
-          />
-          <div 
-            ref={menuRef}
-            className="absolute left-0 right-0 z-20 mx-auto max-w-[480px]"
-            data-testid="hamburger-menu-dropdown"
-          >
-            <div className="mx-3 bg-card rounded-2xl shadow-xl border border-border overflow-hidden animate-fade-in">
-              {menuItems.map((item, idx) => {
-                const isActive = item.to === '/curso' 
-                  ? location.pathname.startsWith('/curso')
-                  : item.to === '/entrenamiento'
-                  ? location.pathname.startsWith('/entrenamiento')
-                  : location.pathname === item.to;
-                
-                return (
-                  <button
-                    key={item.to}
-                    onClick={() => handleMenuNav(item.to)}
-                    className={`flex items-center gap-4 w-full px-5 py-3.5 transition-colors text-left
-                      ${isActive ? 'bg-accent/10 text-accent' : 'text-foreground hover:bg-muted/50'}
-                      ${idx < menuItems.length - 1 ? 'border-b border-border/50' : ''}
-                    `}
-                    data-testid={`menu-item-${item.label.toLowerCase()}`}
-                  >
-                    <item.icon className={`w-5 h-5 ${isActive ? 'text-accent' : 'text-muted-foreground'}`} />
-                    <span className={`text-sm ${isActive ? 'font-semibold' : 'font-medium'}`}>
-                      {item.label}
-                    </span>
-                    {isActive && (
-                      <div className="ml-auto w-2 h-2 rounded-full bg-accent" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </>
-      )}
-
       {/* Content */}
       <div className="app-container mx-auto px-4 py-4 space-y-4">
         
