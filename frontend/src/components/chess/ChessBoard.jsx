@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Check, X, RotateCcw, HelpCircle } from 'lucide-react';
+import { Check, X, RotateCcw, HelpCircle, Target, Swords, Shield, Crown } from 'lucide-react';
 
 // Initial board setup
 const INITIAL_BOARD = [
