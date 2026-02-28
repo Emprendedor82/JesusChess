@@ -10,7 +10,9 @@ import {
   CheckCircle, 
   Lock,
   MessageSquare,
-  Send
+  Send,
+  Circle,
+  Info
 } from 'lucide-react';
 import { COURSE_MODULES, courseStorage } from '../../data/courseData';
 
