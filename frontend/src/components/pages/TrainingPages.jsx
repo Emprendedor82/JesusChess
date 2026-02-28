@@ -301,8 +301,11 @@ const LevelDetailPage = () => {
 const PracticePage = () => {
   const navigate = useNavigate();
   const { userRole } = useApp();
-  const [selectedLevel, setSelectedLevel] = useState(1);
-  const [selectedExercise, setSelectedExercise] = useState(0);
+  const [searchParams] = useSearchParams();
+  const initLevel = parseInt(searchParams.get('level')) || 1;
+  const initExercise = parseInt(searchParams.get('exercise')) || 1;
+  const [selectedLevel, setSelectedLevel] = useState(initLevel);
+  const [selectedExercise, setSelectedExercise] = useState(initExercise - 1);
 
   // Only students can access the practice board
   if (userRole !== 'student') {
