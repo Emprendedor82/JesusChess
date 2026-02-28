@@ -127,6 +127,65 @@ const CourseModule = () => {
           </CardContent>
         </Card>
 
+        {/* Steps to Complete Block */}
+        {!progress.completed && (
+          <div 
+            className="rounded-xl border border-accent/30 bg-accent/5 p-4 space-y-3"
+            data-testid="steps-block"
+          >
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+              <p className="text-sm font-bold text-foreground">
+                Para completar este modulo debes:
+              </p>
+            </div>
+            <div className="space-y-2.5 pl-2">
+              {/* Step 1 */}
+              <div className="flex items-center gap-3" data-testid="step-1">
+                {progress.watched ? (
+                  <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
+                ) : (
+                  <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                )}
+                <span className={`text-sm ${progress.watched ? 'text-success font-medium line-through' : 'text-foreground'}`}>
+                  Ver el video completo
+                </span>
+              </div>
+              {/* Step 2 */}
+              <div className="flex items-center gap-3" data-testid="step-2">
+                {progress.commented ? (
+                  <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
+                ) : (
+                  <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                )}
+                <span className={`text-sm ${progress.commented ? 'text-success font-medium line-through' : 'text-foreground'}`}>
+                  Escribir un comentario (minimo 50 caracteres)
+                </span>
+              </div>
+              {/* Step 3 */}
+              <div className="flex items-center gap-3" data-testid="step-3">
+                <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                <span className="text-sm text-foreground">
+                  Marcar la leccion como completada
+                </span>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground pl-8">
+              Solo despues de estos pasos podras avanzar al siguiente modulo.
+            </p>
+          </div>
+        )}
+
+        {progress.completed && (
+          <div className="rounded-xl border border-success/30 bg-success/5 p-4 flex items-center gap-3" data-testid="steps-complete">
+            <CheckCircle className="w-6 h-6 text-success flex-shrink-0" />
+            <div>
+              <p className="text-sm font-bold text-success">Modulo completado</p>
+              <p className="text-xs text-muted-foreground">Todos los pasos han sido cumplidos. Puedes avanzar al siguiente modulo.</p>
+            </div>
+          </div>
+        )}
+
         {/* Comments Section */}
         <Card>
           <CardContent className="p-4 space-y-4">
