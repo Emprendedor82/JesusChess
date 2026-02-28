@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
+import { Input } from '../ui/input';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { 
   Users, 
   TrendingUp, 
@@ -10,14 +12,49 @@ import {
   BookOpen,
   BarChart3,
   Trophy,
-  Calendar
+  Calendar,
+  Search,
+  UserRound
 } from 'lucide-react';
-import { SCHOOL_DASHBOARD } from '../../data/mockData';
+import { SCHOOL_DASHBOARD, TEACHER_STUDENTS } from '../../data/mockData';
+
+const normalizeText = (text) =>
+  text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
 const SchoolDashboard = () => {
   const { currentUser } = useApp();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedTerm, setDebouncedTerm] = useState('');
+  const [showResults, setShowResults] = useState(false);
+  const searchRef = useRef(null);
   
   const data = SCHOOL_DASHBOARD;
+
+  // Debounce 300ms
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedTerm(searchTerm), 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setShowResults(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  // Filter students by school + search term
+  const schoolStudents = TEACHER_STUDENTS.filter(s =>
+    normalizeText(s.school).includes(normalizeText(currentUser?.name || ''))
+  );
+
+  const filteredStudents = debouncedTerm.length > 0
+    ? schoolStudents.filter(s => normalizeText(s.name).includes(normalizeText(debouncedTerm)))
+    : [];
 
   const getWeekMaxStudents = () => {
     return Math.max(...data.weeklyActivity.map(d => d.students));
