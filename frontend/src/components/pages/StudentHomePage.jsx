@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
@@ -14,40 +14,20 @@ import {
   BookOpen,
   Trophy,
   GraduationCap,
-  Play,
-  Menu,
-  X,
-  Home,
-  Target,
-  User
+  Play
 } from 'lucide-react';
 import { courseStorage, COURSE_INFO } from '../../data/courseData';
+import HamburgerMenu from '../layout/HamburgerMenu';
 
 const StudentHomePage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { currentUser } = useApp();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);
   
   if (!currentUser) return null;
 
   const xpProgress = (currentUser.xp / currentUser.xpToNextLevel) * 100;
   const coursePurchased = courseStorage.isPurchased();
   const courseProgress = courseStorage.getCompletedCount();
-
-  const menuItems = [
-    { to: '/inicio', icon: Home, label: 'Inicio' },
-    { to: '/entrenamiento', icon: Target, label: 'Entrenamiento' },
-    { to: '/retos', icon: Trophy, label: 'Retos' },
-    { to: '/curso', icon: GraduationCap, label: 'Curso' },
-    { to: '/perfil', icon: User, label: 'Perfil' },
-  ];
-
-  const handleMenuNav = (path) => {
-    setMenuOpen(false);
-    navigate(path);
-  };
 
   return (
     <div className="min-h-screen bg-background safe-area-top">
@@ -77,18 +57,7 @@ const StudentHomePage = () => {
                 <span className="font-bold text-sm md:text-base text-streak">{currentUser.streak}</span>
               </div>
               {/* Hamburger menu */}
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-foreground/10 transition-colors hover:bg-primary-foreground/20"
-                data-testid="hamburger-menu-btn"
-                aria-label="Abrir menú"
-              >
-                {menuOpen ? (
-                  <X className="w-5 h-5 text-primary-foreground" />
-                ) : (
-                  <Menu className="w-5 h-5 text-primary-foreground" />
-                )}
-              </button>
+              <HamburgerMenu variant="dark" />
             </div>
           </div>
 
