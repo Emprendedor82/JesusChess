@@ -20,6 +20,7 @@ Frontend prototype of a gamified chess learning app for four roles: Student (Alu
 - Free preview for first course module
 - Vercel deployment configuration
 - **[Feb 2026] Bug fixes:** Chessboard squares now have uniform size (absolute-positioned pieces). Level changes auto-reset the board. Added visual level indicator.
+- **[Feb 2026] Hamburger menu:** Added hamburger icon (≡) in top-right of student home page header, replicating bottom nav options (Inicio, Entrenamiento, Retos, Curso, Perfil) with active state indicator and overlay backdrop.
 
 ## Backlog
 - Refactor ChessBoard.jsx (460+ lines) into smaller components/hooks
