@@ -108,7 +108,7 @@ const TrainingHub = () => {
   ];
 
   return (
-    <div className="p-4 space-y-5 animate-fade-in">
+    <div className="p-4 lg:p-6 space-y-5 animate-fade-in max-w-5xl mx-auto">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-heading text-2xl font-bold text-foreground">
@@ -120,7 +120,7 @@ const TrainingHub = () => {
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
         {sections.map((section) => {
           // Hide practice section for coaches
           if (section.studentOnly && userRole !== 'student') {
