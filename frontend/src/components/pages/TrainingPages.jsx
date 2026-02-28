@@ -17,7 +17,6 @@ import {
   Play
 } from 'lucide-react';
 import ChessBoard, { PRACTICE_EXERCISES } from '../chess/ChessBoard';
-import HamburgerMenu from '../layout/HamburgerMenu';
 
 // Learning levels data
 const LEARNING_LEVELS = [
