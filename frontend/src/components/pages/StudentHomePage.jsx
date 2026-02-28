@@ -137,7 +137,7 @@ const StudentHomePage = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
           <Card 
             className="cursor-pointer active:scale-[0.98] transition-transform"
             onClick={() => navigate('/entrenamiento')}
