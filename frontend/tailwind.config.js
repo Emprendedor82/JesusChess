@@ -126,6 +126,14 @@ module.exports = {
                 'confetti': {
                     '0%': { transform: 'translateY(0) rotate(0deg)', opacity: '1' },
                     '100%': { transform: 'translateY(400px) rotate(720deg)', opacity: '0' }
+                },
+                'pulse-slow': {
+                    '0%, 100%': { opacity: '1' },
+                    '50%': { opacity: '0.6' }
+                },
+                'shimmer': {
+                    '0%': { backgroundPosition: '-200% 0' },
+                    '100%': { backgroundPosition: '200% 0' }
                 }
             },
             animation: {
@@ -139,7 +147,9 @@ module.exports = {
                 'bounce-soft': 'bounce-soft 2s ease-in-out infinite',
                 'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
                 'wiggle': 'wiggle 0.5s ease-in-out infinite',
-                'confetti': 'confetti 3s ease-out forwards'
+                'confetti': 'confetti 3s ease-out forwards',
+                'pulse-slow': 'pulse-slow 6s ease-in-out infinite',
+                'shimmer': 'shimmer 3s linear infinite'
             }
         }
     },
