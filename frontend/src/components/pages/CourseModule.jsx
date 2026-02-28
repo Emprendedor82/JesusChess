@@ -45,7 +45,6 @@ const CourseModule = () => {
   const handleMarkWatched = () => {
     courseStorage.markWatched(id);
     setProgress(courseStorage.getModuleProgress(id));
-    checkCompletion();
   };
 
   const handleSubmitComment = () => {
@@ -55,16 +54,17 @@ const CourseModule = () => {
     setComments(courseStorage.getComments(id));
     setProgress(courseStorage.getModuleProgress(id));
     setCommentText('');
-    checkCompletion();
   };
 
-  const checkCompletion = () => {
+  const handleMarkCompleted = () => {
     const currentProgress = courseStorage.getModuleProgress(id);
     if (currentProgress.watched && currentProgress.commented && !currentProgress.completed) {
       courseStorage.markCompleted(id);
       setProgress(courseStorage.getModuleProgress(id));
     }
   };
+
+  const canComplete = progress.watched && progress.commented && !progress.completed;
 
   const nextModule = COURSE_MODULES.find(m => m.id === id + 1);
   const canGoNext = progress.completed && nextModule;
