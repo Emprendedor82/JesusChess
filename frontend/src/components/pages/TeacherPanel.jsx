@@ -35,9 +35,30 @@ import {
   Heart,
   ClipboardList,
   Check,
-  X
+  X,
+  Send
 } from 'lucide-react';
 import { TEACHER_STUDENTS, TASK_TEMPLATES } from '../../data/mockData';
+import { notificationStore } from '../../data/notificationStore';
+import { toast } from 'sonner';
+
+const CATEGORIES = ['Movimiento', 'Captura', 'Ataque', 'Mate', 'Defensa', 'Táctica', 'Aperturas', 'Finales'];
+
+const TeacherPanel = () => {
+  const { currentUser } = useApp();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [showTaskDialog, setShowTaskDialog] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [evaluation, setEvaluation] = useState({});
+  const [feedback, setFeedback] = useState('');
+
+  // Assignment form state
+  const [assignCategory, setAssignCategory] = useState('');
+  const [assignLevel, setAssignLevel] = useState('');
+  const [assignExercise, setAssignExercise] = useState('');
+  const [assignDueDate, setAssignDueDate] = useState('');
+  const [assignMessage, setAssignMessage] = useState('');
 
 const TeacherPanel = () => {
   const { currentUser } = useApp();
