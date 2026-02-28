@@ -48,8 +48,9 @@ const SchoolDashboard = () => {
   }, []);
 
   // Filter students by school + search term
+  const schoolName = normalizeText(currentUser?.name || '');
   const schoolStudents = TEACHER_STUDENTS.filter(s =>
-    normalizeText(s.school).includes(normalizeText(currentUser?.name || ''))
+    normalizeText(s.school).includes(schoolName) || schoolName.includes(normalizeText(s.school))
   );
 
   const filteredStudents = debouncedTerm.length > 0
