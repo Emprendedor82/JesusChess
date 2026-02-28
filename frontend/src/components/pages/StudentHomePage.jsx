@@ -29,6 +29,7 @@ const StudentHomePage = () => {
   const xpProgress = (currentUser.xp / currentUser.xpToNextLevel) * 100;
   const coursePurchased = courseStorage.isPurchased();
   const courseProgress = courseStorage.getCompletedCount();
+  const unreadCount = notificationStore.getUnreadCount();
 
   return (
     <div className="min-h-screen bg-background safe-area-top">
@@ -36,7 +37,7 @@ const StudentHomePage = () => {
       <div className="bg-primary text-primary-foreground px-4 pt-4 pb-5 md:pb-6 relative z-30">
         <div className="app-container mx-auto">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 pl-10">
               <Avatar className="w-10 h-10 md:w-12 md:h-12 border-2 border-primary-foreground/20">
                 <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
                 <AvatarFallback className="bg-accent text-accent-foreground">
@@ -57,8 +58,19 @@ const StudentHomePage = () => {
                 <Flame className="w-4 h-4 md:w-5 md:h-5 text-streak" />
                 <span className="font-bold text-sm md:text-base text-streak">{currentUser.streak}</span>
               </div>
-              {/* Hamburger menu */}
-              <HamburgerMenu variant="dark" />
+              {/* Bell icon */}
+              <button
+                onClick={() => navigate('/notificaciones')}
+                className="relative flex items-center justify-center w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
+                data-testid="notifications-bell-btn"
+              >
+                <Bell className="w-5 h-5 text-primary-foreground" />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold rounded-full bg-destructive text-destructive-foreground" data-testid="notification-badge">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
+              </button>
             </div>
           </div>
 
