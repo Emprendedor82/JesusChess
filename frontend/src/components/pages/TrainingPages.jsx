@@ -118,7 +118,6 @@ const TrainingHub = () => {
             {userRole === 'student' ? 'Aprende y practica ajedrez' : 'Revisa el progreso de tus alumnos'}
           </p>
         </div>
-        <HamburgerMenu variant="light" />
       </div>
 
       <div className="space-y-3">
