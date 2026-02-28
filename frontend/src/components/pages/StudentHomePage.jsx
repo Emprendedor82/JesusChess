@@ -34,10 +34,10 @@ const StudentHomePage = () => {
   return (
     <div className="min-h-screen bg-background safe-area-top">
       {/* Header */}
-      <div className="bg-primary text-primary-foreground px-4 pt-4 pb-5 md:pb-6 relative z-30">
-        <div className="app-container mx-auto">
+      <div className="bg-primary text-primary-foreground px-4 lg:px-8 pt-4 pb-5 relative z-30">
+        <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3 pl-10">
+            <div className="flex items-center gap-3 pl-10 lg:pl-0">
               <Avatar className="w-10 h-10 md:w-12 md:h-12 border-2 border-primary-foreground/20">
                 <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
                 <AvatarFallback className="bg-accent text-accent-foreground">
@@ -96,7 +96,7 @@ const StudentHomePage = () => {
       </div>
 
       {/* Content */}
-      <div className="app-container mx-auto px-4 py-4 space-y-4">
+      <div className="max-w-5xl mx-auto px-4 lg:px-8 py-4 lg:py-6 space-y-4 lg:space-y-6">
         
         {/* Course Card - "Ataque y Remate" Featured NEW */}
         <div className="relative" data-testid="featured-course-banner">
