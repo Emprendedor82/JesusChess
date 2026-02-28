@@ -21,7 +21,7 @@ Frontend prototype of a gamified chess learning app for four roles: Student (Alu
 - Vercel deployment configuration
 - **[Feb 2026] Bug fixes:** Chessboard squares now have uniform size (absolute-positioned pieces). Level changes auto-reset the board. Added visual level indicator.
 - **[Feb 2026] Hamburger menu:** Reusable HamburgerMenu component (HamburgerMenu.jsx) used in StudentHomePage and TrainingHub. Dark/light variants for different backgrounds.
-- **[Feb 2026] Instruction block:** Added dynamic instruction block above the chessboard showing category (Movimiento/Captura/Ataque/Mate), piece badge, and actionable instruction text. Updates automatically on level/exercise change. Duolingo-style UX.
+- **[Feb 2026] Search normalization:** TeacherPanel search now normalizes accents and case (NFD + regex). "Sofia" finds "Sofía", etc.
 
 ## Backlog
 - Refactor ChessBoard.jsx (460+ lines) into smaller components/hooks
