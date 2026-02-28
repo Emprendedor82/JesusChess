@@ -302,6 +302,15 @@ const LEVEL_NAMES = {
   4: 'Mini Desafíos',
 };
 
+// Category visual config
+const CATEGORY_CONFIG = {
+  'Movimiento': { icon: Target, color: 'text-accent', bg: 'bg-accent/10', border: 'border-accent/20' },
+  'Captura': { icon: Swords, color: 'text-warning', bg: 'bg-warning/10', border: 'border-warning/20' },
+  'Ataque': { icon: Swords, color: 'text-destructive', bg: 'bg-destructive/10', border: 'border-destructive/20' },
+  'Mate': { icon: Crown, color: 'text-xp', bg: 'bg-xp/10', border: 'border-xp/20' },
+  'Defensa': { icon: Shield, color: 'text-success', bg: 'bg-success/10', border: 'border-success/20' },
+};
+
 const ChessBoard = ({ exercise, onComplete, level }) => {
   const [board, setBoard] = useState(exercise?.board || INITIAL_BOARD);
   const [selectedSquare, setSelectedSquare] = useState(null);
