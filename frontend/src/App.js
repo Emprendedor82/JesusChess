@@ -21,6 +21,7 @@ import SchoolDashboard from "./components/pages/SchoolDashboard";
 import StudentHomePage from "./components/pages/StudentHomePage";
 import ProfilePage from "./components/pages/ProfilePage";
 import ChallengesPage from "./components/pages/ChallengesPage";
+import NotificationsPage from "./components/pages/NotificationsPage";
 import { 
   TrainingHub, 
   LearnPage, 
