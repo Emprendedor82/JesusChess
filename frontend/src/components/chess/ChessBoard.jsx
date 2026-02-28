@@ -408,6 +408,43 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
         </div>
       )}
 
+      {/* Instruction block */}
+      {exercise?.instructionText && (
+        <div 
+          className={`w-full max-w-md rounded-xl border px-4 py-3 flex items-start gap-3 ${
+            CATEGORY_CONFIG[exercise.category]?.bg || 'bg-accent/10'
+          } ${CATEGORY_CONFIG[exercise.category]?.border || 'border-accent/20'}`}
+          data-testid="instruction-block"
+        >
+          {(() => {
+            const config = CATEGORY_CONFIG[exercise.category];
+            const IconComp = config?.icon || Target;
+            return (
+              <div className={`flex-shrink-0 mt-0.5 ${config?.color || 'text-accent'}`}>
+                <IconComp className="w-5 h-5" />
+              </div>
+            );
+          })()}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className={`text-xs font-bold uppercase tracking-wide ${
+                CATEGORY_CONFIG[exercise.category]?.color || 'text-accent'
+              }`}>
+                {exercise.category || 'Objetivo'}
+              </span>
+              {exercise.piece && (
+                <Badge variant="outline" className="text-[10px] py-0 h-4 border-muted-foreground/30">
+                  {exercise.piece}
+                </Badge>
+              )}
+            </div>
+            <p className="text-sm text-foreground leading-snug" data-testid="instruction-text">
+              {exercise.instructionText}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Chess board - Bug fix #1: rigid grid with absolute-positioned pieces */}
       <div className="relative ml-6 mb-5">
         <div 
