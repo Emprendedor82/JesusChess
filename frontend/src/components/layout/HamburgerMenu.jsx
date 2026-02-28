@@ -106,7 +106,7 @@ const HamburgerMenu = ({ variant = 'dark' }) => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
