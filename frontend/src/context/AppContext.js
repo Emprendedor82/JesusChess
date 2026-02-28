@@ -52,7 +52,7 @@ export const AppProvider = ({ children }) => {
         setCurrentUser({
           id: 'school-1',
           name: 'Colegio San Ignacio',
-          logo: 'https://api.dicebear.com/7.x/initials/svg?seed=CSI',
+          logo: 'https://customer-assets.emergentagent.com/job_c6df4768-b4cb-4b29-a93d-4b84dff706de/artifacts/0x7jgozm_image.png',
         });
         break;
       case 'admin':
