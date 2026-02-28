@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
@@ -14,13 +14,21 @@ import {
   BookOpen,
   Trophy,
   GraduationCap,
-  Play
+  Play,
+  Menu,
+  X,
+  Home,
+  Target,
+  User
 } from 'lucide-react';
 import { courseStorage, COURSE_INFO } from '../../data/courseData';
 
 const StudentHomePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { currentUser } = useApp();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
   
   if (!currentUser) return null;
 
@@ -28,10 +36,23 @@ const StudentHomePage = () => {
   const coursePurchased = courseStorage.isPurchased();
   const courseProgress = courseStorage.getCompletedCount();
 
+  const menuItems = [
+    { to: '/inicio', icon: Home, label: 'Inicio' },
+    { to: '/entrenamiento', icon: Target, label: 'Entrenamiento' },
+    { to: '/retos', icon: Trophy, label: 'Retos' },
+    { to: '/curso', icon: GraduationCap, label: 'Curso' },
+    { to: '/perfil', icon: User, label: 'Perfil' },
+  ];
+
+  const handleMenuNav = (path) => {
+    setMenuOpen(false);
+    navigate(path);
+  };
+
   return (
     <div className="min-h-screen bg-background safe-area-top">
       {/* Header */}
-      <div className="bg-primary text-primary-foreground px-4 pt-4 pb-5 md:pb-6">
+      <div className="bg-primary text-primary-foreground px-4 pt-4 pb-5 md:pb-6 relative z-30">
         <div className="app-container mx-auto">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -49,10 +70,25 @@ const StudentHomePage = () => {
               </div>
             </div>
             
-            {/* Streak */}
-            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-primary-foreground/10">
-              <Flame className="w-4 h-4 md:w-5 md:h-5 text-streak" />
-              <span className="font-bold text-sm md:text-base text-streak">{currentUser.streak}</span>
+            <div className="flex items-center gap-2">
+              {/* Streak */}
+              <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-primary-foreground/10">
+                <Flame className="w-4 h-4 md:w-5 md:h-5 text-streak" />
+                <span className="font-bold text-sm md:text-base text-streak">{currentUser.streak}</span>
+              </div>
+              {/* Hamburger menu */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-foreground/10 transition-colors hover:bg-primary-foreground/20"
+                data-testid="hamburger-menu-btn"
+                aria-label="Abrir menú"
+              >
+                {menuOpen ? (
+                  <X className="w-5 h-5 text-primary-foreground" />
+                ) : (
+                  <Menu className="w-5 h-5 text-primary-foreground" />
+                )}
+              </button>
             </div>
           </div>
 
