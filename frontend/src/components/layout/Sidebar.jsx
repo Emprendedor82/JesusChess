@@ -13,6 +13,7 @@ import {
   MessageSquare,
   GraduationCap,
   Building2,
+  ShieldCheck,
   X
 } from 'lucide-react';
 import { Button } from '../ui/button';
