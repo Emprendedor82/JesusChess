@@ -1,113 +1,180 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Target, Trophy, GraduationCap, User, Bell } from 'lucide-react';
+import { useApp } from '../../context/AppContext';
+import {
+  Menu,
+  X,
+  Home,
+  Target,
+  Trophy,
+  GraduationCap,
+  User,
+  Bell,
+  Building2,
+  Users,
+  ShieldCheck,
+  BarChart3,
+  ClipboardList,
+  LogOut,
+} from 'lucide-react';
 import { notificationStore } from '../../data/notificationStore';
 
-const MENU_ITEMS = [
-  { to: '/inicio', icon: Home, label: 'Inicio' },
-  { to: '/entrenamiento', icon: Target, label: 'Entrenamiento' },
-  { to: '/retos', icon: Trophy, label: 'Retos' },
-  { to: '/curso', icon: GraduationCap, label: 'Curso' },
-  { to: '/perfil', icon: User, label: 'Perfil' },
-];
-
-const isPathActive = (path, pathname) => {
-  if (path === '/curso') return pathname.startsWith('/curso');
-  if (path === '/entrenamiento') return pathname.startsWith('/entrenamiento');
-  return pathname === path;
+const ROLE_MENUS = {
+  student: [
+    { to: '/inicio', icon: Home, label: 'Inicio' },
+    { to: '/entrenamiento', icon: Target, label: 'Entrenamiento' },
+    { to: '/retos', icon: Trophy, label: 'Retos' },
+    { to: '/curso', icon: GraduationCap, label: 'Curso' },
+    { to: '/perfil', icon: User, label: 'Perfil' },
+    { to: '/notificaciones', icon: Bell, label: 'Notificaciones', badge: true },
+  ],
+  teacher: [
+    { to: '/teacher', icon: ClipboardList, label: 'Panel Profesor' },
+  ],
+  parent: [
+    { to: '/parent', icon: Users, label: 'Panel Apoderado' },
+  ],
+  school: [
+    { to: '/school', icon: Building2, label: 'Dashboard Colegio' },
+  ],
+  admin: [
+    { to: '/admin', icon: BarChart3, label: 'Dashboard Admin' },
+  ],
 };
 
-const HamburgerMenu = ({ variant = 'dark' }) => {
+const isPathActive = (path, pathname) => {
+  if (path === '/') return pathname === '/';
+  return pathname.startsWith(path);
+};
+
+const DrawerMenu = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { userRole, currentUser, logout } = useApp();
   const unreadCount = notificationStore.getUnreadCount();
+
+  // Close drawer on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  const menuItems = ROLE_MENUS[userRole] || [];
 
   const handleNav = (path) => {
     setOpen(false);
     navigate(path);
   };
 
-  const isDark = variant === 'dark';
+  const handleLogout = () => {
+    setOpen(false);
+    logout();
+    navigate('/');
+  };
+
+  if (!userRole) return null;
 
   return (
-    <div className="flex items-center gap-1.5">
-      {/* Bell icon */}
+    <>
+      {/* Floating hamburger button - top left */}
       <button
-        onClick={() => navigate('/notificaciones')}
-        className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
-          isDark
-            ? 'bg-primary-foreground/10 hover:bg-primary-foreground/20'
-            : 'bg-muted hover:bg-muted/80'
-        }`}
-        data-testid="notifications-bell-btn"
-        aria-label="Notificaciones"
+        onClick={() => setOpen(true)}
+        className="fixed top-3 left-3 z-40 flex items-center justify-center w-10 h-10 rounded-full bg-card/80 backdrop-blur-md shadow-lg border border-border/50 transition-all hover:bg-card hover:shadow-xl active:scale-95"
+        data-testid="drawer-menu-btn"
+        aria-label="Abrir menu"
       >
-        <Bell className={`w-5 h-5 ${isDark ? 'text-primary-foreground' : 'text-foreground'}`} />
-        {unreadCount > 0 && (
-          <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold rounded-full bg-destructive text-destructive-foreground" data-testid="notification-badge">
-            {unreadCount > 9 ? '9+' : unreadCount}
-          </span>
-        )}
+        <Menu className="w-5 h-5 text-foreground" />
       </button>
 
-      {/* Hamburger */}
-      <button
-        onClick={() => setOpen(!open)}
-        className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
-          isDark
-            ? 'bg-primary-foreground/10 hover:bg-primary-foreground/20'
-            : 'bg-muted hover:bg-muted/80'
-        }`}
-        data-testid="hamburger-menu-btn"
-        aria-label="Abrir menú"
-      >
-        {open ? (
-          <X className={`w-5 h-5 ${isDark ? 'text-primary-foreground' : 'text-foreground'}`} />
-        ) : (
-          <Menu className={`w-5 h-5 ${isDark ? 'text-primary-foreground' : 'text-foreground'}`} />
-        )}
-      </button>
-
+      {/* Overlay */}
       {open && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/40 z-40 animate-fade-in"
-            onClick={() => setOpen(false)}
-            data-testid="menu-overlay"
-          />
-          <div
-            className="fixed left-0 right-0 z-50 mx-auto max-w-[480px] px-3"
-            style={{ top: isDark ? '110px' : '60px' }}
-            data-testid="hamburger-menu-dropdown"
-          >
-            <div className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden animate-fade-in">
-              {MENU_ITEMS.map((item, idx) => {
-                const active = isPathActive(item.to, location.pathname);
-                return (
-                  <button
-                    key={item.to}
-                    onClick={() => handleNav(item.to)}
-                    className={`flex items-center gap-4 w-full px-5 py-3.5 transition-colors text-left
-                      ${active ? 'bg-accent/10 text-accent' : 'text-foreground hover:bg-muted/50'}
-                      ${idx < MENU_ITEMS.length - 1 ? 'border-b border-border/50' : ''}
-                    `}
-                    data-testid={`menu-item-${item.label.toLowerCase()}`}
-                  >
-                    <item.icon className={`w-5 h-5 ${active ? 'text-accent' : 'text-muted-foreground'}`} />
-                    <span className={`text-sm ${active ? 'font-semibold' : 'font-medium'}`}>
-                      {item.label}
-                    </span>
-                    {active && <div className="ml-auto w-2 h-2 rounded-full bg-accent" />}
-                  </button>
-                );
-              })}
+        <div
+          className="fixed inset-0 bg-black/40 z-50 transition-opacity"
+          onClick={() => setOpen(false)}
+          data-testid="drawer-overlay"
+        />
+      )}
+
+      {/* Drawer from left */}
+      <div
+        className={`fixed top-0 left-0 bottom-0 z-50 w-72 bg-card shadow-2xl border-r border-border transition-transform duration-300 ease-out ${
+          open ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        data-testid="drawer-panel"
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-4 border-b border-border bg-primary/5">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-accent text-accent-foreground text-lg font-bold">
+              ♜
+            </div>
+            <div>
+              <p className="text-sm font-bold text-foreground truncate max-w-[160px]">
+                {currentUser?.name || 'Usuario'}
+              </p>
+              <p className="text-[10px] text-muted-foreground capitalize">{userRole}</p>
             </div>
           </div>
-        </>
-      )}
-    </div>
+          <button
+            onClick={() => setOpen(false)}
+            className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-colors"
+            data-testid="drawer-close-btn"
+          >
+            <X className="w-4 h-4 text-muted-foreground" />
+          </button>
+        </div>
+
+        {/* Menu Items */}
+        <nav className="flex-1 py-2" data-testid="drawer-nav">
+          {menuItems.map((item) => {
+            const active = isPathActive(item.to, location.pathname);
+            const showBadge = item.badge && unreadCount > 0;
+
+            return (
+              <button
+                key={item.to}
+                onClick={() => handleNav(item.to)}
+                className={`flex items-center gap-3 w-full px-5 py-3 transition-colors text-left ${
+                  active
+                    ? 'bg-accent/10 text-accent border-r-2 border-accent'
+                    : 'text-foreground hover:bg-muted/50'
+                }`}
+                data-testid={`drawer-item-${item.label.toLowerCase().replace(/\s/g, '-')}`}
+              >
+                <item.icon className={`w-5 h-5 flex-shrink-0 ${active ? 'text-accent' : 'text-muted-foreground'}`} />
+                <span className={`text-sm flex-1 ${active ? 'font-semibold' : 'font-medium'}`}>
+                  {item.label}
+                </span>
+                {showBadge && (
+                  <span className="flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold rounded-full bg-destructive text-destructive-foreground">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
+                {active && !showBadge && (
+                  <div className="w-2 h-2 rounded-full bg-accent" />
+                )}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Footer - Logout */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+            data-testid="drawer-logout-btn"
+          >
+            <LogOut className="w-5 h-5" />
+            <span className="text-sm font-medium">Volver al inicio</span>
+          </button>
+          <p className="text-[9px] text-muted-foreground/50 text-center mt-2">
+            Modo demo - Sin autenticacion real
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
 
-export default HamburgerMenu;
+export default DrawerMenu;
