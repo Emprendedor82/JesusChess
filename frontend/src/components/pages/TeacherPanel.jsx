@@ -297,33 +297,85 @@ const TeacherPanel = () => {
 
       {/* Assign Task Dialog */}
       <Dialog open={showTaskDialog} onOpenChange={setShowTaskDialog}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="font-heading">Asignar tarea</DialogTitle>
             <DialogDescription>
-              Selecciona una tarea para asignar a {selectedStudent?.name}
+              Asigna una actividad a {selectedStudent?.name}
             </DialogDescription>
           </DialogHeader>
           
-          <div className="space-y-3 mt-4">
-            {TASK_TEMPLATES.map((task) => (
-              <div
-                key={task.id}
-                onClick={() => setSelectedTask(task.id)}
-                className={`p-4 rounded-xl border cursor-pointer transition-all ${
-                  selectedTask === task.id 
-                    ? 'border-accent bg-accent/5' 
-                    : 'border-border hover:border-accent/50'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <h4 className="font-heading font-bold text-foreground text-sm">{task.title}</h4>
-                  <Badge variant="outline" className="text-xs">{task.difficulty}</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">{task.description}</p>
-                <Badge variant="secondary" className="text-xs mt-2">{task.category}</Badge>
+          <div className="space-y-4 mt-2">
+            {/* Category */}
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Categoria *</label>
+              <Select value={assignCategory} onValueChange={setAssignCategory}>
+                <SelectTrigger data-testid="assign-category-select">
+                  <SelectValue placeholder="Seleccionar categoria" />
+                </SelectTrigger>
+                <SelectContent>
+                  {CATEGORIES.map(cat => (
+                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Level & Exercise row */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-foreground">Nivel *</label>
+                <Select value={assignLevel} onValueChange={setAssignLevel}>
+                  <SelectTrigger data-testid="assign-level-select">
+                    <SelectValue placeholder="Nivel" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[1, 2, 3, 4].map(n => (
+                      <SelectItem key={n} value={String(n)}>Nivel {n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
-            ))}
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-foreground">Ejercicio *</label>
+                <Select value={assignExercise} onValueChange={setAssignExercise}>
+                  <SelectTrigger data-testid="assign-exercise-select">
+                    <SelectValue placeholder="Ejercicio" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[1, 2].map(n => (
+                      <SelectItem key={n} value={String(n)}>Ejercicio {n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Due Date */}
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Fecha limite <span className="text-muted-foreground font-normal">(opcional)</span></label>
+              <Input
+                type="date"
+                value={assignDueDate}
+                onChange={(e) => setAssignDueDate(e.target.value)}
+                data-testid="assign-due-date"
+              />
+            </div>
+
+            {/* Message */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium text-foreground">Mensaje <span className="text-muted-foreground font-normal">(opcional)</span></label>
+                <span className="text-xs text-muted-foreground">{assignMessage.length}/250</span>
+              </div>
+              <Textarea
+                placeholder="Escribe un mensaje para el alumno..."
+                value={assignMessage}
+                onChange={(e) => setAssignMessage(e.target.value.slice(0, 250))}
+                rows={2}
+                data-testid="assign-message"
+              />
+            </div>
           </div>
 
           <DialogFooter className="mt-4">
@@ -332,10 +384,12 @@ const TeacherPanel = () => {
             </Button>
             <Button 
               onClick={handleAssignTask} 
-              disabled={!selectedTask}
+              disabled={!assignCategory || !assignLevel || !assignExercise}
               className="btn-accent"
+              data-testid="send-task-btn"
             >
-              Asignar tarea
+              <Send className="w-4 h-4 mr-2" />
+              Enviar tarea
             </Button>
           </DialogFooter>
         </DialogContent>
