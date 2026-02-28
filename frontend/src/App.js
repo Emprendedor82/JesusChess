@@ -62,6 +62,7 @@ const AppRoutes = () => {
       case 'teacher': return '/teacher';
       case 'parent': return '/parent';
       case 'school': return '/school';
+      case 'admin': return '/admin';
       default: return '/';
     }
   };
