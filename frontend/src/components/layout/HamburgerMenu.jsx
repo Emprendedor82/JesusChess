@@ -76,10 +76,10 @@ const DrawerMenu = () => {
 
   return (
     <>
-      {/* Floating hamburger button - top left */}
+      {/* Floating hamburger button - top left, above all headers */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-3 left-3 z-40 flex items-center justify-center w-10 h-10 rounded-full bg-card/80 backdrop-blur-md shadow-lg border border-border/50 transition-all hover:bg-card hover:shadow-xl active:scale-95"
+        className="fixed top-3 left-3 z-[60] flex items-center justify-center w-10 h-10 rounded-full bg-card/90 backdrop-blur-md shadow-lg border border-border/50 transition-all hover:bg-card hover:shadow-xl active:scale-95"
         data-testid="drawer-menu-btn"
         aria-label="Abrir menu"
       >
