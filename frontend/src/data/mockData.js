@@ -12,7 +12,7 @@ export const SCHOOLS = [
   {
     id: 'san-ignacio',
     name: 'Colegio San Ignacio El Bosque',
-    logo: 'https://images.unsplash.com/photo-1562774053-701939374585?w=100&h=100&fit=crop',
+    logo: 'https://customer-assets.emergentagent.com/job_c6df4768-b4cb-4b29-a93d-4b84dff706de/artifacts/0x7jgozm_image.png',
     students: 38,
     avgProgress: 68
   },
