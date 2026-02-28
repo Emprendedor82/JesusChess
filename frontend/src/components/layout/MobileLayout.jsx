@@ -8,25 +8,22 @@ const MobileLayout = () => {
   const { userRole } = useApp();
 
   const showBottomNav = userRole === 'student';
-  const isWideLayout = userRole === 'admin';
 
   return (
-    <div className="min-h-screen bg-muted/30 lg:bg-muted/50">
-      <div className={`mx-auto bg-background min-h-screen relative shadow-none lg:shadow-2xl lg:my-0 ${
-        isWideLayout ? 'max-w-5xl' : 'max-w-[480px]'
-      }`}>
-        {/* Global Drawer Menu - available on ALL pages */}
-        <DrawerMenu />
+    <div className="min-h-screen bg-background">
+      {/* Sidebar / Drawer */}
+      <DrawerMenu />
 
-        <main className={`${showBottomNav ? 'pb-20' : ''} ${isWideLayout ? 'p-4 md:p-6' : ''}`}>
+      {/* Main content: offset by sidebar width on desktop */}
+      <div className="lg:pl-64">
+        <main className={`min-h-screen ${showBottomNav ? 'pb-20 lg:pb-0' : ''}`}>
           <Outlet />
         </main>
         
+        {/* Bottom nav: mobile only */}
         {showBottomNav && (
-          <div className="fixed bottom-0 left-0 right-0 z-50 lg:absolute">
-            <div className="max-w-[480px] mx-auto">
-              <BottomNav />
-            </div>
+          <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
+            <BottomNav />
           </div>
         )}
       </div>
