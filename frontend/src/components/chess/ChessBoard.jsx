@@ -34,6 +34,9 @@ const PRACTICE_EXERCISES = {
       id: 1,
       title: 'Mueve el Rey',
       description: 'El Rey se mueve una casilla en cualquier dirección',
+      instructionText: 'Toca el Rey blanco y muévelo a cualquier casilla vecina. Recuerda: solo puede avanzar un paso.',
+      category: 'Movimiento',
+      piece: 'Rey',
       board: [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -50,6 +53,9 @@ const PRACTICE_EXERCISES = {
       id: 2,
       title: 'Mueve la Torre',
       description: 'La Torre se mueve en línea recta (horizontal o vertical)',
+      instructionText: 'Selecciona la Torre blanca y desplázala en línea recta: hacia arriba, abajo, izquierda o derecha.',
+      category: 'Movimiento',
+      piece: 'Torre',
       board: [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -68,6 +74,9 @@ const PRACTICE_EXERCISES = {
       id: 1,
       title: 'Mueve el Alfil',
       description: 'El Alfil se mueve en diagonal',
+      instructionText: 'Toca el Alfil blanco y muévelo en diagonal. Solo puede pisar casillas del mismo color.',
+      category: 'Movimiento',
+      piece: 'Alfil',
       board: [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -84,6 +93,9 @@ const PRACTICE_EXERCISES = {
       id: 2,
       title: 'Mueve el Caballo',
       description: 'El Caballo se mueve en forma de "L"',
+      instructionText: 'Selecciona el Caballo y hazlo saltar en forma de L: 2 casillas en una dirección y 1 hacia el lado.',
+      category: 'Movimiento',
+      piece: 'Caballo',
       board: [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -102,6 +114,9 @@ const PRACTICE_EXERCISES = {
       id: 1,
       title: 'Captura la pieza',
       description: 'Usa tu Torre para capturar el peón negro',
+      instructionText: 'Mueve tu Torre en línea recta hasta la casilla del peón negro para capturarlo.',
+      category: 'Captura',
+      piece: 'Torre',
       board: [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, 'p', null, null, null],
@@ -119,6 +134,9 @@ const PRACTICE_EXERCISES = {
       id: 2,
       title: 'Jaque al Rey',
       description: 'Mueve tu Reina para dar jaque al Rey negro',
+      instructionText: 'Coloca tu Reina en una casilla desde donde ataque directamente al Rey negro.',
+      category: 'Ataque',
+      piece: 'Reina',
       board: [
         [null, null, null, null, 'k', null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -137,6 +155,9 @@ const PRACTICE_EXERCISES = {
       id: 1,
       title: 'Mate en 1 (Torre)',
       description: '¡Da jaque mate al Rey negro con tu Torre!',
+      instructionText: 'Encuentra la jugada con la Torre que deje al Rey negro sin escapatoria. ¡Jaque mate en 1!',
+      category: 'Mate',
+      piece: 'Torre',
       board: [
         ['k', null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -154,6 +175,9 @@ const PRACTICE_EXERCISES = {
       id: 2,
       title: 'Mate en 1 (Reina)',
       description: '¡Da jaque mate al Rey negro con tu Reina!',
+      instructionText: 'Busca la casilla donde tu Reina dé jaque mate al Rey negro. ¡Solo necesitas una jugada!',
+      category: 'Mate',
+      piece: 'Reina',
       board: [
         [null, null, null, null, null, null, 'k', null],
         [null, null, null, null, null, null, 'p', 'p'],
