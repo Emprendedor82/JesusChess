@@ -1,37 +1,48 @@
 # Jugadas Estrategicas - Chess Learning App
 
 ## Original Problem Statement
-Frontend prototype of a gamified chess learning app for four roles: Student (Alumno), Teacher (Profesor), Parent (Apoderado), and School (Colegio). Mobile-first design with a bottom navigation and interactive chessboard.
+Frontend prototype of a gamified chess learning app for five roles: Student (Alumno), Teacher (Profesor), Parent (Apoderado), School (Colegio), and Admin (Administrador). Mobile-first design with responsive desktop view.
 
 ## Architecture
 - **Frontend-only** React prototype (Create React App + CRACO)
 - **Styling:** Tailwind CSS
-- **State:** React Context API + localStorage for course persistence
+- **State:** React Context API + localStorage for course/notifications persistence
 - **Routing:** react-router-dom
 - **Deployment:** Configured for Vercel (vercel.json)
 
 ## Completed Features
-- 4-role system (Alumno, Profesor, Apoderado, Colegio)
+- 5-role system (Alumno, Profesor, Apoderado, Colegio, Administrador)
+- Unified demo login screen with radio-style role selector + "Ingresar" button
 - Branded welcome screen with company branding
-- Mobile-first responsive design (centered on tablet/desktop)
+- Mobile-first responsive design (centered on tablet/desktop, wide for admin)
 - Student section with bottom nav (Inicio, Entrenamiento, Retos, Curso, Perfil)
-- Interactive chessboard with 4 levels of exercises and piece movement validation
+- Interactive chessboard with 4 levels, instruction blocks, piece movement validation
 - Course module MVP: 12 YouTube video lessons, mock payment, progress tracking
 - Free preview for first course module
+- Hamburger menu (reusable component) in Student Home and Training Hub
+- Bell icon with notifications badge in student header
+- Task assignment system: Teacher assigns tasks → student gets in-app notifications with deep links
+- Teacher panel with accent-insensitive student search
+- School dashboard with prominent search bar (accent/case insensitive, debounced)
+- **Admin Dashboard** with: global stats, 3 tabs (Dashboard/Colegios/Usuarios), school search, user list with role filters, impersonation ("Entrar como")
 - Vercel deployment configuration
-- **[Feb 2026] Bug fixes:** Chessboard squares now have uniform size (absolute-positioned pieces). Level changes auto-reset the board. Added visual level indicator.
-- **[Feb 2026] Hamburger menu:** Reusable HamburgerMenu component (HamburgerMenu.jsx) used in StudentHomePage and TrainingHub. Dark/light variants for different backgrounds.
-- **[Feb 2026] Search normalization:** TeacherPanel search now normalizes accents and case (NFD + regex). "Sofia" finds "Sofía", etc.
-- **[Feb 2026] School search bar:** SchoolDashboard now has a prominent search bar below the header. Debounced (300ms), accent/case insensitive, filters by school. Dropdown shows avatar, name, level, progress. Only shows students from that school.
-
-## Backlog
-- Refactor ChessBoard.jsx (460+ lines) into smaller components/hooks
-- User provides requirements incrementally - await next task
 
 ## Key Files
+- `/app/frontend/src/components/pages/WelcomeScreen.jsx` - Demo login with 5-role selector
+- `/app/frontend/src/components/pages/AdminDashboard.jsx` - Admin panel
 - `/app/frontend/src/components/chess/ChessBoard.jsx` - Interactive chessboard
-- `/app/frontend/src/components/pages/TrainingPages.jsx` - Training section pages
+- `/app/frontend/src/components/pages/TrainingPages.jsx` - Training section
+- `/app/frontend/src/components/pages/TeacherPanel.jsx` - Teacher panel
+- `/app/frontend/src/components/pages/SchoolDashboard.jsx` - School dashboard
+- `/app/frontend/src/components/pages/NotificationsPage.jsx` - Student notifications
+- `/app/frontend/src/components/layout/HamburgerMenu.jsx` - Reusable menu component
+- `/app/frontend/src/data/notificationStore.js` - localStorage notification/assignment store
+- `/app/frontend/src/context/AppContext.js` - Global state (5 roles)
 - `/app/frontend/src/App.js` - Main router
-- `/app/frontend/src/index.css` - Global styles + responsive system
-- `/app/frontend/src/components/layout/MobileLayout.jsx` - Student layout
-- `/app/frontend/src/data/courseData.js` - Course content data
+
+## Backlog
+- Push notifications (Fase 2 - requires Firebase/OneSignal infrastructure)
+- Refactor ChessBoard.jsx (500+ lines) into smaller components/hooks
+- Admin CRUD operations (currently read-only)
+- Real authentication system (email+password)
+- Backend API integration
