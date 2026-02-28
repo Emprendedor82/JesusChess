@@ -16,6 +16,7 @@ import WelcomeScreen from "./components/pages/WelcomeScreen";
 import TeacherPanel from "./components/pages/TeacherPanel";
 import ParentDashboard from "./components/pages/ParentDashboard";
 import SchoolDashboard from "./components/pages/SchoolDashboard";
+import AdminDashboard from "./components/pages/AdminDashboard";
 
 // Pages - Student (Mobile Native)
 import StudentHomePage from "./components/pages/StudentHomePage";
