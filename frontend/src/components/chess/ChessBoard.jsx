@@ -149,6 +149,45 @@ const PRACTICE_EXERCISES = {
       ],
       hint: 'Coloca tu Reina donde pueda atacar al Rey'
     },
+    {
+      id: 3,
+      title: 'Captura la Torre',
+      description: 'Usa tu Alfil para capturar la Torre negra',
+      instructionText: 'Mueve tu Alfil en diagonal hasta la casilla de la Torre negra para capturarla.',
+      category: 'Captura',
+      piece: 'Alfil',
+      board: [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, 'r', null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, 'B', null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+      ],
+      targetCapture: { row: 2, col: 5 },
+      hint: 'Mueve el Alfil en diagonal hasta la Torre negra'
+    },
+    {
+      id: 4,
+      title: 'Jaque con Caballo',
+      description: 'Da jaque al Rey negro con tu Caballo',
+      instructionText: 'Mueve tu Caballo en forma de L hasta una casilla desde donde ataque al Rey negro.',
+      category: 'Ataque',
+      piece: 'Caballo',
+      board: [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, 'k', null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, 'N', null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+      ],
+      hint: 'El Caballo puede saltar en L para atacar al Rey'
+    },
   ],
   level4: [
     {

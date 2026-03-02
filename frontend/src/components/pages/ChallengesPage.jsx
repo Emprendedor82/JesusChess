@@ -98,9 +98,16 @@ const ChallengesPage = () => {
   const handleChallengeClick = (challenge) => {
     if (!challenge.unlocked) return;
     
-    // For students, go to practice with this challenge
-    if (userRole === 'student') {
-      navigate('/entrenamiento/practica');
+    // Map each challenge to the correct practice exercise
+    const challengeRoutes = {
+      1: '/entrenamiento/practica?level=3&exercise=3', // Captura la Torre (Alfil)
+      2: '/entrenamiento/practica?level=3&exercise=4', // Jaque con Caballo
+      3: '/entrenamiento/practica?level=4&exercise=1', // Mate en 1 (Torre)
+      4: '/entrenamiento/practica?level=4&exercise=2', // Mate en 1 (Reina)
+    };
+
+    if (userRole === 'student' && challengeRoutes[challenge.id]) {
+      navigate(challengeRoutes[challenge.id]);
     }
   };
 
