@@ -97,7 +97,31 @@ const StudentHomePage = () => {
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-4 lg:px-8 py-4 lg:py-6 space-y-4 lg:space-y-6">
-        
+
+        {/* Banner Ataque y Remate - Promotional */}
+        <div
+          className="relative rounded-2xl overflow-hidden cursor-pointer h-[200px] md:h-[220px] lg:h-[260px] w-full group"
+          onClick={() => navigate(coursePurchased ? '/curso/contenido' : '/curso')}
+          data-testid="ataque-remate-banner"
+        >
+          <img
+            src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/4s1yjd4w_Ataque%20y%20Remate%20%281080%20x%20600%20px%29.png"
+            alt="Ataque y Remate - Curso de ajedrez con Miguel Ginnari"
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover object-[center_right]"
+            draggable="false"
+          />
+          <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+          <div className="absolute bottom-4 left-4 z-10">
+            <span
+              className="inline-block bg-white/90 text-primary px-5 py-2.5 rounded-3xl text-sm font-semibold shadow-md group-hover:shadow-lg group-hover:scale-[1.02] transition-all duration-200"
+              data-testid="ver-programa-btn"
+            >
+              Ver programa
+            </span>
+          </div>
+        </div>
+
         {/* Course Card - "Ataque y Remate" Featured NEW */}
         <div className="relative" data-testid="featured-course-banner">
           <p className="text-xs font-bold text-destructive mb-1.5 flex items-center gap-1.5 tracking-wide">
