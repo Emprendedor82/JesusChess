@@ -21,7 +21,7 @@ import { SCHOOL_DASHBOARD, TEACHER_STUDENTS } from '../../data/mockData';
 const normalizeText = (text) =>
   text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-const SchoolDashboard = () => {
+const SchoolDashboard = ({ section }) => {
   const { currentUser } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedTerm, setDebouncedTerm] = useState('');
@@ -29,6 +29,10 @@ const SchoolDashboard = () => {
   const searchRef = useRef(null);
   
   const data = SCHOOL_DASHBOARD;
+
+  const showAll = !section;
+  const showStudents = showAll || section === 'students';
+  const showAnalytics = showAll || section === 'analytics';
 
   // Debounce 300ms
   useEffect(() => {
@@ -87,6 +91,7 @@ const SchoolDashboard = () => {
       </div>
 
       {/* Search Bar */}
+      {showStudents && (
       <div ref={searchRef} className="relative" data-testid="school-search-container">
         <Card>
           <CardContent className="p-4 space-y-1.5">
@@ -155,8 +160,37 @@ const SchoolDashboard = () => {
           </div>
         )}
       </div>
+      )}
+
+      {/* Full Students List - shown in students section */}
+      {section === 'students' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-testid="school-students-grid">
+          {(debouncedTerm.length > 0 ? filteredStudents : schoolStudents).map((student) => (
+            <Card key={student.id} className="card-hover">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-4">
+                  <Avatar className="w-12 h-12 border-2 border-accent/20">
+                    <AvatarImage src={student.avatar} alt={student.name} />
+                    <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-heading font-bold text-foreground truncate">{student.name}</h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Badge variant="outline" className="text-xs">Nivel {student.level}</Badge>
+                      <span className="text-xs text-muted-foreground">{student.progress}%</span>
+                    </div>
+                    <Progress value={student.progress} className="h-1.5 mt-2" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
 
       {/* Stats Grid */}
+      {showAnalytics && (
+      <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
@@ -320,8 +354,11 @@ const SchoolDashboard = () => {
           </div>
         </CardContent>
       </Card>
+      </>
+      )}
 
       {/* Institutional Summary */}
+      {showAll && (
       <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
@@ -343,6 +380,7 @@ const SchoolDashboard = () => {
           </div>
         </CardContent>
       </Card>
+      )}
     </div>
   );
 };

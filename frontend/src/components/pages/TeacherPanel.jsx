@@ -44,7 +44,7 @@ import { toast } from 'sonner';
 
 const CATEGORIES = ['Movimiento', 'Captura', 'Ataque', 'Mate', 'Defensa', 'Táctica', 'Aperturas', 'Finales'];
 
-const TeacherPanel = () => {
+const TeacherPanel = ({ section }) => {
   const { currentUser } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStudent, setSelectedStudent] = useState(null);
@@ -127,10 +127,10 @@ const TeacherPanel = () => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
-            Panel del Profesor
+            {section === 'students' ? 'Mis Alumnos' : section === 'tasks' ? 'Tareas Asignadas' : 'Panel del Profesor'}
           </h1>
           <p className="text-muted-foreground mt-1">
-            Gestiona y evalúa el progreso de tus alumnos
+            {section === 'students' ? 'Lista de alumnos asignados' : section === 'tasks' ? 'Gestión de tareas y ejercicios asignados' : 'Gestiona y evalúa el progreso de tus alumnos'}
           </p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-success/10 border border-success/20">
@@ -140,6 +140,46 @@ const TeacherPanel = () => {
         </div>
       </div>
 
+      {/* Tasks Section */}
+      {section === 'tasks' && (
+        <div className="space-y-4" data-testid="teacher-tasks-section">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-heading text-lg flex items-center gap-2">
+                <ClipboardList className="w-5 h-5 text-accent" />
+                Tareas recientes
+              </CardTitle>
+              <CardDescription>Ejercicios asignados a tus alumnos</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {TASK_TEMPLATES.length > 0 ? (
+                TASK_TEMPLATES.map((task, idx) => (
+                  <div key={idx} className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 border border-border">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10">
+                      <ClipboardList className="w-5 h-5 text-accent" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-heading font-bold text-foreground text-sm">{task.title}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{task.description}</p>
+                    </div>
+                    <Badge variant="outline" className="text-xs">{task.category}</Badge>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  <ClipboardList className="w-10 h-10 mx-auto mb-3 opacity-30" />
+                  <p className="text-sm">No hay tareas asignadas aún</p>
+                  <p className="text-xs mt-1">Selecciona un alumno para asignar tareas</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Students Section (overview + students) */}
+      {(!section || section === 'students') && (
+      <>
       {/* Search */}
       <Card>
         <CardContent className="p-4">
@@ -198,6 +238,8 @@ const TeacherPanel = () => {
           </Card>
         ))}
       </div>
+      </>
+      )}
 
       {/* Student Detail Dialog */}
       <Dialog open={!!selectedStudent} onOpenChange={() => setSelectedStudent(null)}>

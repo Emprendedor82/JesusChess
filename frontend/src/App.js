@@ -172,6 +172,7 @@ const AppRoutes = () => {
       
       {/* Other Roles - Desktop Layout */}
       <Route element={<Layout />}>
+        {/* Teacher routes */}
         <Route 
           path="/teacher" 
           element={
@@ -181,6 +182,23 @@ const AppRoutes = () => {
           } 
         />
         <Route 
+          path="/teacher/students" 
+          element={
+            <ProtectedRoute allowedRoles={['teacher']}>
+              <TeacherPanel section="students" />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/teacher/tasks" 
+          element={
+            <ProtectedRoute allowedRoles={['teacher']}>
+              <TeacherPanel section="tasks" />
+            </ProtectedRoute>
+          } 
+        />
+        {/* Parent routes */}
+        <Route 
           path="/parent" 
           element={
             <ProtectedRoute allowedRoles={['parent']}>
@@ -189,6 +207,31 @@ const AppRoutes = () => {
           } 
         />
         <Route 
+          path="/parent/progress" 
+          element={
+            <ProtectedRoute allowedRoles={['parent']}>
+              <ParentDashboard section="progress" />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/parent/feedback" 
+          element={
+            <ProtectedRoute allowedRoles={['parent']}>
+              <ParentDashboard section="feedback" />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/parent/tasks" 
+          element={
+            <ProtectedRoute allowedRoles={['parent']}>
+              <ParentDashboard section="tasks" />
+            </ProtectedRoute>
+          } 
+        />
+        {/* School routes */}
+        <Route 
           path="/school" 
           element={
             <ProtectedRoute allowedRoles={['school']}>
@@ -196,6 +239,23 @@ const AppRoutes = () => {
             </ProtectedRoute>
           } 
         />
+        <Route 
+          path="/school/students" 
+          element={
+            <ProtectedRoute allowedRoles={['school']}>
+              <SchoolDashboard section="students" />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/school/analytics" 
+          element={
+            <ProtectedRoute allowedRoles={['school']}>
+              <SchoolDashboard section="analytics" />
+            </ProtectedRoute>
+          } 
+        />
+        {/* Admin route */}
         <Route 
           path="/admin" 
           element={

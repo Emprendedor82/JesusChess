@@ -21,10 +21,15 @@ import {
 } from 'lucide-react';
 import { PARENT_VIEW_DATA } from '../../data/mockData';
 
-const ParentDashboard = () => {
+const ParentDashboard = ({ section }) => {
   const { currentUser } = useApp();
   
   const data = PARENT_VIEW_DATA;
+
+  const showAll = !section;
+  const showProgress = showAll || section === 'progress';
+  const showFeedback = showAll || section === 'feedback';
+  const showTasks = showAll || section === 'tasks';
 
   const evaluationCriteria = [
     { key: 'tactica', label: 'Táctica', icon: Target },
@@ -76,6 +81,7 @@ const ParentDashboard = () => {
       </div>
 
       {/* Weekly Progress Stats */}
+      {showProgress && (
       <Card>
         <CardHeader>
           <CardTitle className="font-heading text-lg flex items-center gap-2">
@@ -131,8 +137,10 @@ const ParentDashboard = () => {
           </div>
         </CardContent>
       </Card>
+      )}
 
       {/* Latest Feedback from Teacher */}
+      {showFeedback && (
       <Card>
         <CardHeader>
           <CardTitle className="font-heading text-lg flex items-center gap-2">
@@ -190,8 +198,10 @@ const ParentDashboard = () => {
           </div>
         </CardContent>
       </Card>
+      )}
 
       {/* Assigned Tasks */}
+      {showTasks && (
       <Card>
         <CardHeader>
           <CardTitle className="font-heading text-lg flex items-center gap-2">
@@ -234,6 +244,7 @@ const ParentDashboard = () => {
           ))}
         </CardContent>
       </Card>
+      )}
 
       {/* Read-only notice */}
       <div className="text-center py-6">

@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   BarChart3,
   ClipboardList,
+  MessageSquare,
   LogOut,
 } from 'lucide-react';
 import { notificationStore } from '../../data/notificationStore';
@@ -29,16 +30,23 @@ const ROLE_MENUS = {
     { to: '/notificaciones', icon: Bell, label: 'Notificaciones', badge: true },
   ],
   teacher: [
-    { to: '/teacher', icon: ClipboardList, label: 'Panel Profesor' },
+    { to: '/teacher', icon: Home, label: 'Panel' },
+    { to: '/teacher/students', icon: Users, label: 'Alumnos' },
+    { to: '/teacher/tasks', icon: ClipboardList, label: 'Tareas' },
   ],
   parent: [
-    { to: '/parent', icon: Users, label: 'Panel Apoderado' },
+    { to: '/parent', icon: Home, label: 'Resumen' },
+    { to: '/parent/progress', icon: BarChart3, label: 'Progreso' },
+    { to: '/parent/feedback', icon: MessageSquare, label: 'Feedback' },
+    { to: '/parent/tasks', icon: ClipboardList, label: 'Tareas' },
   ],
   school: [
-    { to: '/school', icon: Building2, label: 'Dashboard Colegio' },
+    { to: '/school', icon: Building2, label: 'Dashboard' },
+    { to: '/school/students', icon: GraduationCap, label: 'Alumnos' },
+    { to: '/school/analytics', icon: BarChart3, label: 'Estadísticas' },
   ],
   admin: [
-    { to: '/admin', icon: BarChart3, label: 'Dashboard Admin' },
+    { to: '/admin', icon: ShieldCheck, label: 'Dashboard Admin' },
   ],
 };
 
