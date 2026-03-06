@@ -83,7 +83,7 @@ const Sidebar = () => {
         {/* Mobile close button */}
         <div className="flex items-center justify-between p-4 border-b border-border md:hidden">
           <div className="flex items-center gap-2">
-            <span className="text-xl">♜</span>
+            <img src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png" alt="Logo" className="w-7 h-7 rounded object-cover" />
             <span className="font-heading font-bold">Menú</span>
           </div>
           <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>

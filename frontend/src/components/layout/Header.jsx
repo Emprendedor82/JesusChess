@@ -48,9 +48,12 @@ const Header = () => {
           </Button>
           
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground">
-              <span className="text-xl font-bold">♜</span>
-            </div>
+            <img
+              src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png"
+              alt="Jugadas Estratégicas"
+              className="w-10 h-10 rounded-xl object-cover"
+              data-testid="app-logo-header"
+            />
             <div className="hidden sm:block">
               <h1 className="font-heading text-lg font-bold text-foreground leading-tight">
                 Jugadas Estrategicas

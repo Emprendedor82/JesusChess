@@ -81,16 +81,13 @@ const RoleSelector = () => {
         <div className="relative max-w-4xl mx-auto text-center">
           {/* Logo */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-accent text-accent-foreground text-3xl font-bold">
-              ♜
-            </div>
+            <img
+              src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png"
+              alt="Jugadas Estratégicas"
+              className="w-40 h-auto rounded-2xl"
+              draggable="false"
+            />
           </div>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-            Jugadas Estratégicas
-          </h1>
-          <p className="text-xl text-primary-foreground/80 mb-2">
-            Academia de Ajedrez
-          </p>
           <div className="flex items-center justify-center gap-2 text-accent">
             <Sparkles className="w-5 h-5" />
             <span className="text-sm font-medium">Entrena tu mente, domina tu vida</span>
@@ -183,7 +180,7 @@ const RoleSelector = () => {
       <footer className="border-t border-border py-6 px-4">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <span>♜</span>
+            <img src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png" alt="Logo" className="w-5 h-5 rounded-sm object-cover" />
             <span>© 2026 Jugadas Estratégicas</span>
           </div>
           <a 

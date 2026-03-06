@@ -326,7 +326,7 @@ const SchoolDashboard = () => {
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10">
-              <span className="text-2xl">♜</span>
+              <img src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png" alt="Logo" className="w-10 h-10 rounded-lg object-cover" />
             </div>
             <div>
               <h3 className="font-heading text-lg font-bold text-foreground mb-2">

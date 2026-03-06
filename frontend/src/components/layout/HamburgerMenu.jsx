@@ -105,9 +105,12 @@ const DrawerMenu = () => {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-accent text-accent-foreground text-lg font-bold">
-              ♜
-            </div>
+            <img
+              src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png"
+              alt="Jugadas Estratégicas"
+              className="w-9 h-9 rounded-xl object-cover"
+              data-testid="app-logo-drawer"
+            />
             <div>
               <p className="text-sm font-bold text-foreground leading-tight">Jugadas</p>
               <p className="text-[10px] text-muted-foreground">Estrategicas</p>

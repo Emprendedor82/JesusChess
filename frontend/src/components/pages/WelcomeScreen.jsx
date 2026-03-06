@@ -51,17 +51,13 @@ const WelcomeScreen = () => {
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 relative z-10">
         {/* Logo */}
-        <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-accent text-accent-foreground text-3xl md:text-4xl font-bold mb-5 shadow-lg">
-          ♜
-        </div>
-
-        {/* Title */}
-        <h1 className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground text-center mb-1">
-          Jugadas Estrategicas
-        </h1>
-        <p className="text-primary-foreground/70 text-center text-sm mb-1">
-          Academia de Ajedrez
-        </p>
+        <img
+          src="https://customer-assets.emergentagent.com/job_7ca1bb71-1f8d-46a0-b6a5-6e8d935e0094/artifacts/p8gcxj6r_image.png"
+          alt="Jugadas Estratégicas - Academia de Ajedrez"
+          className="w-48 md:w-56 h-auto mb-4 rounded-2xl"
+          draggable="false"
+          data-testid="app-logo-welcome"
+        />
         <div className="flex items-center gap-2 text-accent mb-6">
           <Sparkles className="w-3 h-3" />
           <span className="text-xs font-medium">Plataforma de desarrollo a traves del ajedrez</span>
