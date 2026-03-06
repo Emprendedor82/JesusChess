@@ -15,9 +15,9 @@ Gamified chess learning app for a Chilean chess academy. Multi-role frontend pro
   components/
     admin/AdminDashboard.jsx
     chess/ChessBoard.jsx
-    layout/BottomNav.jsx, DrawerMenu.jsx, Header.jsx, Layout.jsx, MobileLayout.jsx
+    layout/BottomNav.jsx, HamburgerMenu.jsx, Header.jsx, Layout.jsx, MobileLayout.jsx, Sidebar.jsx
     pages/ChallengesPage.jsx, CourseModule.jsx, NotificationsPage.jsx, SchoolDashboard.jsx,
-          StudentHomePage.jsx, TeacherPanel.jsx, TrainingPages.jsx, WelcomeScreen.jsx
+          StudentHomePage.jsx, TeacherPanel.jsx, TrainingPages.jsx, WelcomeScreen.jsx, RoleSelector.jsx
     ui/ (Shadcn components)
   context/AppContext.js
   data/mockData.js
@@ -39,21 +39,29 @@ Gamified chess learning app for a Chilean chess academy. Multi-role frontend pro
 - [x] Admin dashboard with global oversight
 - [x] Responsive design (sidebar on desktop, drawer on mobile)
 - [x] Accent-insensitive search
-- [x] **Banner "Ataque y Remate"** - Premium promotional image banner on student home (2026-03-03)
+- [x] Banner "Ataque y Remate" - Premium promotional image banner on student home
+- [x] **Brand logo updated** across all views (2026-03-06)
 
-## Bug Fixes
-- [x] **Retos piece mismatch (2026-03-02):** Fixed challenge navigation to correct exercises. Added 2 new exercises to PRACTICE_EXERCISES level3.
-- [x] Chessboard sizing and level change bugs
-- [x] UI inconsistencies (XP bar contrast, extra blue line)
+## Latest Changes
 
-## Latest Changes (2026-03-03)
-- **Banner "Ataque y Remate"**: Added promotional course banner on StudentHomePage
-  - Image: 1080x600px, lazy loaded, object-fit:cover, object-position center-right
-  - Responsive: 200px mobile / 220px tablet / 260px desktop
-  - Dark overlay (rgba(0,0,0,0.35)) + floating "Ver programa" button
-  - Navigates to /curso or /curso/contenido based on purchase status
-  - Always visible in demo mode
-  - Layout order: Header > Progress > Banner > Course card > Train/Retos > Goals
+### 2026-03-06 - Logo Update
+- Replaced all ♜ emoji logos with the official brand image across:
+  - WelcomeScreen (full logo, w-48/w-56)
+  - HamburgerMenu/Drawer (small icon, w-9)
+  - Sidebar mobile header (w-7)
+  - Header for non-student roles (w-10)
+  - RoleSelector hero section (w-40) + footer
+  - SchoolDashboard institutional summary card (w-10)
+- Logo URL: customer-assets.emergentagent.com/.../p8gcxj6r_image.png
+
+### 2026-03-03 - Banner "Ataque y Remate"
+- Promotional course banner on StudentHomePage
+- Responsive: 200px mobile / 220px tablet / 260px desktop
+- Dark overlay + "Ver programa" floating button
+
+### 2026-03-02 - Retos Bug Fix
+- Fixed challenge navigation to correct exercises
+- Added 2 new exercises to PRACTICE_EXERCISES level3
 
 ## Backlog / Future Tasks
 - **P2:** Split mockData.js into smaller focused files
