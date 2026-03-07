@@ -68,6 +68,82 @@ const PRACTICE_EXERCISES = {
       ],
       hint: 'La Torre puede moverse a cualquier casilla en su fila o columna'
     },
+    {
+      id: 3,
+      title: 'Salto del Caballo',
+      description: 'El Caballo se mueve en forma de L',
+      instructionText: 'Toca el Caballo y muévelo a una casilla válida en forma de L. El Caballo es la única pieza que puede saltar sobre otras.',
+      category: 'Movimiento',
+      piece: 'Caballo',
+      board: [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, 'N', null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+      ],
+      hint: 'El Caballo salta en L: 2 casillas en una dirección y 1 hacia el lado'
+    },
+    {
+      id: 4,
+      title: 'Mueve el Peón',
+      description: 'El Peón avanza una casilla hacia adelante',
+      instructionText: 'Toca el Peón blanco y muévelo una casilla hacia adelante. Recuerda que el Peón no puede retroceder.',
+      category: 'Movimiento',
+      piece: 'Peón',
+      board: [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, 'P', null, null, null],
+        [null, null, null, null, null, null, null, null],
+      ],
+      hint: 'El Peón avanza hacia adelante. Desde su posición inicial puede avanzar 1 o 2 casillas'
+    },
+    {
+      id: 5,
+      title: 'Movimiento de la Reina',
+      description: 'La Reina combina los movimientos de Torre y Alfil',
+      instructionText: 'Toca la Reina blanca y muévela en cualquier dirección: horizontal, vertical o diagonal. Es la pieza más poderosa.',
+      category: 'Movimiento',
+      piece: 'Reina',
+      board: [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, 'Q', null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+      ],
+      hint: 'La Reina puede moverse como Torre (recta) o como Alfil (diagonal)'
+    },
+    {
+      id: 6,
+      title: 'Mueve el Alfil',
+      description: 'El Alfil se mueve solo en diagonal',
+      instructionText: 'Toca el Alfil blanco y muévelo en diagonal. Solo puede pisar casillas del mismo color.',
+      category: 'Movimiento',
+      piece: 'Alfil',
+      board: [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, 'B', null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+      ],
+      hint: 'El Alfil solo puede moverse en diagonal'
+    },
   ],
   level2: [
     {

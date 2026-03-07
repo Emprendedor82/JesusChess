@@ -29,6 +29,8 @@ const LEARNING_LEVELS = [
     lessons: [
       { id: 1, title: 'El Rey y la Reina', description: 'Las piezas más importantes', icon: '♔♕', duration: '5 min' },
       { id: 2, title: 'Torre y Alfil', description: 'Piezas de largo alcance', icon: '♖♗', duration: '5 min' },
+      { id: 3, title: 'El Caballo', description: 'La única pieza que puede saltar', icon: '♘', duration: '5 min' },
+      { id: 4, title: 'El Peón', description: 'La pieza más numerosa del tablero', icon: '♙', duration: '5 min' },
     ],
     unlocked: true,
     completed: true
