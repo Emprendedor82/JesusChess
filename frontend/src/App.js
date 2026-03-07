@@ -153,14 +153,6 @@ const AppRoutes = () => {
           } 
         />
         <Route 
-          path="/perfil" 
-          element={
-            <ProtectedRoute allowedRoles={['student']}>
-              <ProfilePage />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
           path="/notificaciones" 
           element={
             <ProtectedRoute allowedRoles={['student']}>
@@ -265,6 +257,16 @@ const AppRoutes = () => {
           } 
         />
       </Route>
+
+      {/* Profile - standalone for all roles */}
+      <Route 
+        path="/perfil" 
+        element={
+          <ProtectedRoute allowedRoles={['student', 'teacher', 'parent', 'school', 'admin']}>
+            <ProfilePage />
+          </ProtectedRoute>
+        } 
+      />
       
       {/* Catch all - redirect to home */}
       <Route path="*" element={<Navigate to="/" replace />} />
