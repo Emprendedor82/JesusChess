@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Button } from '../ui/button';
@@ -36,9 +36,12 @@ import {
   ClipboardList,
   Check,
   X,
-  Send
+  Send,
+  UserPlus
 } from 'lucide-react';
-import { TEACHER_STUDENTS, TASK_TEMPLATES } from '../../data/mockData';
+import { TASK_TEMPLATES } from '../../data/mockData';
+import useStudentStore, { TEACHER_STUDENTS } from '../../store/useStudentStore';
+import AddStudentModal from './AddStudentModal';
 import { notificationStore } from '../../data/notificationStore';
 import { toast } from 'sonner';
 
@@ -46,6 +49,11 @@ const CATEGORIES = ['Movimiento', 'Captura', 'Ataque', 'Mate', 'Defensa', 'Táct
 
 const TeacherPanel = ({ section }) => {
   const { currentUser } = useApp();
+  const [showAddModal, setShowAddModal] = useState(false);
+  const customStudents = useStudentStore((s) => s.customStudents);
+  const allStudents = useMemo(() => [...TEACHER_STUDENTS, ...customStudents], [customStudents]);
+  const teacherSchool = 'Colegio Verbo Divino';
+  const students = allStudents;
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showTaskDialog, setShowTaskDialog] = useState(false);
@@ -64,10 +72,10 @@ const TeacherPanel = ({ section }) => {
   const normalizeText = (text) =>
     text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  const filteredStudents = TEACHER_STUDENTS.filter(student => {
+  const filteredStudents = students.filter(student => {
     const search = normalizeText(searchTerm);
     return normalizeText(student.name).includes(search) ||
-      normalizeText(student.school).includes(search);
+      normalizeText(student.school || '').includes(search);
   });
 
   const evaluationCriteria = [
@@ -135,10 +143,23 @@ const TeacherPanel = ({ section }) => {
         </div>
         <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-success/10 border border-success/20">
           <Users className="w-5 h-5 text-success" />
-          <span className="font-heading font-bold text-success">{TEACHER_STUDENTS.length}</span>
+          <span className="font-heading font-bold text-success">{students.length}</span>
           <span className="text-sm text-muted-foreground">alumnos activos</span>
         </div>
+        {(!section || section === 'students') && (
+          <Button onClick={() => setShowAddModal(true)} data-testid="add-student-btn-teacher">
+            <UserPlus className="w-4 h-4 mr-2" />
+            Agregar alumno
+          </Button>
+        )}
       </div>
+
+      <AddStudentModal
+        open={showAddModal}
+        onOpenChange={setShowAddModal}
+        role="teacher"
+        defaults={{ colegio: teacherSchool, profesor: 'Prof. Carlos García' }}
+      />
 
       {/* Tasks Section */}
       {section === 'tasks' && (

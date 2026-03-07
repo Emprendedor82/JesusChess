@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -14,9 +14,13 @@ import {
   Trophy,
   Calendar,
   Search,
-  UserRound
+  UserRound,
+  UserPlus
 } from 'lucide-react';
-import { SCHOOL_DASHBOARD, TEACHER_STUDENTS } from '../../data/mockData';
+import { SCHOOL_DASHBOARD } from '../../data/mockData';
+import { Button } from '../ui/button';
+import useStudentStore, { TEACHER_STUDENTS } from '../../store/useStudentStore';
+import AddStudentModal from './AddStudentModal';
 
 const normalizeText = (text) =>
   text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -26,9 +30,12 @@ const SchoolDashboard = ({ section }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedTerm, setDebouncedTerm] = useState('');
   const [showResults, setShowResults] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const searchRef = useRef(null);
   
   const data = SCHOOL_DASHBOARD;
+  const customStudents = useStudentStore((s) => s.customStudents);
+  const allStudents = useMemo(() => [...TEACHER_STUDENTS, ...customStudents], [customStudents]);
 
   const showAll = !section;
   const showStudents = showAll || section === 'students';
@@ -53,8 +60,8 @@ const SchoolDashboard = ({ section }) => {
 
   // Filter students by school + search term
   const schoolName = normalizeText(currentUser?.name || '');
-  const schoolStudents = TEACHER_STUDENTS.filter(s =>
-    normalizeText(s.school).includes(schoolName) || schoolName.includes(normalizeText(s.school))
+  const schoolStudents = allStudents.filter(s =>
+    normalizeText(s.school || '').includes(schoolName) || schoolName.includes(normalizeText(s.school || ''))
   );
 
   const filteredStudents = debouncedTerm.length > 0
@@ -92,6 +99,15 @@ const SchoolDashboard = ({ section }) => {
 
       {/* Search Bar */}
       {showStudents && (
+      <>
+      {section === 'students' && (
+        <div className="flex justify-end">
+          <Button onClick={() => setShowAddModal(true)} data-testid="add-student-btn-school">
+            <UserPlus className="w-4 h-4 mr-2" />
+            Agregar alumno
+          </Button>
+        </div>
+      )}
       <div ref={searchRef} className="relative" data-testid="school-search-container">
         <Card>
           <CardContent className="p-4 space-y-1.5">
@@ -160,6 +176,7 @@ const SchoolDashboard = ({ section }) => {
           </div>
         )}
       </div>
+      </>
       )}
 
       {/* Full Students List - shown in students section */}
@@ -381,6 +398,13 @@ const SchoolDashboard = ({ section }) => {
         </CardContent>
       </Card>
       )}
+
+      <AddStudentModal
+        open={showAddModal}
+        onOpenChange={setShowAddModal}
+        role="school"
+        defaults={{ colegio: currentUser?.name || '' }}
+      />
     </div>
   );
 };

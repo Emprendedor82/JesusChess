@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
@@ -24,20 +24,15 @@ import {
   User,
   ShieldCheck,
   Star,
+  UserPlus,
 } from 'lucide-react';
-import { SCHOOLS, TEACHER_STUDENTS, SCHOOL_DASHBOARD } from '../../data/mockData';
+import { SCHOOLS, SCHOOL_DASHBOARD } from '../../data/mockData';
 import { useNavigate } from 'react-router-dom';
+import useStudentStore, { TEACHER_STUDENTS } from '../../store/useStudentStore';
+import AddStudentModal from './AddStudentModal';
 
 const normalizeText = (text) =>
   text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-// Combine all known users for the admin view
-const ALL_USERS = [
-  ...TEACHER_STUDENTS.map(s => ({ ...s, role: 'student', roleLabel: 'Alumno' })),
-  { id: 'teacher-1', name: 'Prof. Carlos García', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos', role: 'teacher', roleLabel: 'Profesor', school: 'Todos' },
-  { id: 'parent-1', name: 'María López', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria', role: 'parent', roleLabel: 'Apoderado', school: 'Colegio Verbo Divino' },
-  ...SCHOOLS.map(s => ({ id: s.id, name: s.name, avatar: s.logo, role: 'school', roleLabel: 'Colegio', school: s.name })),
-];
 
 const ROLE_BADGE_COLORS = {
   student: 'bg-accent/10 text-accent border-accent/20',
@@ -53,12 +48,25 @@ const AdminDashboard = () => {
   const [schoolSearch, setSchoolSearch] = useState('');
   const [userSearch, setUserSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
+  const [showAddModal, setShowAddModal] = useState(false);
+  const customStudents = useStudentStore((s) => s.customStudents);
+  const allStudents = useMemo(() => [...TEACHER_STUDENTS, ...customStudents], [customStudents]);
 
   // Global stats
-  const totalStudents = TEACHER_STUDENTS.length;
+  const totalStudents = allStudents.length;
   const totalSchools = SCHOOLS.length;
   const activeWeek = SCHOOL_DASHBOARD.stats.activeThisWeek;
-  const avgProgress = Math.round(TEACHER_STUDENTS.reduce((a, s) => a + s.progress, 0) / totalStudents);
+  const avgProgress = allStudents.length > 0
+    ? Math.round(allStudents.reduce((a, s) => a + s.progress, 0) / allStudents.length)
+    : 0;
+
+  // Combine all known users for the admin view (recalculate with store)
+  const allUsers = [
+    ...allStudents.map(s => ({ ...s, role: 'student', roleLabel: 'Alumno' })),
+    { id: 'teacher-1', name: 'Prof. Carlos García', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos', role: 'teacher', roleLabel: 'Profesor', school: 'Todos' },
+    { id: 'parent-1', name: 'María López', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria', role: 'parent', roleLabel: 'Apoderado', school: 'Colegio Verbo Divino' },
+    ...SCHOOLS.map(s => ({ id: s.id, name: s.name, avatar: s.logo, role: 'school', roleLabel: 'Colegio', school: s.name })),
+  ];
 
   // Filtered schools
   const filteredSchools = SCHOOLS.filter(s =>
@@ -66,7 +74,7 @@ const AdminDashboard = () => {
   );
 
   // Filtered users
-  const filteredUsers = ALL_USERS.filter(u => {
+  const filteredUsers = allUsers.filter(u => {
     const matchesSearch = normalizeText(u.name).includes(normalizeText(userSearch));
     const matchesRole = roleFilter === 'all' || u.role === roleFilter;
     return matchesSearch && matchesRole;
@@ -335,6 +343,10 @@ const AdminDashboard = () => {
                 </Select>
               </CardContent>
             </Card>
+            <Button onClick={() => setShowAddModal(true)} className="h-auto sm:self-start sm:mt-0" data-testid="add-student-btn-admin">
+              <UserPlus className="w-4 h-4 mr-2" />
+              Agregar alumno
+            </Button>
           </div>
 
           <Card>
@@ -375,6 +387,12 @@ const AdminDashboard = () => {
           </Card>
         </div>
       )}
+
+      <AddStudentModal
+        open={showAddModal}
+        onOpenChange={setShowAddModal}
+        role="admin"
+      />
     </div>
   );
 };
