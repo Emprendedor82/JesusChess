@@ -196,8 +196,16 @@ export const courseStorage = {
 // Demo: reset module 1 so it appears fresh
 (() => {
   const progress = courseStorage.getProgress();
-  if (progress[1]?.completed) {
+  if (progress[1]) {
     delete progress[1];
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(progress));
+  }
+  const commentsData = localStorage.getItem(STORAGE_KEYS.COMMENTS);
+  if (commentsData) {
+    const comments = JSON.parse(commentsData);
+    if (comments[1]) {
+      delete comments[1];
+      localStorage.setItem(STORAGE_KEYS.COMMENTS, JSON.stringify(comments));
+    }
   }
 })();
