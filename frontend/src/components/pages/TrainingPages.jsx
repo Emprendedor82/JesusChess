@@ -27,7 +27,7 @@ const LEARNING_LEVELS = [
     icon: '♟️',
     xpReward: 100,
     lessons: [
-      { id: 1, title: 'El Rey y la Reina', description: 'Las piezas más importantes', icon: '♔♕', duration: '5 min' },
+      { id: 1, title: 'El Rey y la Dama', description: 'Las piezas más importantes', icon: '♔♕', duration: '5 min' },
       { id: 2, title: 'Torre y Alfil', description: 'Piezas de largo alcance', icon: '♖♗', duration: '5 min' },
       { id: 3, title: 'El Caballo', description: 'La única pieza que puede saltar', icon: '♘', duration: '5 min' },
       { id: 4, title: 'El Peón', description: 'La pieza más numerosa del tablero', icon: '♙', duration: '5 min' },
@@ -69,7 +69,7 @@ const LEARNING_LEVELS = [
     xpReward: 300,
     lessons: [
       { id: 1, title: 'Mate en 1 - Torre', description: 'Tu primer jaque mate', icon: '♖', duration: '5 min' },
-      { id: 2, title: 'Mate en 1 - Reina', description: 'Mate con la Reina', icon: '♕', duration: '5 min' },
+      { id: 2, title: 'Mate en 1 - Dama', description: 'Mate con la Dama', icon: '♕', duration: '5 min' },
     ],
     unlocked: false,
     completed: false

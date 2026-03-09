@@ -23,8 +23,8 @@ const PIECE_SYMBOLS = {
 };
 
 const PIECE_NAMES = {
-  'K': 'Rey', 'Q': 'Reina', 'R': 'Torre', 'B': 'Alfil', 'N': 'Caballo', 'P': 'Peón',
-  'k': 'Rey', 'q': 'Reina', 'r': 'Torre', 'b': 'Alfil', 'n': 'Caballo', 'p': 'Peón',
+  'K': 'Rey', 'Q': 'Dama', 'R': 'Torre', 'B': 'Alfil', 'N': 'Caballo', 'P': 'Peón',
+  'k': 'Rey', 'q': 'Dama', 'r': 'Torre', 'b': 'Alfil', 'n': 'Caballo', 'p': 'Peón',
 };
 
 // Practice exercises for different levels
@@ -108,11 +108,11 @@ const PRACTICE_EXERCISES = {
     },
     {
       id: 5,
-      title: 'Movimiento de la Reina',
-      description: 'La Reina combina los movimientos de Torre y Alfil',
-      instructionText: 'Toca la Reina blanca y muévela en cualquier dirección: horizontal, vertical o diagonal. Es la pieza más poderosa.',
+      title: 'Movimiento de la Dama',
+      description: 'La Dama combina los movimientos de Torre y Alfil',
+      instructionText: 'Toca la Dama blanca y muévela en cualquier dirección: horizontal, vertical o diagonal. Es la pieza más poderosa.',
       category: 'Movimiento',
-      piece: 'Reina',
+      piece: 'Dama',
       board: [
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -123,7 +123,7 @@ const PRACTICE_EXERCISES = {
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null],
       ],
-      hint: 'La Reina puede moverse como Torre (recta) o como Alfil (diagonal)'
+      hint: 'La Dama puede moverse como Torre (recta) o como Alfil (diagonal)'
     },
     {
       id: 6,
@@ -209,10 +209,10 @@ const PRACTICE_EXERCISES = {
     {
       id: 2,
       title: 'Jaque al Rey',
-      description: 'Mueve tu Reina para dar jaque al Rey negro',
-      instructionText: 'Coloca tu Reina en una casilla desde donde ataque directamente al Rey negro.',
+      description: 'Mueve tu Dama para dar jaque al Rey negro',
+      instructionText: 'Coloca tu Dama en una casilla desde donde ataque directamente al Rey negro.',
       category: 'Ataque',
-      piece: 'Reina',
+      piece: 'Dama',
       board: [
         [null, null, null, null, 'k', null, null, null],
         [null, null, null, null, null, null, null, null],
@@ -223,7 +223,7 @@ const PRACTICE_EXERCISES = {
         [null, null, null, null, 'Q', null, null, null],
         [null, null, null, null, null, null, null, null],
       ],
-      hint: 'Coloca tu Reina donde pueda atacar al Rey'
+      hint: 'Coloca tu Dama donde pueda atacar al Rey'
     },
     {
       id: 3,
@@ -288,11 +288,11 @@ const PRACTICE_EXERCISES = {
     },
     {
       id: 2,
-      title: 'Mate en 1 (Reina)',
-      description: '¡Da jaque mate al Rey negro con tu Reina!',
-      instructionText: 'Busca la casilla donde tu Reina dé jaque mate al Rey negro. ¡Solo necesitas una jugada!',
+      title: 'Mate en 1 (Dama)',
+      description: '¡Da jaque mate al Rey negro con tu Dama!',
+      instructionText: 'Busca la casilla donde tu Dama dé jaque mate al Rey negro. ¡Solo necesitas una jugada!',
       category: 'Mate',
-      piece: 'Reina',
+      piece: 'Dama',
       board: [
         [null, null, null, null, null, null, 'k', null],
         [null, null, null, null, null, null, 'p', 'p'],
@@ -303,7 +303,7 @@ const PRACTICE_EXERCISES = {
         [null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, 'K'],
       ],
-      hint: 'La Reina puede dar mate en una casilla específica'
+      hint: 'La Dama puede dar mate en una casilla específica'
     },
   ],
 };
@@ -458,7 +458,7 @@ const ChessBoard = ({ exercise, onComplete, level }) => {
       let finalPiece = movingPiece;
       if (movingPiece === 'P' && row === 0) {
         finalPiece = 'Q';
-        setMessage({ type: 'success', text: '¡Promoción! Tu peón es ahora una Reina ♕' });
+        setMessage({ type: 'success', text: '¡Promoción! Tu peón es ahora una Dama ♕' });
       } else if (movingPiece === 'p' && row === 7) {
         finalPiece = 'q';
       }

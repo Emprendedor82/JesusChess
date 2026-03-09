@@ -48,8 +48,8 @@ const CHALLENGES = [
   },
   {
     id: 4,
-    title: 'Mate en 1 (Reina)',
-    description: 'Usa la Reina para dar mate',
+    title: 'Mate en 1 (Dama)',
+    description: 'Usa la Dama para dar mate',
     difficulty: 'Medio',
     xpReward: 100,
     type: 'mate',
@@ -103,7 +103,7 @@ const ChallengesPage = () => {
       1: '/entrenamiento/practica?level=3&exercise=3', // Captura la Torre (Alfil)
       2: '/entrenamiento/practica?level=3&exercise=4', // Jaque con Caballo
       3: '/entrenamiento/practica?level=4&exercise=1', // Mate en 1 (Torre)
-      4: '/entrenamiento/practica?level=4&exercise=2', // Mate en 1 (Reina)
+      4: '/entrenamiento/practica?level=4&exercise=2', // Mate en 1 (Dama)
     };
 
     if (userRole === 'student' && challengeRoutes[challenge.id]) {
