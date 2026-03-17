@@ -9,8 +9,7 @@ import Layout from "./components/layout/Layout";
 import MobileLayout from "./components/layout/MobileLayout";
 
 // Pages - Role Selector
-import RoleSelector from "./components/pages/RoleSelector";
-import WelcomeScreen from "./components/pages/WelcomeScreen";
+import AuthScreen from "./components/pages/AuthScreen";
 
 // Pages - Dashboards (other roles)
 import TeacherPanel from "./components/pages/TeacherPanel";
@@ -69,11 +68,8 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      {/* Welcome Screen - Entry point */}
-      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <WelcomeScreen />} />
-      
-      {/* Role Selector */}
-      <Route path="/roles" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <RoleSelector />} />
+      {/* Auth Screen - Entry point */}
+      <Route path="/" element={userRole ? <Navigate to={getHomeRoute()} replace /> : <AuthScreen />} />
       
       {/* Course Landing - Public (sales page) */}
       <Route path="/curso" element={<CourseLanding />} />

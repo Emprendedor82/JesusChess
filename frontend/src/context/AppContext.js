@@ -71,6 +71,7 @@ export const AppProvider = ({ children }) => {
   const logout = useCallback(() => {
     setUserRole(null);
     setCurrentUser(null);
+    localStorage.removeItem('je_auth_session');
   }, []);
 
   const value = {
