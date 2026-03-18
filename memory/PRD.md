@@ -48,4 +48,5 @@ Admin: /admin
 - **P3:** Backend integration, real auth API
 
 ## Changelog
-- **2026-02-XX:** Fixed Vercel build failure — added missing useEffect dependencies in AuthScreen.jsx
+- **2026-03-18:** Correcciones completas en ProfilePage.jsx: nombre real desde localStorage, logros e historial vacíos, configuración (notificaciones toggle, cambiar contraseña, cerrar sesión), ayuda con mailto.
+- **2026-03-18:** Fixed Vercel build failure — added missing useEffect dependencies in AuthScreen.jsx
