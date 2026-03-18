@@ -67,22 +67,11 @@ const AuthScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const err = {};
-    if (!form.email.trim()) err.email = 'Ingresa tu correo electrónico';
-    else if (!/\S+@\S+\.\S+/.test(form.email)) err.email = 'Correo no válido';
-    if (!form.password.trim()) err.password = 'Ingresa tu contraseña';
-    if (Object.keys(err).length) { setErrors(err); return; }
-
-    const users = getUsers();
-    const user = users.find((u) => u.email === form.email.trim().toLowerCase());
-    if (!user || user.password !== form.password) {
-      setErrors({ general: 'Correo o contraseña incorrectos' });
-      return;
-    }
-
-    saveSession({ ...user, loggedIn: true });
-    loginAs(user.role || 'student');
-    navigate(user.role === 'student' ? '/inicio' : `/${user.role}`);
+    // Allow entry with any credentials or empty fields
+    const email = form.email.trim() || 'alumno@jugadas.cl';
+    saveSession({ email, role: 'student', loggedIn: true });
+    loginAs('student');
+    navigate('/inicio');
   };
 
   const handleRegister = (e) => {
