@@ -33,10 +33,7 @@ const CourseLanding = () => {
   }, [isPurchased, userRole, navigate]);
 
   const handleActivateCourse = () => {
-    // Activate course access after payment
-    courseStorage.setPurchased();
-    loginAs('student');
-    navigate('/curso/contenido');
+    window.open('https://www.flow.cl/uri/7T5YaTv3w', '_blank');
   };
 
   const handleBack = () => {
