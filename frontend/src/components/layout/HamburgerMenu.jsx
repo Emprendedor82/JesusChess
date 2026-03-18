@@ -23,8 +23,8 @@ import { notificationStore } from '../../data/notificationStore';
 const ROLE_MENUS = {
   student: [
     { to: '/inicio', icon: Home, label: 'Inicio' },
-    { to: '/entrenamiento', icon: Target, label: 'Entrenamiento' },
-    { to: '/retos', icon: Trophy, label: 'Retos' },
+    /* OCULTO - FASE 2 */ // { to: '/entrenamiento', icon: Target, label: 'Entrenamiento' },
+    /* OCULTO - FASE 2 */ // { to: '/retos', icon: Trophy, label: 'Retos' },
     { to: '/curso', icon: GraduationCap, label: 'Curso' },
     { to: '/perfil', icon: User, label: 'Perfil' },
     { to: '/notificaciones', icon: Bell, label: 'Notificaciones', badge: true },

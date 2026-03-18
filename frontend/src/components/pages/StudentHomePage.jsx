@@ -161,7 +161,8 @@ const StudentHomePage = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+        {/* OCULTO - FASE 2: Cards de Entrenar y Retos */}
+        {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
           <Card 
             className="cursor-pointer active:scale-[0.98] transition-transform"
             onClick={() => navigate('/entrenamiento')}
@@ -187,7 +188,7 @@ const StudentHomePage = () => {
               <p className="text-xs text-muted-foreground mt-1">2 activos</p>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
 
         {/* Today's Goal + Recent Activity - side by side on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
