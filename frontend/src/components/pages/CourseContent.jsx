@@ -1,36 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '../ui/dialog';
 import { 
   ChevronLeft, 
   ChevronRight,
   Play, 
   CheckCircle, 
   Lock,
-  BookOpen
+  BookOpen,
+  ShoppingCart,
+  Sparkles,
 } from 'lucide-react';
 import { COURSE_INFO, COURSE_MODULES, courseStorage } from '../../data/courseData';
 
 const CourseContent = () => {
   const navigate = useNavigate();
   const [, forceUpdate] = React.useReducer(x => x + 1, 0);
-  
-  // Check if purchased
-  const isPurchased = courseStorage.isPurchased();
-  
-  React.useEffect(() => {
-    if (!isPurchased) {
-      navigate('/curso');
-    }
-  }, [isPurchased, navigate]);
+  const [showPaywall, setShowPaywall] = useState(false);
 
+  const isPurchased = courseStorage.isPurchased();
   const completedCount = courseStorage.getCompletedCount();
   const progressPercent = (completedCount / COURSE_MODULES.length) * 100;
 
   const getModuleStatus = (moduleId) => {
+    // Lesson 1 is always free
+    if (moduleId === 1) {
+      const progress = courseStorage.getModuleProgress(moduleId);
+      if (progress.completed) return 'completed';
+      return 'available';
+    }
+    // Lessons 2+ require purchase
+    if (!isPurchased) return 'locked';
     const progress = courseStorage.getModuleProgress(moduleId);
     if (progress.completed) return 'completed';
     if (courseStorage.isModuleUnlocked(moduleId)) return 'available';
@@ -39,7 +49,10 @@ const CourseContent = () => {
 
   const handleModuleClick = (module) => {
     const status = getModuleStatus(module.id);
-    if (status === 'locked') return;
+    if (status === 'locked') {
+      setShowPaywall(true);
+      return;
+    }
     navigate(`/curso/modulo/${module.id}`);
   };
 
@@ -51,7 +64,7 @@ const CourseContent = () => {
           <Button 
             variant="ghost" 
             size="sm" 
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/inicio')}
             className="text-primary-foreground/80 hover:text-primary-foreground mb-3"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
@@ -81,7 +94,7 @@ const CourseContent = () => {
         </h2>
         
         <div className="space-y-2 md:space-y-3">
-          {COURSE_MODULES.map((module, idx) => {
+          {COURSE_MODULES.map((module) => {
             const status = getModuleStatus(module.id);
             
             return (
@@ -89,10 +102,11 @@ const CourseContent = () => {
                 key={module.id}
                 className={`transition-all ${
                   status === 'locked' 
-                    ? 'opacity-60 cursor-not-allowed' 
+                    ? 'opacity-60 cursor-pointer' 
                     : 'cursor-pointer hover:border-accent/50'
                 } ${status === 'completed' ? 'border-success/30 bg-success/5' : ''}`}
                 onClick={() => handleModuleClick(module)}
+                data-testid={`module-card-${module.id}`}
               >
                 <CardContent className="p-4">
                   <div className="flex items-center gap-4">
@@ -125,16 +139,23 @@ const CourseContent = () => {
                             Completado
                           </Badge>
                         )}
+                        {module.id === 1 && !isPurchased && status !== 'completed' && (
+                          <Badge className="bg-accent/10 text-accent border-0 text-xs">
+                            Gratis
+                          </Badge>
+                        )}
                       </div>
                       <h3 className="font-heading font-bold text-foreground leading-tight">
                         {module.title}
                       </h3>
                     </div>
                     
-                    {/* Duration & Arrow */}
+                    {/* Arrow */}
                     <div className="flex items-center">
-                      {status !== 'locked' && (
+                      {status !== 'locked' ? (
                         <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                      ) : (
+                        <Lock className="w-4 h-4 text-muted-foreground/50" />
                       )}
                     </div>
                   </div>
@@ -159,6 +180,49 @@ const CourseContent = () => {
           </Card>
         )}
       </div>
+
+      {/* Paywall Modal */}
+      <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
+        <DialogContent className="sm:max-w-sm" data-testid="paywall-modal">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 font-heading text-lg">
+              <Sparkles className="w-5 h-5 text-accent" />
+              Desbloquea el curso completo
+            </DialogTitle>
+            <DialogDescription className="text-sm">
+              Accede a todas las lecciones de Ataque y Remate
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 mt-2">
+            <div className="text-center py-3 px-4 rounded-xl bg-accent/5 border border-accent/15">
+              <p className="font-heading text-2xl font-bold text-foreground">$8.000 CLP</p>
+              <p className="text-xs text-muted-foreground mt-1">Pago único · Acceso de por vida</p>
+            </div>
+
+            <Button
+              className="w-full h-12 text-base font-bold rounded-xl shadow-lg"
+              onClick={() => window.open('https://www.flow.cl/uri/7T5YaTv3w', '_blank')}
+              data-testid="paywall-buy-btn"
+            >
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              Comprar ahora
+            </Button>
+
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => {
+                setShowPaywall(false);
+                navigate('/curso/modulo/1');
+              }}
+              data-testid="paywall-free-btn"
+            >
+              Ver lección gratuita
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -28,8 +28,11 @@ const CourseModule = () => {
 
   // Check access
   useEffect(() => {
+    // Lesson 1 is always free
+    if (id === 1) return;
+    // Lessons 2+ require purchase
     if (!courseStorage.isPurchased()) {
-      navigate('/curso');
+      navigate('/curso/contenido');
       return;
     }
     if (!courseStorage.isModuleUnlocked(id)) {

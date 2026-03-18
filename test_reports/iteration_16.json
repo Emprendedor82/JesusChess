@@ -1,0 +1,97 @@
+{
+  "summary": "Paywall Feature Testing Complete - ALL 7 REQUESTED TESTS PASSED. Verified paywall implementation for 'Ataque y Remate' course with Lesson 1 free and Lessons 2+ locked behind $8,000 CLP paywall.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_16.json"],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "tested_features": {
+    "navigate_to_course_content": {
+      "status": "PASSED",
+      "tests": [
+        "Login via form at / (click Ingresar) - PASS",
+        "Navigate to /curso/contenido via client-side routing - PASS",
+        "Module list shows all 12 lessons - PASS (found 12 module cards with data-testid)"
+      ]
+    },
+    "lesson_1_free_access": {
+      "status": "PASSED",
+      "tests": [
+        "Lesson 1 has 'Gratis' badge - PASS",
+        "Lesson 1 has Play icon - PASS",
+        "Click Lesson 1 → navigates to /curso/modulo/1 - PASS",
+        "Video iframe loads YouTube embed - PASS",
+        "'Marcar como visto' button present - PASS"
+      ]
+    },
+    "lessons_2_plus_locked": {
+      "status": "PASSED",
+      "tests": [
+        "Lesson 2 shows Lock icon - PASS",
+        "Lessons 2-12 have locked state (opacity-60) - PASS",
+        "Lock icons visible on all locked lessons - PASS"
+      ]
+    },
+    "paywall_modal_appears": {
+      "status": "PASSED",
+      "tests": [
+        "Click locked lesson (Lesson 2) - PASS",
+        "Paywall modal appears (data-testid='paywall-modal') - PASS",
+        "Modal overlay dims background - PASS"
+      ]
+    },
+    "paywall_modal_content": {
+      "status": "PASSED",
+      "tests": [
+        "Title: 'Desbloquea el curso completo' - PASS",
+        "Description: 'Accede a todas las lecciones de Ataque y Remate' - PASS",
+        "Price: '$8.000 CLP' displayed - PASS",
+        "Subtitle: 'Pago único · Acceso de por vida' - PASS",
+        "'Comprar ahora' button (data-testid='paywall-buy-btn') - PASS",
+        "'Ver lección gratuita' button (data-testid='paywall-free-btn') - PASS"
+      ]
+    },
+    "ver_leccion_gratuita_button": {
+      "status": "PASSED",
+      "tests": [
+        "Click 'Ver lección gratuita' button - PASS",
+        "Modal closes - PASS",
+        "Navigates to /curso/modulo/1 - PASS"
+      ]
+    },
+    "comprar_ahora_button": {
+      "status": "PASSED",
+      "tests": [
+        "Button exists with correct text 'Comprar ahora' - PASS",
+        "Code verified: onClick calls window.open('https://www.flow.cl/uri/7T5YaTv3w', '_blank') - PASS (verified in CourseContent.jsx line 205)"
+      ]
+    }
+  },
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A (frontend-only testing)",
+    "frontend": "100%"
+  },
+  "test_credentials": {
+    "login": "Click 'Ingresar' button (no credentials required - allows empty login)"
+  },
+  "mocked_api": {
+    "has_mocked_apis": true,
+    "details": [
+      "Course purchase via localStorage (je_course_purchased key)",
+      "Payment link is external (https://www.flow.cl/uri/7T5YaTv3w)",
+      "Auth is localStorage based (je_auth_session)"
+    ]
+  },
+  "seed_data_creation": "None required - course data from courseData.js, auth allows empty login",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Paywall feature complete and working. To navigate to /curso/contenido from logged-in state, use client-side navigation (history.pushState + popstate event) as direct URL navigation may lose React context. Course has 12 modules, Lesson 1 always free, Lessons 2+ require purchase (isPurchased flag in localStorage via courseStorage.isPurchased()). Paywall modal uses shadcn Dialog component. Payment URL: https://www.flow.cl/uri/7T5YaTv3w"
+}
