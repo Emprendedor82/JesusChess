@@ -193,8 +193,11 @@ export const courseStorage = {
   }
 };
 
-// Demo: reset module 1 so it appears fresh
+// Demo: reset module 1 and ensure course is not purchased by default
 (() => {
+  // Force course as unpurchased so paywall is active
+  localStorage.removeItem(STORAGE_KEYS.PURCHASED);
+
   const progress = courseStorage.getProgress();
   if (progress[1]) {
     delete progress[1];
