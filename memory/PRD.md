@@ -42,6 +42,10 @@ Admin: /admin
 - [x] "Reina" → "Dama" renaming
 
 ## Backlog
-- **P2:** Split mockData.js into smaller files
-- **P3:** Locked challenge exercises
-- **Future:** Backend integration, real auth API
+- **P1:** Split mockData.js into smaller files
+- **P2:** Reactivate hidden modules ("Entrenar" and "Retos") - Phase 2
+- **P2:** Locked challenge exercises ("Doble ataque", "Mate en 2")
+- **P3:** Backend integration, real auth API
+
+## Changelog
+- **2026-02-XX:** Fixed Vercel build failure — added missing useEffect dependencies in AuthScreen.jsx

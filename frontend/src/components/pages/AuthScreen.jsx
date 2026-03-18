@@ -50,7 +50,7 @@ const AuthScreen = () => {
       loginAs(session.role || 'student');
       navigate(session.role === 'student' ? '/inicio' : `/${session.role}`);
     }
-  }, []);
+  }, [userRole, loginAs, navigate]);
 
   const update = (field, value) => {
     setForm((p) => ({ ...p, [field]: value }));
