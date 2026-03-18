@@ -46,11 +46,11 @@ const ProfilePage = () => {
   };
 
   const menuItems = [
-    { icon: Trophy, label: 'Mis logros', badge: '3', onClick: () => {} },
-    { icon: BookOpen, label: 'Historial de lecciones', onClick: () => {} },
-    { icon: Bell, label: 'Notificaciones', onClick: () => {} },
-    { icon: Settings, label: 'Configuración', onClick: () => {} },
-    { icon: HelpCircle, label: 'Ayuda', onClick: () => {} },
+    { icon: Trophy, label: 'Mis logros', badge: '3', onClick: () => navigate('/retos') },
+    { icon: BookOpen, label: 'Historial de lecciones', onClick: () => navigate('/entrenamiento/aprende') },
+    { icon: Bell, label: 'Notificaciones', onClick: () => navigate('/notificaciones') },
+    { icon: Settings, label: 'Configuración', onClick: () => navigate('/perfil') },
+    { icon: HelpCircle, label: 'Ayuda', onClick: () => navigate('/curso') },
   ];
 
   return (
