@@ -196,7 +196,7 @@ const CourseContent = () => {
 
           <div className="space-y-4 mt-2">
             <div className="text-center py-3 px-4 rounded-xl bg-accent/5 border border-accent/15">
-              <p className="font-heading text-2xl font-bold text-foreground">$8.000 CLP</p>
+              <p className="font-heading text-2xl font-bold text-foreground">$10.000 CLP</p>
               <p className="text-xs text-muted-foreground mt-1">Pago único · Acceso de por vida</p>
             </div>
 
