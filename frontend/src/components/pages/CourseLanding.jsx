@@ -33,7 +33,7 @@ const CourseLanding = () => {
   }, [isPurchased, userRole, navigate]);
 
   const handleActivateCourse = () => {
-    window.open('https://www.flow.cl/uri/7T5YaTv3w', '_blank');
+    window.open('https://www.flow.cl/uri/mdxXyDwK9', '_blank');
   };
 
   const handleBack = () => {

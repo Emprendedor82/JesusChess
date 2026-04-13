@@ -202,7 +202,7 @@ const CourseContent = () => {
 
             <Button
               className="w-full h-12 text-base font-bold rounded-xl shadow-lg"
-              onClick={() => window.open('https://www.flow.cl/uri/7T5YaTv3w', '_blank')}
+              onClick={() => window.open('https://www.flow.cl/uri/mdxXyDwK9', '_blank')}
               data-testid="paywall-buy-btn"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />

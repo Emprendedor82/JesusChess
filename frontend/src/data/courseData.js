@@ -4,7 +4,7 @@ export const COURSE_INFO = {
   subtitle: "Aprende los principios para ganar atacando",
   price: 10000, // CLP
   priceFormatted: "$10.000 CLP",
-  paymentUrl: "https://www.flow.cl/uri/7T5YaTv3w",
+  paymentUrl: "https://www.flow.cl/uri/mdxXyDwK9",
   promise: "Aprende los principios para ganar atacando",
   transformation: "En 12 módulos pasarás de mover piezas sin rumbo a planificar partidas completas, anticipar jugadas del rival y ganar con estrategia. Tendrás la mentalidad y técnica de un verdadero ajedrecista.",
   benefits: [
